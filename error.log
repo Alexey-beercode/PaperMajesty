@@ -1,0 +1,282 @@
+[Tue Mar 05 21:47:57.326327 2024] [mpm_winnt:notice] [pid 17784:tid 376] AH00455: Apache/2.4.58 (Win64) PHP/8.3.3 configured -- resuming normal operations
+[Tue Mar 05 21:47:57.326327 2024] [mpm_winnt:notice] [pid 17784:tid 376] AH00456: Apache Lounge VS17 Server built: Jan 30 2024 19:01:23
+[Tue Mar 05 21:47:57.326327 2024] [core:notice] [pid 17784:tid 376] AH00094: Command line: 'C:\\Apache\\httpd-2.4.58-240131-win64-VS17\\Apache24\\bin\\httpd.exe -d C:/Apache/httpd-2.4.58-240131-win64-VS17/Apache24'
+[Tue Mar 05 21:47:57.341996 2024] [mpm_winnt:notice] [pid 17784:tid 376] AH00418: Parent: Created child process 15640
+Apache server shutdown initiated...
+pm_winnt:notice] [pid 15640:tid 400] AH00354: Child: Starting 64 worker threads.
+[Tue Mar 05 21:53:00.608743 2024] [mpm_winnt:notice] [pid 17784:tid 376] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Tue Mar 05 21:53:02.615545 2024] [mpm_winnt:notice] [pid 15640:tid 400] AH00364: Child: All worker threads have exited.
+[Tue Mar 05 21:53:02.648346 2024] [mpm_winnt:notice] [pid 17784:tid 376] AH00430: Parent: Child process 15640 exited successfully.
+[Tue Mar 05 21:53:20.375040 2024] [mpm_winnt:notice] [pid 14296:tid 416] AH00455: Apache/2.4.58 (Win64) PHP/8.3.3 configured -- resuming normal operations
+[Tue Mar 05 21:53:20.375040 2024] [mpm_winnt:notice] [pid 14296:tid 416] AH00456: Apache Lounge VS17 Server built: Jan 30 2024 19:01:23
+[Tue Mar 05 21:53:20.375040 2024] [core:notice] [pid 14296:tid 416] AH00094: Command line: 'C:\\Apache\\httpd-2.4.58-240131-win64-VS17\\Apache24\\bin\\httpd.exe -d C:/Apache/httpd-2.4.58-240131-win64-VS17/Apache24'
+[Tue Mar 05 21:53:20.383061 2024] [mpm_winnt:notice] [pid 14296:tid 416] AH00418: Parent: Created child process 4876
+Apache server shutdown initiated...
+pm_winnt:notice] [pid 4876:tid 380] AH00354: Child: Starting 64 worker threads.
+[Tue Mar 05 21:54:00.034344 2024] [mpm_winnt:notice] [pid 14296:tid 416] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Tue Mar 05 21:54:34.333769 2024] [mpm_winnt:notice] [pid 4876:tid 380] AH00362: Child: Waiting 30 more seconds for 1 worker threads to finish.
+[Tue Mar 05 21:54:35.431554 2024] [mpm_winnt:notice] [pid 4876:tid 380] AH00364: Child: All worker threads have exited.
+[Tue Mar 05 21:58:31.742105 2024] [core:warn] [pid 8724:tid 360] AH00098: pid file C:/Apache/httpd-2.4.58-240131-win64-VS17/Apache24/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Tue Mar 05 21:58:31.759530 2024] [mpm_winnt:notice] [pid 8724:tid 360] AH00455: Apache/2.4.58 (Win64) PHP/8.3.3 configured -- resuming normal operations
+[Tue Mar 05 21:58:31.759530 2024] [mpm_winnt:notice] [pid 8724:tid 360] AH00456: Apache Lounge VS17 Server built: Jan 30 2024 19:01:23
+[Tue Mar 05 21:58:31.759530 2024] [core:notice] [pid 8724:tid 360] AH00094: Command line: 'C:\\Apache\\httpd-2.4.58-240131-win64-VS17\\Apache24\\bin\\httpd.exe -d C:/Apache/httpd-2.4.58-240131-win64-VS17/Apache24'
+[Tue Mar 05 21:58:31.759530 2024] [mpm_winnt:notice] [pid 8724:tid 360] AH00418: Parent: Created child process 8844
+Apache server shutdown initiated...
+pm_winnt:notice] [pid 8844:tid 352] AH00354: Child: Starting 64 worker threads.
+[Tue Mar 05 22:06:14.197809 2024] [php:error] [pid 8844:tid 1108] [client ::1:52423] PHP Fatal error:  Uncaught Error: Call to undefined method UserService::registerUser() in C:\\localhost\\index.php:22\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\index.php on line 22, referer: http://localhost:8080/index.php
+[Tue Mar 05 22:10:45.265312 2024] [mpm_winnt:notice] [pid 8724:tid 360] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Tue Mar 05 22:10:47.301745 2024] [mpm_winnt:notice] [pid 8844:tid 352] AH00364: Child: All worker threads have exited.
+[Tue Mar 05 22:10:47.333342 2024] [mpm_winnt:notice] [pid 8724:tid 360] AH00430: Parent: Child process 8844 exited successfully.
+[Tue Mar 05 22:13:07.791531 2024] [mpm_winnt:notice] [pid 14264:tid 364] AH00455: Apache/2.4.58 (Win64) PHP/8.3.3 configured -- resuming normal operations
+[Tue Mar 05 22:13:07.791531 2024] [mpm_winnt:notice] [pid 14264:tid 364] AH00456: Apache Lounge VS17 Server built: Jan 30 2024 19:01:23
+[Tue Mar 05 22:13:07.791531 2024] [core:notice] [pid 14264:tid 364] AH00094: Command line: 'C:\\Apache\\httpd-2.4.58-240131-win64-VS17\\Apache24\\bin\\httpd.exe -d C:/Apache/httpd-2.4.58-240131-win64-VS17/Apache24'
+[Tue Mar 05 22:13:07.807161 2024] [mpm_winnt:notice] [pid 14264:tid 364] AH00418: Parent: Created child process 12468
+[Tue Mar 05 22:13:08.044739 2024] [mpm_winnt:notice] [pid 12468:tid 392] AH00354: Child: Starting 64 worker threads.
+[Wed Mar 06 09:07:15.529515 2024] [mpm_winnt:notice] [pid 14264:tid 364] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Wed Mar 06 09:07:17.549621 2024] [mpm_winnt:notice] [pid 12468:tid 392] AH00364: Child: All worker threads have exited.
+[Wed Mar 06 09:07:17.596655 2024] [mpm_winnt:notice] [pid 14264:tid 364] AH00430: Parent: Child process 12468 exited successfully.
+[Wed Mar 06 09:07:18.833968 2024] [mpm_winnt:notice] [pid 19604:tid 392] AH00455: Apache/2.4.58 (Win64) PHP/8.3.3 configured -- resuming normal operations
+[Wed Mar 06 09:07:18.833968 2024] [mpm_winnt:notice] [pid 19604:tid 392] AH00456: Apache Lounge VS17 Server built: Jan 30 2024 19:01:23
+[Wed Mar 06 09:07:18.833968 2024] [core:notice] [pid 19604:tid 392] AH00094: Command line: 'C:\\Apache\\httpd-2.4.58-240131-win64-VS17\\Apache24\\bin\\httpd.exe -d C:/Apache/httpd-2.4.58-240131-win64-VS17/Apache24'
+[Wed Mar 06 09:07:18.833968 2024] [mpm_winnt:notice] [pid 19604:tid 392] AH00418: Parent: Created child process 2324
+[Wed Mar 06 09:07:19.226793 2024] [mpm_winnt:notice] [pid 2324:tid 376] AH00354: Child: Starting 64 worker threads.
+[Wed Mar 06 09:08:55.215105 2024] [mpm_winnt:notice] [pid 19604:tid 392] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Wed Mar 06 09:09:25.224667 2024] [mpm_winnt:notice] [pid 19604:tid 392] AH00431: Parent: Forcing termination of child process 2324
+[Wed Mar 06 09:09:25.634439 2024] [mpm_winnt:notice] [pid 17832:tid 360] AH00455: Apache/2.4.58 (Win64) PHP/8.3.3 configured -- resuming normal operations
+[Wed Mar 06 09:09:25.634439 2024] [mpm_winnt:notice] [pid 17832:tid 360] AH00456: Apache Lounge VS17 Server built: Jan 30 2024 19:01:23
+[Wed Mar 06 09:09:25.634439 2024] [core:notice] [pid 17832:tid 360] AH00094: Command line: 'C:\\Apache\\httpd-2.4.58-240131-win64-VS17\\Apache24\\bin\\httpd.exe -d C:/Apache/httpd-2.4.58-240131-win64-VS17/Apache24'
+[Wed Mar 06 09:09:25.634439 2024] [mpm_winnt:notice] [pid 17832:tid 360] AH00418: Parent: Created child process 12088
+[Wed Mar 06 09:09:25.870552 2024] [mpm_winnt:notice] [pid 12088:tid 352] AH00354: Child: Starting 64 worker threads.
+[Wed Mar 06 09:39:55.718488 2024] [mpm_winnt:notice] [pid 17832:tid 360] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Wed Mar 06 09:39:57.729934 2024] [mpm_winnt:notice] [pid 12088:tid 352] AH00364: Child: All worker threads have exited.
+[Wed Mar 06 09:39:57.755218 2024] [mpm_winnt:notice] [pid 17832:tid 360] AH00430: Parent: Child process 12088 exited successfully.
+[Wed Mar 06 09:39:58.530929 2024] [mpm_winnt:notice] [pid 18208:tid 360] AH00455: Apache/2.4.58 (Win64) PHP/8.3.3 configured -- resuming normal operations
+[Wed Mar 06 09:39:58.530929 2024] [mpm_winnt:notice] [pid 18208:tid 360] AH00456: Apache Lounge VS17 Server built: Jan 30 2024 19:01:23
+[Wed Mar 06 09:39:58.530929 2024] [core:notice] [pid 18208:tid 360] AH00094: Command line: 'C:\\Apache\\httpd-2.4.58-240131-win64-VS17\\Apache24\\bin\\httpd.exe -d C:/Apache/httpd-2.4.58-240131-win64-VS17/Apache24'
+[Wed Mar 06 09:39:58.530929 2024] [mpm_winnt:notice] [pid 18208:tid 360] AH00418: Parent: Created child process 4292
+[Wed Mar 06 09:39:58.782171 2024] [mpm_winnt:notice] [pid 4292:tid 368] AH00354: Child: Starting 64 worker threads.
+[Wed Mar 06 09:41:41.785959 2024] [mpm_winnt:notice] [pid 18208:tid 360] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Wed Mar 06 09:41:43.801698 2024] [mpm_winnt:notice] [pid 4292:tid 368] AH00364: Child: All worker threads have exited.
+[Wed Mar 06 09:41:43.824098 2024] [mpm_winnt:notice] [pid 18208:tid 360] AH00430: Parent: Child process 4292 exited successfully.
+[Wed Mar 06 09:41:44.587458 2024] [mpm_winnt:notice] [pid 8768:tid 348] AH00455: Apache/2.4.58 (Win64) PHP/8.3.3 configured -- resuming normal operations
+[Wed Mar 06 09:41:44.587458 2024] [mpm_winnt:notice] [pid 8768:tid 348] AH00456: Apache Lounge VS17 Server built: Jan 30 2024 19:01:23
+[Wed Mar 06 09:41:44.587458 2024] [core:notice] [pid 8768:tid 348] AH00094: Command line: 'C:\\Apache\\httpd-2.4.58-240131-win64-VS17\\Apache24\\bin\\httpd.exe -d C:/Apache/httpd-2.4.58-240131-win64-VS17/Apache24'
+[Wed Mar 06 09:41:44.587458 2024] [mpm_winnt:notice] [pid 8768:tid 348] AH00418: Parent: Created child process 13248
+[Wed Mar 06 09:41:44.871384 2024] [mpm_winnt:notice] [pid 13248:tid 352] AH00354: Child: Starting 64 worker threads.
+[Wed Mar 06 09:41:58.827597 2024] [php:warn] [pid 13248:tid 1128] [client ::1:55274] PHP Warning:  Undefined array key "firstname" in C:\\localhost\\test.php on line 3
+[Wed Mar 06 09:41:58.827597 2024] [php:warn] [pid 13248:tid 1128] [client ::1:55274] PHP Warning:  Undefined array key "lastname" in C:\\localhost\\test.php on line 4
+[Wed Mar 06 09:41:58.904630 2024] [php:warn] [pid 13248:tid 1120] [client ::1:55278] PHP Warning:  Undefined array key "firstname" in C:\\localhost\\test.php on line 3
+[Wed Mar 06 09:41:58.904630 2024] [php:warn] [pid 13248:tid 1120] [client ::1:55278] PHP Warning:  Undefined array key "lastname" in C:\\localhost\\test.php on line 4
+[Wed Mar 06 15:05:14.741102 2024] [php:warn] [pid 13248:tid 1148] [client ::1:56978] PHP Warning:  Undefined array key "firstname" in C:\\localhost\\test.php on line 3
+[Wed Mar 06 15:05:14.741102 2024] [php:warn] [pid 13248:tid 1148] [client ::1:56978] PHP Warning:  Undefined array key "lastname" in C:\\localhost\\test.php on line 4
+[Wed Mar 06 15:05:14.932550 2024] [php:warn] [pid 13248:tid 1128] [client ::1:56980] PHP Warning:  Undefined array key "firstname" in C:\\localhost\\test.php on line 3
+[Wed Mar 06 15:05:14.935557 2024] [php:warn] [pid 13248:tid 1128] [client ::1:56980] PHP Warning:  Undefined array key "lastname" in C:\\localhost\\test.php on line 4
+[Wed Mar 06 15:05:32.135741 2024] [php:error] [pid 13248:tid 1128] [client ::1:56982] script 'C:/localhost/display.php' not found or unable to stat, referer: http://localhost:8080/index.php
+[Wed Mar 06 15:05:32.221087 2024] [php:error] [pid 13248:tid 1120] [client ::1:56985] script 'C:/localhost/display.php' not found or unable to stat
+[Wed Mar 06 15:06:05.975237 2024] [php:warn] [pid 13248:tid 1148] [client ::1:56984] PHP Warning:  Undefined array key "firstname" in C:\\localhost\\test.php on line 3
+[Wed Mar 06 15:06:05.975237 2024] [php:warn] [pid 13248:tid 1148] [client ::1:56984] PHP Warning:  Undefined array key "lastname" in C:\\localhost\\test.php on line 4
+[Wed Mar 06 15:06:06.358381 2024] [php:warn] [pid 13248:tid 1120] [client ::1:56999] PHP Warning:  Undefined array key "firstname" in C:\\localhost\\test.php on line 3
+[Wed Mar 06 15:06:06.358381 2024] [php:warn] [pid 13248:tid 1120] [client ::1:56999] PHP Warning:  Undefined array key "lastname" in C:\\localhost\\test.php on line 4
+[Wed Mar 06 20:29:42.443303 2024] [php:warn] [pid 13248:tid 1112] [client ::1:59415] PHP Warning:  Undefined array key "firstname" in C:\\localhost\\test.php on line 3
+[Wed Mar 06 20:29:42.443303 2024] [php:warn] [pid 13248:tid 1112] [client ::1:59415] PHP Warning:  Undefined array key "lastname" in C:\\localhost\\test.php on line 4
+[Wed Mar 06 20:44:59.280607 2024] [php:warn] [pid 13248:tid 1112] [client ::1:59666] PHP Warning:  Undefined array key "firstname" in C:\\localhost\\test.php on line 3
+[Wed Mar 06 20:44:59.280607 2024] [php:warn] [pid 13248:tid 1112] [client ::1:59666] PHP Warning:  Undefined array key "lastname" in C:\\localhost\\test.php on line 4
+[Wed Mar 06 21:47:28.804498 2024] [php:warn] [pid 13248:tid 1128] [client ::1:60606] PHP Warning:  Undefined array key "firstname" in C:\\localhost\\login.php on line 3
+[Wed Mar 06 21:47:28.805494 2024] [php:warn] [pid 13248:tid 1128] [client ::1:60606] PHP Warning:  Undefined array key "age" in C:\\localhost\\login.php on line 4
+[Wed Mar 06 21:47:28.805494 2024] [php:warn] [pid 13248:tid 1128] [client ::1:60606] PHP Warning:  Undefined array key "password" in C:\\localhost\\login.php on line 5
+[Wed Mar 06 21:47:28.805494 2024] [php:warn] [pid 13248:tid 1128] [client ::1:60606] PHP Warning:  Undefined array key "login" in C:\\localhost\\login.php on line 6
+[Wed Mar 06 21:47:59.620641 2024] [php:warn] [pid 13248:tid 1092] [client ::1:60610] PHP Warning:  Undefined array key "firstname" in C:\\localhost\\login.php on line 3
+[Wed Mar 06 21:47:59.620641 2024] [php:warn] [pid 13248:tid 1092] [client ::1:60610] PHP Warning:  Undefined array key "age" in C:\\localhost\\login.php on line 4
+[Wed Mar 06 21:47:59.620641 2024] [php:warn] [pid 13248:tid 1092] [client ::1:60610] PHP Warning:  Undefined array key "password" in C:\\localhost\\login.php on line 5
+[Wed Mar 06 21:47:59.620641 2024] [php:warn] [pid 13248:tid 1092] [client ::1:60610] PHP Warning:  Undefined array key "login" in C:\\localhost\\login.php on line 6
+[Thu Mar 07 02:55:40.783451 2024] [mpm_winnt:notice] [pid 8768:tid 348] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Thu Mar 07 02:55:42.792306 2024] [mpm_winnt:notice] [pid 13248:tid 352] AH00364: Child: All worker threads have exited.
+[Thu Mar 07 02:55:42.826255 2024] [mpm_winnt:notice] [pid 8768:tid 348] AH00430: Parent: Child process 13248 exited successfully.
+[Thu Mar 07 02:55:44.193098 2024] [mpm_winnt:notice] [pid 10236:tid 380] AH00455: Apache/2.4.58 (Win64) PHP/8.3.3 configured -- resuming normal operations
+[Thu Mar 07 02:55:44.193098 2024] [mpm_winnt:notice] [pid 10236:tid 380] AH00456: Apache Lounge VS17 Server built: Jan 30 2024 19:01:23
+[Thu Mar 07 02:55:44.193098 2024] [core:notice] [pid 10236:tid 380] AH00094: Command line: 'C:\\Apache\\httpd-2.4.58-240131-win64-VS17\\Apache24\\bin\\httpd.exe -d C:/Apache/httpd-2.4.58-240131-win64-VS17/Apache24'
+[Thu Mar 07 02:55:44.193098 2024] [mpm_winnt:notice] [pid 10236:tid 380] AH00418: Parent: Created child process 13616
+[Thu Mar 07 02:55:44.456405 2024] [mpm_winnt:notice] [pid 13616:tid 364] AH00354: Child: Starting 64 worker threads.
+[Sat Mar 09 23:20:18.451609 2024] [php:warn] [pid 13616:tid 1124] [client ::1:47696] PHP Warning:  Undefined array key "firstname" in C:\\localhost\\index2.php on line 3
+[Sat Mar 09 23:20:18.457422 2024] [php:warn] [pid 13616:tid 1124] [client ::1:47696] PHP Warning:  Undefined array key "age" in C:\\localhost\\index2.php on line 4
+[Sat Mar 09 23:20:18.457422 2024] [php:warn] [pid 13616:tid 1124] [client ::1:47696] PHP Warning:  Undefined array key "password" in C:\\localhost\\index2.php on line 5
+[Sat Mar 09 23:20:18.457422 2024] [php:warn] [pid 13616:tid 1124] [client ::1:47696] PHP Warning:  Undefined array key "login" in C:\\localhost\\index2.php on line 6
+[Sun Mar 10 00:07:38.747093 2024] [mpm_winnt:notice] [pid 10236:tid 380] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Sun Mar 10 00:07:40.767922 2024] [mpm_winnt:notice] [pid 13616:tid 364] AH00364: Child: All worker threads have exited.
+[Sun Mar 10 00:07:40.830427 2024] [mpm_winnt:notice] [pid 10236:tid 380] AH00430: Parent: Child process 13616 exited successfully.
+PHP Warning:  Module "mysqli" is already loaded in Unknown on line 0
+[Sun Mar 10 00:07:43.004484 2024] [mpm_winnt:notice] [pid 5548:tid 336] AH00455: Apache/2.4.58 (Win64) PHP/8.3.3 configured -- resuming normal operations
+[Sun Mar 10 00:07:43.004484 2024] [mpm_winnt:notice] [pid 5548:tid 336] AH00456: Apache Lounge VS17 Server built: Jan 30 2024 19:01:23
+[Sun Mar 10 00:07:43.004484 2024] [core:notice] [pid 5548:tid 336] AH00094: Command line: 'C:\\Apache\\httpd-2.4.58-240131-win64-VS17\\Apache24\\bin\\httpd.exe -d C:/Apache/httpd-2.4.58-240131-win64-VS17/Apache24'
+[Sun Mar 10 00:07:43.004484 2024] [mpm_winnt:notice] [pid 5548:tid 336] AH00418: Parent: Created child process 8404
+PHP Warning:  Module "mysqli" is already loaded in Unknown on line 0
+[Sun Mar 10 00:07:43.464757 2024] [mpm_winnt:notice] [pid 8404:tid 352] AH00354: Child: Starting 64 worker threads.
+[Sun Mar 10 00:09:44.482434 2024] [mpm_winnt:notice] [pid 5548:tid 336] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Sun Mar 10 00:09:46.498907 2024] [mpm_winnt:notice] [pid 8404:tid 352] AH00364: Child: All worker threads have exited.
+[Sun Mar 10 00:09:46.530207 2024] [mpm_winnt:notice] [pid 5548:tid 336] AH00430: Parent: Child process 8404 exited successfully.
+PHP Warning:  Module "mysqli" is already loaded in Unknown on line 0
+[Sun Mar 10 00:10:13.439801 2024] [mpm_winnt:notice] [pid 5156:tid 340] AH00455: Apache/2.4.58 (Win64) PHP/8.3.3 configured -- resuming normal operations
+[Sun Mar 10 00:10:13.439801 2024] [mpm_winnt:notice] [pid 5156:tid 340] AH00456: Apache Lounge VS17 Server built: Jan 30 2024 19:01:23
+[Sun Mar 10 00:10:13.439801 2024] [core:notice] [pid 5156:tid 340] AH00094: Command line: 'C:\\Apache\\httpd-2.4.58-240131-win64-VS17\\Apache24\\bin\\httpd.exe -d C:/Apache/httpd-2.4.58-240131-win64-VS17/Apache24'
+[Sun Mar 10 00:10:13.439801 2024] [mpm_winnt:notice] [pid 5156:tid 340] AH00418: Parent: Created child process 6692
+PHP Warning:  Module "mysqli" is already loaded in Unknown on line 0
+[Sun Mar 10 00:10:18.829127 2024] [mpm_winnt:notice] [pid 6692:tid 352] AH00354: Child: Starting 64 worker threads.
+[Mon Mar 11 12:56:37.335857 2024] [php:error] [pid 6692:tid 1228] [client ::1:31392] PHP Fatal error:  Uncaught Error: Class "repositories\\UserRepository" not found in C:\\localhost\\login.php:8\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\login.php on line 8
+[Mon Mar 11 12:59:41.668049 2024] [php:error] [pid 6692:tid 1224] [client ::1:31426] PHP Fatal error:  Uncaught TypeError: repositories\\UserRepository::__construct(): Argument #1 ($conn) must be of type repositories\\PDO, PDO given, called in C:\\localhost\\login.php on line 10 and defined in C:\\localhost\\repositories\\UserRepository.php:8\nStack trace:\n#0 C:\\localhost\\login.php(10): repositories\\UserRepository->__construct(Object(PDO))\n#1 {main}\n  thrown in C:\\localhost\\repositories\\UserRepository.php on line 8
+[Mon Mar 11 13:00:47.958467 2024] [php:error] [pid 6692:tid 1228] [client ::1:31438] PHP Fatal error:  Uncaught TypeError: repositories\\UserRepository::__construct(): Argument #1 ($conn) must be of type repositories\\PDO, PDO given, called in C:\\localhost\\login.php on line 11 and defined in C:\\localhost\\repositories\\UserRepository.php:8\nStack trace:\n#0 C:\\localhost\\login.php(11): repositories\\UserRepository->__construct(Object(PDO))\n#1 {main}\n  thrown in C:\\localhost\\repositories\\UserRepository.php on line 8
+[Mon Mar 11 13:02:21.830704 2024] [php:error] [pid 6692:tid 1224] [client ::1:31505] PHP Fatal error:  Uncaught TypeError: repositories\\UserRepository::__construct(): Argument #1 ($conn) must be of type repositories\\PDO, PDO given, called in C:\\localhost\\login.php on line 11 and defined in C:\\localhost\\repositories\\UserRepository.php:8\nStack trace:\n#0 C:\\localhost\\login.php(11): repositories\\UserRepository->__construct(Object(PDO))\n#1 {main}\n  thrown in C:\\localhost\\repositories\\UserRepository.php on line 8
+[Mon Mar 11 13:12:42.253466 2024] [php:error] [pid 6692:tid 1228] [client ::1:31633] PHP Fatal error:  Uncaught Error: Call to a member function rowCount() on false in C:\\localhost\\login.php:13\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\login.php on line 13
+[Mon Mar 11 13:13:38.873429 2024] [php:warn] [pid 6692:tid 1224] [client ::1:31634] PHP Warning:  Trying to access array offset on false in C:\\localhost\\login.php on line 13
+[Mon Mar 11 14:25:20.773035 2024] [php:error] [pid 6692:tid 1220] [client ::1:32208] PHP Parse error:  syntax error, unexpected token "foreach", expecting "," or ";" in C:\\localhost\\login.php on line 20
+[Mon Mar 11 14:25:20.846509 2024] [php:error] [pid 6692:tid 1228] [client ::1:32222] PHP Parse error:  syntax error, unexpected token "foreach", expecting "," or ";" in C:\\localhost\\login.php on line 20
+[Mon Mar 11 15:18:59.716592 2024] [php:error] [pid 6692:tid 1220] [client ::1:48527] PHP Fatal error:  Uncaught Error: Class "Ramsey\\Uuid\\Uuid" not found in C:\\localhost\\repositories\\UserRepository.php:19\nStack trace:\n#0 C:\\localhost\\login.php(25): repositories\\UserRepository->create(Array)\n#1 {main}\n  thrown in C:\\localhost\\repositories\\UserRepository.php on line 19
+[Mon Mar 11 15:19:00.155122 2024] [php:error] [pid 6692:tid 1228] [client ::1:48531] PHP Fatal error:  Uncaught Error: Class "Ramsey\\Uuid\\Uuid" not found in C:\\localhost\\repositories\\UserRepository.php:19\nStack trace:\n#0 C:\\localhost\\login.php(25): repositories\\UserRepository->create(Array)\n#1 {main}\n  thrown in C:\\localhost\\repositories\\UserRepository.php on line 19
+[Mon Mar 11 15:42:49.755410 2024] [php:warn] [pid 6692:tid 1224] [client ::1:48866] PHP Warning:  require(vendor/autoload.php): Failed to open stream: No such file or directory in C:\\localhost\\repositories\\UserRepository.php on line 4
+[Mon Mar 11 15:42:49.755410 2024] [php:error] [pid 6692:tid 1224] [client ::1:48866] PHP Fatal error:  Uncaught Error: Failed opening required 'vendor/autoload.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\repositories\\UserRepository.php:4\nStack trace:\n#0 C:\\localhost\\login.php(3): require_once()\n#1 {main}\n  thrown in C:\\localhost\\repositories\\UserRepository.php on line 4
+[Mon Mar 11 15:42:50.261150 2024] [php:warn] [pid 6692:tid 1220] [client ::1:48868] PHP Warning:  require(vendor/autoload.php): Failed to open stream: No such file or directory in C:\\localhost\\repositories\\UserRepository.php on line 4
+[Mon Mar 11 15:42:50.261150 2024] [php:error] [pid 6692:tid 1220] [client ::1:48868] PHP Fatal error:  Uncaught Error: Failed opening required 'vendor/autoload.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\repositories\\UserRepository.php:4\nStack trace:\n#0 C:\\localhost\\login.php(3): require_once()\n#1 {main}\n  thrown in C:\\localhost\\repositories\\UserRepository.php on line 4
+[Mon Mar 11 15:56:46.494182 2024] [php:error] [pid 6692:tid 1220] [client ::1:48957] script 'C:/localhost/delete.php' not found or unable to stat
+[Mon Mar 11 15:56:46.927968 2024] [php:error] [pid 6692:tid 1228] [client ::1:48960] script 'C:/localhost/delete.php' not found or unable to stat
+[Mon Mar 11 16:00:20.552182 2024] [php:error] [pid 6692:tid 1228] [client ::1:48993] script 'C:/localhost/delete.php' not found or unable to stat, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:00:20.715830 2024] [php:error] [pid 6692:tid 1220] [client ::1:48995] script 'C:/localhost/delete.php' not found or unable to stat
+[Mon Mar 11 16:03:03.423308 2024] [mpm_winnt:notice] [pid 5156:tid 340] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Mon Mar 11 16:03:05.437809 2024] [mpm_winnt:notice] [pid 6692:tid 352] AH00364: Child: All worker threads have exited.
+[Mon Mar 11 16:03:05.500258 2024] [mpm_winnt:notice] [pid 5156:tid 340] AH00430: Parent: Child process 6692 exited successfully.
+PHP Warning:  Module "mysqli" is already loaded in Unknown on line 0
+[Mon Mar 11 16:03:07.289217 2024] [mpm_winnt:notice] [pid 8828:tid 356] AH00455: Apache/2.4.58 (Win64) PHP/8.3.3 configured -- resuming normal operations
+[Mon Mar 11 16:03:07.289217 2024] [mpm_winnt:notice] [pid 8828:tid 356] AH00456: Apache Lounge VS17 Server built: Jan 30 2024 19:01:23
+[Mon Mar 11 16:03:07.289217 2024] [core:notice] [pid 8828:tid 356] AH00094: Command line: 'C:\\Apache\\httpd-2.4.58-240131-win64-VS17\\Apache24\\bin\\httpd.exe -d C:/Apache/httpd-2.4.58-240131-win64-VS17/Apache24'
+[Mon Mar 11 16:03:07.304863 2024] [mpm_winnt:notice] [pid 8828:tid 356] AH00418: Parent: Created child process 16404
+PHP Warning:  Module "mysqli" is already loaded in Unknown on line 0
+[Mon Mar 11 16:03:07.720790 2024] [mpm_winnt:notice] [pid 16404:tid 352] AH00354: Child: Starting 64 worker threads.
+[Mon Mar 11 16:03:07.720790 2024] [php:error] [pid 16404:tid 1192] [client ::1:49042] script 'C:/localhost/delete.php' not found or unable to stat, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:03:07.787085 2024] [php:error] [pid 16404:tid 1176] [client ::1:49044] script 'C:/localhost/delete.php' not found or unable to stat
+[Mon Mar 11 16:03:08.178629 2024] [php:error] [pid 16404:tid 1192] [client ::1:49042] script 'C:/localhost/delete.php' not found or unable to stat, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:03:08.307213 2024] [php:error] [pid 16404:tid 1176] [client ::1:49044] script 'C:/localhost/delete.php' not found or unable to stat
+[Mon Mar 11 16:03:08.409536 2024] [php:error] [pid 16404:tid 1192] [client ::1:49042] script 'C:/localhost/delete.php' not found or unable to stat, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:03:08.515952 2024] [php:error] [pid 16404:tid 1176] [client ::1:49044] script 'C:/localhost/delete.php' not found or unable to stat
+[Mon Mar 11 16:03:11.856278 2024] [php:error] [pid 16404:tid 1192] [client ::1:49042] script 'C:/localhost/delete.php' not found or unable to stat, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:03:11.982331 2024] [php:error] [pid 16404:tid 1176] [client ::1:49044] script 'C:/localhost/delete.php' not found or unable to stat
+[Mon Mar 11 16:03:12.195825 2024] [php:error] [pid 16404:tid 1192] [client ::1:49042] script 'C:/localhost/delete.php' not found or unable to stat, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:03:12.331573 2024] [php:error] [pid 16404:tid 1176] [client ::1:49044] script 'C:/localhost/delete.php' not found or unable to stat
+[Mon Mar 11 16:03:26.791333 2024] [mpm_winnt:notice] [pid 8828:tid 356] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Mon Mar 11 16:03:56.793097 2024] [mpm_winnt:notice] [pid 8828:tid 356] AH00431: Parent: Forcing termination of child process 16404
+PHP Warning:  Module "mysqli" is already loaded in Unknown on line 0
+[Mon Mar 11 16:03:57.454914 2024] [mpm_winnt:notice] [pid 10932:tid 360] AH00455: Apache/2.4.58 (Win64) PHP/8.3.3 configured -- resuming normal operations
+[Mon Mar 11 16:03:57.454914 2024] [mpm_winnt:notice] [pid 10932:tid 360] AH00456: Apache Lounge VS17 Server built: Jan 30 2024 19:01:23
+[Mon Mar 11 16:03:57.454914 2024] [core:notice] [pid 10932:tid 360] AH00094: Command line: 'C:\\Apache\\httpd-2.4.58-240131-win64-VS17\\Apache24\\bin\\httpd.exe -d C:/Apache/httpd-2.4.58-240131-win64-VS17/Apache24'
+[Mon Mar 11 16:03:57.454914 2024] [mpm_winnt:notice] [pid 10932:tid 360] AH00418: Parent: Created child process 20976
+PHP Warning:  Module "mysqli" is already loaded in Unknown on line 0
+[Mon Mar 11 16:03:57.910450 2024] [mpm_winnt:notice] [pid 20976:tid 364] AH00354: Child: Starting 64 worker threads.
+[Mon Mar 11 16:04:01.406551 2024] [php:error] [pid 20976:tid 1188] [client ::1:49050] script 'C:/localhost/delete.php' not found or unable to stat, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:04:01.487096 2024] [php:error] [pid 20976:tid 1180] [client ::1:49052] script 'C:/localhost/delete.php' not found or unable to stat
+[Mon Mar 11 16:04:02.083875 2024] [php:error] [pid 20976:tid 1188] [client ::1:49050] script 'C:/localhost/delete.php' not found or unable to stat, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:04:02.157242 2024] [php:error] [pid 20976:tid 1180] [client ::1:49052] script 'C:/localhost/delete.php' not found or unable to stat
+[Mon Mar 11 16:04:02.213293 2024] [php:error] [pid 20976:tid 1188] [client ::1:49050] script 'C:/localhost/delete.php' not found or unable to stat, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:04:02.302160 2024] [php:error] [pid 20976:tid 1180] [client ::1:49052] script 'C:/localhost/delete.php' not found or unable to stat
+[Mon Mar 11 16:04:02.378227 2024] [php:error] [pid 20976:tid 1188] [client ::1:49050] script 'C:/localhost/delete.php' not found or unable to stat, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:04:02.488244 2024] [php:error] [pid 20976:tid 1180] [client ::1:49052] script 'C:/localhost/delete.php' not found or unable to stat
+[Mon Mar 11 16:06:09.285930 2024] [mpm_winnt:notice] [pid 10932:tid 360] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Mon Mar 11 16:06:11.298310 2024] [mpm_winnt:notice] [pid 20976:tid 364] AH00364: Child: All worker threads have exited.
+[Mon Mar 11 16:06:11.329671 2024] [mpm_winnt:notice] [pid 10932:tid 360] AH00430: Parent: Child process 20976 exited successfully.
+PHP Warning:  Module "mysqli" is already loaded in Unknown on line 0
+[Mon Mar 11 16:09:34.418389 2024] [mpm_winnt:notice] [pid 20624:tid 356] AH00455: Apache/2.4.58 (Win64) PHP/8.3.3 configured -- resuming normal operations
+[Mon Mar 11 16:09:34.418389 2024] [mpm_winnt:notice] [pid 20624:tid 356] AH00456: Apache Lounge VS17 Server built: Jan 30 2024 19:01:23
+[Mon Mar 11 16:09:34.418389 2024] [core:notice] [pid 20624:tid 356] AH00094: Command line: 'C:\\Apache\\httpd-2.4.58-240131-win64-VS17\\Apache24\\bin\\httpd.exe -d C:/Apache/httpd-2.4.58-240131-win64-VS17/Apache24'
+[Mon Mar 11 16:09:34.424373 2024] [mpm_winnt:notice] [pid 20624:tid 356] AH00418: Parent: Created child process 16672
+PHP Warning:  Module "mysqli" is already loaded in Unknown on line 0
+[Mon Mar 11 16:09:34.739938 2024] [mpm_winnt:notice] [pid 16672:tid 372] AH00354: Child: Starting 64 worker threads.
+[Mon Mar 11 16:09:56.672264 2024] [mpm_winnt:notice] [pid 20624:tid 356] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Mon Mar 11 16:09:58.702117 2024] [mpm_winnt:notice] [pid 16672:tid 372] AH00364: Child: All worker threads have exited.
+[Mon Mar 11 16:09:58.729709 2024] [mpm_winnt:notice] [pid 20624:tid 356] AH00430: Parent: Child process 16672 exited successfully.
+PHP Warning:  Module "mysqli" is already loaded in Unknown on line 0
+[Mon Mar 11 16:09:59.579860 2024] [mpm_winnt:notice] [pid 15368:tid 336] AH00455: Apache/2.4.58 (Win64) PHP/8.3.3 configured -- resuming normal operations
+[Mon Mar 11 16:09:59.579860 2024] [mpm_winnt:notice] [pid 15368:tid 336] AH00456: Apache Lounge VS17 Server built: Jan 30 2024 19:01:23
+[Mon Mar 11 16:09:59.579860 2024] [core:notice] [pid 15368:tid 336] AH00094: Command line: 'C:\\Apache\\httpd-2.4.58-240131-win64-VS17\\Apache24\\bin\\httpd.exe -d C:/Apache/httpd-2.4.58-240131-win64-VS17/Apache24'
+[Mon Mar 11 16:09:59.584859 2024] [mpm_winnt:notice] [pid 15368:tid 336] AH00418: Parent: Created child process 20132
+PHP Warning:  Module "mysqli" is already loaded in Unknown on line 0
+[Mon Mar 11 16:10:00.085358 2024] [mpm_winnt:notice] [pid 20132:tid 352] AH00354: Child: Starting 64 worker threads.
+[Mon Mar 11 16:10:07.966743 2024] [php:error] [pid 20132:tid 1192] [client ::1:49080] script 'C:/localhost/delete.php' not found or unable to stat, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:10:08.514045 2024] [php:error] [pid 20132:tid 1176] [client ::1:49082] script 'C:/localhost/delete.php' not found or unable to stat
+[Mon Mar 11 16:10:08.808471 2024] [php:error] [pid 20132:tid 1192] [client ::1:49080] script 'C:/localhost/delete.php' not found or unable to stat, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:10:08.932602 2024] [php:error] [pid 20132:tid 1176] [client ::1:49082] script 'C:/localhost/delete.php' not found or unable to stat
+[Mon Mar 11 16:10:27.219472 2024] [php:error] [pid 20132:tid 1184] [client ::1:49081] PHP Fatal error:  Uncaught Error: Class "repositories\\UserRepository" not found in C:\\localhost\\delete.php:22\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\delete.php on line 22, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:10:27.290714 2024] [php:error] [pid 20132:tid 1192] [client ::1:49085] PHP Fatal error:  Uncaught Error: Class "repositories\\UserRepository" not found in C:\\localhost\\delete.php:22\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\delete.php on line 22
+[Mon Mar 11 16:12:21.126226 2024] [mpm_winnt:notice] [pid 15368:tid 336] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Mon Mar 11 16:12:51.131042 2024] [mpm_winnt:notice] [pid 15368:tid 336] AH00431: Parent: Forcing termination of child process 20132
+PHP Warning:  Module "mysqli" is already loaded in Unknown on line 0
+[Mon Mar 11 16:12:51.714296 2024] [mpm_winnt:notice] [pid 280:tid 336] AH00455: Apache/2.4.58 (Win64) PHP/8.3.3 configured -- resuming normal operations
+[Mon Mar 11 16:12:51.714296 2024] [mpm_winnt:notice] [pid 280:tid 336] AH00456: Apache Lounge VS17 Server built: Jan 30 2024 19:01:23
+[Mon Mar 11 16:12:51.714296 2024] [core:notice] [pid 280:tid 336] AH00094: Command line: 'C:\\Apache\\httpd-2.4.58-240131-win64-VS17\\Apache24\\bin\\httpd.exe -d C:/Apache/httpd-2.4.58-240131-win64-VS17/Apache24'
+[Mon Mar 11 16:12:51.719643 2024] [mpm_winnt:notice] [pid 280:tid 336] AH00418: Parent: Created child process 16032
+PHP Warning:  Module "mysqli" is already loaded in Unknown on line 0
+[Mon Mar 11 16:12:52.046025 2024] [mpm_winnt:notice] [pid 16032:tid 352] AH00354: Child: Starting 64 worker threads.
+[Mon Mar 11 16:17:35.639699 2024] [php:warn] [pid 16032:tid 1180] [client ::1:49162] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:17:35.639699 2024] [php:error] [pid 16032:tid 1180] [client ::1:49162] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:17:35.730157 2024] [php:warn] [pid 16032:tid 1192] [client ::1:49164] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 16:17:35.730157 2024] [php:error] [pid 16032:tid 1192] [client ::1:49164] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 16:18:04.919604 2024] [php:warn] [pid 16032:tid 1188] [client ::1:49163] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:18:04.919604 2024] [php:error] [pid 16032:tid 1188] [client ::1:49163] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:18:04.989600 2024] [php:warn] [pid 16032:tid 1180] [client ::1:49167] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 16:18:04.989600 2024] [php:error] [pid 16032:tid 1180] [client ::1:49167] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 16:18:05.454124 2024] [php:warn] [pid 16032:tid 1188] [client ::1:49163] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:18:05.454124 2024] [php:error] [pid 16032:tid 1188] [client ::1:49163] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:18:05.524019 2024] [php:warn] [pid 16032:tid 1180] [client ::1:49167] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 16:18:05.524019 2024] [php:error] [pid 16032:tid 1180] [client ::1:49167] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 16:18:05.637439 2024] [php:warn] [pid 16032:tid 1188] [client ::1:49163] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:18:05.637439 2024] [php:error] [pid 16032:tid 1188] [client ::1:49163] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18, referer: http://localhost:8080/index.php
+[Mon Mar 11 16:18:05.706632 2024] [php:warn] [pid 16032:tid 1180] [client ::1:49167] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 16:18:05.706632 2024] [php:error] [pid 16032:tid 1180] [client ::1:49167] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 17:51:53.126666 2024] [php:warn] [pid 16032:tid 1188] [client ::1:40084] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18, referer: http://localhost:8080/index.php
+[Mon Mar 11 17:51:53.126666 2024] [php:error] [pid 16032:tid 1188] [client ::1:40084] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18, referer: http://localhost:8080/index.php
+[Mon Mar 11 17:51:53.361676 2024] [php:warn] [pid 16032:tid 1160] [client ::1:40088] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 17:51:53.361676 2024] [php:error] [pid 16032:tid 1160] [client ::1:40088] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 17:52:31.192082 2024] [php:warn] [pid 16032:tid 1188] [client ::1:40093] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18, referer: http://localhost:8080/index1.php
+[Mon Mar 11 17:52:31.192082 2024] [php:error] [pid 16032:tid 1188] [client ::1:40093] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18, referer: http://localhost:8080/index1.php
+[Mon Mar 11 17:52:31.254377 2024] [php:warn] [pid 16032:tid 1168] [client ::1:40102] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 17:52:31.254377 2024] [php:error] [pid 16032:tid 1168] [client ::1:40102] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 17:54:17.898039 2024] [php:warn] [pid 16032:tid 1188] [client ::1:40240] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18, referer: http://localhost:8080/core/user/controllers/delete.php
+[Mon Mar 11 17:54:17.898039 2024] [php:error] [pid 16032:tid 1188] [client ::1:40240] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18, referer: http://localhost:8080/core/user/controllers/delete.php
+[Mon Mar 11 17:54:17.955167 2024] [php:warn] [pid 16032:tid 1168] [client ::1:40242] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 17:54:17.955167 2024] [php:error] [pid 16032:tid 1168] [client ::1:40242] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 17:57:02.446154 2024] [mpm_winnt:notice] [pid 280:tid 336] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Mon Mar 11 17:57:04.447267 2024] [mpm_winnt:notice] [pid 16032:tid 352] AH00364: Child: All worker threads have exited.
+[Mon Mar 11 17:57:04.494024 2024] [mpm_winnt:notice] [pid 280:tid 336] AH00430: Parent: Child process 16032 exited successfully.
+PHP Warning:  Module "mysqli" is already loaded in Unknown on line 0
+[Mon Mar 11 17:57:05.228831 2024] [mpm_winnt:notice] [pid 12804:tid 340] AH00455: Apache/2.4.58 (Win64) PHP/8.3.3 configured -- resuming normal operations
+[Mon Mar 11 17:57:05.228831 2024] [mpm_winnt:notice] [pid 12804:tid 340] AH00456: Apache Lounge VS17 Server built: Jan 30 2024 19:01:23
+[Mon Mar 11 17:57:05.228831 2024] [core:notice] [pid 12804:tid 340] AH00094: Command line: 'C:\\Apache\\httpd-2.4.58-240131-win64-VS17\\Apache24\\bin\\httpd.exe -d C:/Apache/httpd-2.4.58-240131-win64-VS17/Apache24'
+[Mon Mar 11 17:57:05.228831 2024] [mpm_winnt:notice] [pid 12804:tid 340] AH00418: Parent: Created child process 7256
+PHP Warning:  Module "mysqli" is already loaded in Unknown on line 0
+[Mon Mar 11 17:57:05.463303 2024] [mpm_winnt:notice] [pid 7256:tid 392] AH00354: Child: Starting 64 worker threads.
+[Mon Mar 11 17:57:37.475230 2024] [php:warn] [pid 7256:tid 1224] [client ::1:40328] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18, referer: http://localhost:8080/index1.php
+[Mon Mar 11 17:57:37.475230 2024] [php:error] [pid 7256:tid 1224] [client ::1:40328] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18, referer: http://localhost:8080/index1.php
+[Mon Mar 11 18:00:57.118702 2024] [php:warn] [pid 7256:tid 1220] [client ::1:40354] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 18:00:57.118702 2024] [php:error] [pid 7256:tid 1220] [client ::1:40354] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 18:00:57.371936 2024] [php:warn] [pid 7256:tid 1216] [client ::1:40356] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 18:00:57.371936 2024] [php:error] [pid 7256:tid 1216] [client ::1:40356] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 18:00:58.447372 2024] [php:warn] [pid 7256:tid 1220] [client ::1:40354] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 18:00:58.447372 2024] [php:error] [pid 7256:tid 1220] [client ::1:40354] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 18:00:58.489675 2024] [php:warn] [pid 7256:tid 1216] [client ::1:40356] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 18:00:58.489675 2024] [php:error] [pid 7256:tid 1216] [client ::1:40356] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 18:00:58.827110 2024] [php:warn] [pid 7256:tid 1220] [client ::1:40354] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 18:00:58.827110 2024] [php:error] [pid 7256:tid 1220] [client ::1:40354] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 18:00:58.870981 2024] [php:warn] [pid 7256:tid 1216] [client ::1:40356] PHP Warning:  require_once(repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 18:00:58.870981 2024] [php:error] [pid 7256:tid 1216] [client ::1:40356] PHP Fatal error:  Uncaught Error: Failed opening required 'repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:18\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 18
+[Mon Mar 11 18:08:58.154292 2024] [php:warn] [pid 7256:tid 1216] [client ::1:40416] PHP Warning:  require_once(../../repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 16
+[Mon Mar 11 18:08:58.154292 2024] [php:error] [pid 7256:tid 1216] [client ::1:40416] PHP Fatal error:  Uncaught Error: Failed opening required '../../repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:16\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 16
+[Mon Mar 11 18:08:58.416081 2024] [php:warn] [pid 7256:tid 1220] [client ::1:40418] PHP Warning:  require_once(../../repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 16
+[Mon Mar 11 18:08:58.416081 2024] [php:error] [pid 7256:tid 1220] [client ::1:40418] PHP Fatal error:  Uncaught Error: Failed opening required '../../repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:16\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 16
+[Mon Mar 11 18:08:59.424010 2024] [php:warn] [pid 7256:tid 1216] [client ::1:40416] PHP Warning:  require_once(../../repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 16
+[Mon Mar 11 18:08:59.424010 2024] [php:error] [pid 7256:tid 1216] [client ::1:40416] PHP Fatal error:  Uncaught Error: Failed opening required '../../repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:16\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 16
+[Mon Mar 11 18:08:59.463624 2024] [php:warn] [pid 7256:tid 1220] [client ::1:40418] PHP Warning:  require_once(../../repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 16
+[Mon Mar 11 18:08:59.463624 2024] [php:error] [pid 7256:tid 1220] [client ::1:40418] PHP Fatal error:  Uncaught Error: Failed opening required '../../repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:16\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 16
+[Mon Mar 11 18:09:07.190398 2024] [php:warn] [pid 7256:tid 1224] [client ::1:40417] PHP Warning:  require_once(./repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 16
+[Mon Mar 11 18:09:07.190398 2024] [php:error] [pid 7256:tid 1224] [client ::1:40417] PHP Fatal error:  Uncaught Error: Failed opening required './repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:16\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 16
+[Mon Mar 11 18:09:07.236252 2024] [php:warn] [pid 7256:tid 1216] [client ::1:40420] PHP Warning:  require_once(./repositories/UserRepository.php): Failed to open stream: No such file or directory in C:\\localhost\\core\\user\\controllers\\delete.php on line 16
+[Mon Mar 11 18:09:07.236252 2024] [php:error] [pid 7256:tid 1216] [client ::1:40420] PHP Fatal error:  Uncaught Error: Failed opening required './repositories/UserRepository.php' (include_path='.;C:\\php\\pear') in C:\\localhost\\core\\user\\controllers\\delete.php:16\nStack trace:\n#0 {main}\n  thrown in C:\\localhost\\core\\user\\controllers\\delete.php on line 16
+[Mon Mar 11 18:10:06.737877 2024] [php:error] [pid 7256:tid 1220] [client ::1:40419] script 'C:/localhost/core/user/controllers/delete.php' not found or unable to stat
+[Mon Mar 11 18:10:06.784500 2024] [php:error] [pid 7256:tid 1224] [client ::1:40425] script 'C:/localhost/core/user/controllers/delete.php' not found or unable to stat
+[Mon Mar 11 18:30:42.132237 2024] [mpm_winnt:notice] [pid 12804:tid 340] AH00422: Parent: Received shutdown signal -- Shutting down the server.
+[Mon Mar 11 18:30:44.148917 2024] [mpm_winnt:notice] [pid 7256:tid 392] AH00364: Child: All worker threads have exited.
+[Mon Mar 11 18:30:44.180182 2024] [mpm_winnt:notice] [pid 12804:tid 340] AH00430: Parent: Child process 7256 exited successfully.
