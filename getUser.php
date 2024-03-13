@@ -13,12 +13,16 @@
 
 <?php
 require_once 'config/container.php';
+
+use repositories\UserRepository;
 use repositories\UserRoleRepository;
+use DI\Container; // Добавляем эту строку
 
 $container = new Container();
 
-$userService = $container->get(UserService::class);
-$userRoleRepository=$container->get(UserRoleRepository::class);
+#$userService = $container->get(UserService::class);
+$userRepository=$container->get(UserRepository::class);
+$userRoleRepository = $container->get(UserRoleRepository::class);
 
 include_once 'config/db_connection.php';
 global $conn;
@@ -34,16 +38,16 @@ try {
             exit;
         }
 
-        $user=$userService->getUser($id);
-        $roleByUser=$userRoleRepository->findRolesByUserId($id);
+        $user = $userRepository->find($id);
+        $roleByUser = $userRoleRepository->findRolesByUserId($id);
 
         // Вывод сообщения
-        echo "Имя : ".$user["name"]."<br>Роль :".$roleByUser[0]["name"]."";
+        echo "Имя : " . $user["name"] . "<br>Роль :" . $roleByUser[0]["name"] . "";
     }
-}
-catch (Exception $e){
+} catch (Exception $e) {
     echo $e->getMessage();
 }
+
 
 
 
