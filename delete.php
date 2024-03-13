@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Вывод сообщения
     echo "<p>Пользователь с ID $id успешно удален.</p>";
 }
-
+include 'getProducts.php'
 ?>
 </body>
 </html>
