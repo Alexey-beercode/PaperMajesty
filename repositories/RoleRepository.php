@@ -1,7 +1,8 @@
 <?php
 namespace repositories;
 
-use Cassandra\Uuid;
+require 'C:\Users\Алексей\vendor\autoload.php';
+use Ramsey\Uuid\Uuid;
 use PDO;
 
 class RoleRepository

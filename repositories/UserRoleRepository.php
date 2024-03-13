@@ -1,7 +1,8 @@
 <?php
 namespace repositories;
 
-use Cassandra\Uuid;
+require 'C:\Users\Алексей\vendor\autoload.php';
+use Ramsey\Uuid\Uuid;
 use PDO;
 
 class UserRoleRepository
@@ -18,20 +19,20 @@ class UserRoleRepository
         // Generate a new UUID
         $uuid = Uuid::uuid4()->toString();
 
-        $sql = "INSERT INTO user_roles (id, user_id, role_id) VALUES (:id, :user_id, :role_id)";
+        $sql = "INSERT INTO users_roles (id, userId, roleId) VALUES (:id, :userId, :roleId)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             ':id' => $uuid,
-            ':user_id' => $userId,
-            ':role_id' => $roleId,
+            ':userId' => $userId,
+            ':roleId' => $roleId,
         ]);
     }
 
     public function findUsersByRoleId($roleId)
     {
-        $sql = "SELECT users.* FROM users JOIN user_roles ON users.id = user_roles.user_id WHERE user_roles.role_id = :role_id";
+        $sql = "SELECT users.* FROM users JOIN users_roles ON users.id = users_roles.user_id WHERE users_roles.role_id = :roleId";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([':role_id' => $roleId]);
+        $stmt->execute([':roleId' => $roleId]);
 
         // Check for errors
         if ($stmt->rowCount() === 0) {
@@ -43,9 +44,9 @@ class UserRoleRepository
 
     public function findRolesByUserId($userId)
     {
-        $sql = "SELECT roles.* FROM roles JOIN user_roles ON roles.id = user_roles.role_id WHERE user_roles.user_id = :user_id";
+        $sql = "SELECT roles.* FROM roles JOIN users_roles ON roles.id = users_roles.roleId WHERE users_roles.userId = :userId";
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([':user_id' => $userId]);
+        $stmt->execute([':userId' => $userId]);
 
         // Check for errors
         if ($stmt->rowCount() === 0) {
@@ -57,7 +58,7 @@ class UserRoleRepository
 
     public function delete($id)
     {
-        $sql = "DELETE FROM user_roles WHERE id = :id";
+        $sql = "DELETE FROM users_roles WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':id' => $id]);
     }
