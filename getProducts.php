@@ -28,10 +28,14 @@ function renderProduct($product) {
     if ($product['stockQuantity'] == 0) {
         $output .= '<p style="color: red;">Товара нет в наличии</p>';
     } else {
-        $output .= '<p>Price: $' . $product['price'];
+
         if ($product['new_price'] !== null) {
-            $output .= ' <del>$' . $product['price'] . '</del>';
-            $output .= ' (New Price: $' . $product['new_price'] . ')';
+            $output .= ' ' . $product['new_price'] . 'руб  ';
+            $output .= ' <br><del>' . $product['price'] . '</del>';
+        }
+
+        else{
+            $output .= '<p>Price: $' . $product['price'];
         }
         $output .= '</p>';
     }

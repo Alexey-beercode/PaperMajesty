@@ -103,7 +103,7 @@
 
                     // Получаем данные о товаре
                     $productData = getProductDetails($_GET['id']);
-                    echo '<img class="w-100 h-100" src="' . $productData["image"] . '" alt="Image">';
+                    echo '<img class="w-100 h-100" src="' . $productData['imageUrl'] . '" alt="Image">';
                     ?>
                 </div>
             </div>
