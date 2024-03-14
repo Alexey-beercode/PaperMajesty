@@ -39,13 +39,14 @@ class ProductRepository
         $stmt->execute([':id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
-    public function getByProductId($categoryId)
+    public function getByCategoryId($categoryId)
     {
         $sql="SELECT * FROM products WHERE categoryId = :categoryId";
         $stmt=$this->conn->prepare($sql);
         $stmt->execute([':categoryId'=>$categoryId]);
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
 
     public function update($product)
     {
@@ -82,4 +83,21 @@ class ProductRepository
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':id' => $id]);
     }
+    public function searchByName($searchTerm)
+    {
+        if (empty($searchTerm)) {
+            throw new Exception("Search term cannot be empty");
+        }
+
+        $sql = "SELECT * FROM products WHERE name LIKE ?";
+        $stmt = $this->conn->prepare($sql);
+
+        $searchParam = "%$searchTerm%";
+        $stmt->bindValue(1, $searchParam);
+
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }

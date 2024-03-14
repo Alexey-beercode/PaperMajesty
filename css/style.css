@@ -409,6 +409,7 @@ h4, .h4 {
 
 h5, .h5 {
   font-size: 1.25rem;
+  align-items: center;
 }
 
 h6, .h6 {
@@ -3037,7 +3038,7 @@ input[type="button"].btn-block {
   list-style: none;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(0, 0, 0, 0.15); /* Добавляем рамку */
 }
 
 .dropdown-menu-left {
@@ -9486,6 +9487,7 @@ a.text-dark:hover, a.text-dark:focus {
 }
 
 .navbar-vertical.navbar-light .navbar-nav .nav-link {
+  background-color: #ffffff; /* Устанавливаем белый цвет фона */
   padding: 8px 30px;
   border-bottom: 1px solid #EDF1FF;
 }

@@ -11,6 +11,15 @@ class ProductService
     {
         $this->productRepository=$productRepository;
     }
+    public function getById($id)
+    {
+        if (!$id)
+            throw new Exception("Invalid id");
+        $product=$this->productRepository->find($id);
+        if ($product==null)
+            throw new Exception("No product with id: ".$id."");
+        return $product;
+    }
     public function getAll()
     {
         $products=$this->productRepository->getAll();
@@ -30,7 +39,7 @@ class ProductService
     {
         if (!$categoryId)
             throw new Exception("Invalid id");
-        $products=$this->productRepository->getByProductId($categoryId);
+        $products=$this->productRepository->getByCategoryId($categoryId);
         if (count($products)==0)
             throw new Exception("No products with category id: ".$categoryId->toString()."");
         return $products;
@@ -52,4 +61,13 @@ class ProductService
             throw new Exception("Invalid id");
         $this->productRepository->delete($id);
     }
+    public function searchByName($searchTerm)
+    {
+        if (!$searchTerm) {
+            throw new Exception("Search term cannot be empty");
+        }
+
+        return $this->productRepository->searchByName($searchTerm);
+    }
+
 }
