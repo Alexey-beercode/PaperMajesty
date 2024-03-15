@@ -38,9 +38,15 @@ class CartRepository
         if ($existingItem) {
             // Если товар уже есть в корзине, увеличиваем количество
             $newCount = $existingItem['count'] + $count;
-            $stmt = $this->conn->prepare("UPDATE carts SET count = ? WHERE userId = ? AND productId = ?");
-            $stmt->bind_param("iss", $newCount, $userId, $productId);
-            return $stmt->execute();
+            if ($newCount<=0)
+                {
+                    $this->delete($productId,$userId);
+                }
+            else{
+                $stmt = $this->conn->prepare("UPDATE carts SET count = ? WHERE userId = ? AND productId = ?");
+                $stmt->bind_param("iss", $newCount, $userId, $productId);
+                return $stmt->execute();
+            }
         } else {
             // Если товара нет в корзине, создаем новую запись
             $stmt = $this->conn->prepare("INSERT INTO carts (id, userId, productId, count) VALUES (UUID(), ?, ?, ?)");

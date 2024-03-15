@@ -114,16 +114,36 @@
             // Проверяем, получены ли данные о товаре
             if ($productData !== null) {
                 // Выводим название товара и его цену
-                echo '<h3 class="font-weight-semi-bold">' . $productData['name'] . '</h3>';
-                echo '<h3 class="font-weight-semi-bold mb-4">$' . $productData['price'] . '</h3>';
+                echo '<h3 class="font-weight-semi-bold ">' . $productData['name'] . '</h3>';
+                if ($productData['new_price'] !== null) {
+                    echo '<del>' . $productData['price'] . '</del>';
+                    echo '<h3 class="font-weight-semi-bold ">' . $productData['new_price'] . 'руб  ';
+                }
 
-                // Выводим описание товара
-                echo '<p class="mb-4">' . $productData['description'] . '</p>';
-            } else {
-                // Выводим сообщение об ошибке, если данные о товаре не получены
-                echo '<p>Product details not found.</p>';
+                else{
+                    echo '<h3 class="font-weight-semi-bold ">Price: $' . $productData['price'];
+                }
             }
             ?>
+            <?php
+            echo '<p class="mb-4">' . $productData['description'] . '</p>';
+            ?>
+        </div>
+        <div class="d-flex align-items-center mb-4 pt-2">
+            <div class="input-group quantity mr-3" style="width: 130px;">
+                <div class="input-group-btn">
+                    <button class="btn btn-primary btn-minus" >
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+                <input type="text" class="form-control bg-secondary text-center" value="1">
+                <div class="input-group-btn">
+                    <button class="btn btn-primary btn-plus">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+            </div>
+            <button href="" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
         </div>
     </div>
 </div>

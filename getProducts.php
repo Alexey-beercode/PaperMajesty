@@ -30,8 +30,8 @@ function renderProduct($product) {
     } else {
 
         if ($product['new_price'] !== null) {
-            $output .= ' ' . $product['new_price'] . 'руб  ';
             $output .= ' <br><del>' . $product['price'] . '</del>';
+            $output .= ' ' . $product['new_price'] . 'руб  ';
         }
 
         else{
