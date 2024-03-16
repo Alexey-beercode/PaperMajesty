@@ -53,6 +53,7 @@
 
 
         <div class="col-lg-3 col-6 text-right">
+            <button type="button" class="btn btn-primary">Акции</button>
             <a href="" class="btn border">
                 <i class="fas fa-user fa-lg"></i>
             </a>
