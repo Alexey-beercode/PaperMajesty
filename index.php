@@ -1,3 +1,4 @@
+<?php session_start()?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -57,9 +58,10 @@
             <a href="authorization.php" class="btn border">
                 <i class="fas fa-user fa-lg"></i>
             </a>
-            <a href="cart.php" class="btn border">
+            <a href="cart.php?userId=<?php echo $_SESSION['userId']; ?>" class="btn border">
                 <i class="fas fa-shopping-cart text-primary fa-lg"></i>
             </a>
+
         </div>
     </div>
 </div>

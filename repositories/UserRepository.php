@@ -75,13 +75,18 @@ class UserRepository
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':id' => $id]);
     }
-    public function getUserByUsername($username) {
+    public function getUserByUsername($username)
+    {
         // Предполагается, что у вас есть таблица "users" с полями "id", "username", "password", "fullname", "email"
         $query = "SELECT * FROM users WHERE name = ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param("s", $username);
+        $stmt->bindValue(1, $username, PDO::PARAM_STR);
         $stmt->execute();
-        $result = $stmt->get_result();
-        return $result->fetch_assoc();
+
+        // Используем fetch для извлечения данных
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $user;
     }
+
 }

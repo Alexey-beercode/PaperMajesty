@@ -17,6 +17,7 @@ class UserService
     public function createUser($login,$password,$name,$email)
     {
         $this->userRepository->create($login,$password,$name,$email);
+        return $this->userRepository->getUserByUsername($name);
     }
     public function authenticate($username, $password) {
         // Получаем пользователя по имени пользователя из базы данных

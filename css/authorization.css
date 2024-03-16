@@ -390,6 +390,12 @@ a.btn-signup:hover, a.btn-signin:hover {
     -webkit-transition: background-color .5s;
     transition: background-color .5s;
 }
+button.btn-signin:hover,button.btn-signup:hover{
+    cursor: pointer;
+    background-color: #0F4FE6;
+    -webkit-transition: background-color .5s;
+    transition: background-color .5s;
+}
 
 .forgot {
     height: 100px;

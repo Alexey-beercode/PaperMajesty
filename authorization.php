@@ -123,7 +123,9 @@
                 <input class="form-styling" type="text" name="email" placeholder=""/>
                 <label for="password">Пароль</label>
                 <input class="form-styling" type="text" name="password" placeholder=""/>
-                <a ng-click="checked = !checked" class="btn-signup">Sign Up</a>
+                <div class="btn-animate">
+                    <button type="submit" class="btn-signin">Зарегистрироваться</button>
+                </div>
             </form>
 
         </div>

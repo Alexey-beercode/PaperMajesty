@@ -13,24 +13,28 @@ class CartRepository
     }
 
     // Получить все товары в корзине пользователя
+    // Получить все товары в корзине пользователя
     public function getCartItemsByUserId($userId)
     {
         $stmt = $this->conn->prepare("SELECT * FROM carts WHERE userId = ?");
-        $stmt->bind_param("s", $userId);
+        $stmt->bindValue(1, $userId, PDO::PARAM_STR);
         $stmt->execute();
-        $result = $stmt->get_result();
+
         $cartItems = array();
-        while ($row = $result->fetch_assoc()) {
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $cartItems[] = $row;
         }
+
         return $cartItems;
     }
+
 
     public function addToCart($userId, $productId, $count)
     {
         // Проверяем, есть ли уже такой товар в корзине пользователя
         $stmt = $this->conn->prepare("SELECT * FROM carts WHERE userId = ? AND productId = ?");
-        $stmt->bind_param("ss", $userId, $productId);
+        $stmt->bindValue(1, $userId, PDO::PARAM_STR);
+        $stmt->bindValue(2, $productId, PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->get_result();
         $existingItem = $result->fetch_assoc();
@@ -39,18 +43,22 @@ class CartRepository
             // Если товар уже есть в корзине, увеличиваем количество
             $newCount = $existingItem['count'] + $count;
             if ($newCount<=0)
-                {
-                    $this->delete($productId,$userId);
-                }
+            {
+                $this->delete($productId,$userId);
+            }
             else{
                 $stmt = $this->conn->prepare("UPDATE carts SET count = ? WHERE userId = ? AND productId = ?");
-                $stmt->bind_param("iss", $newCount, $userId, $productId);
+                $stmt->bindValue(1, $newCount, PDO::PARAM_INT);
+                $stmt->bindValue(2, $userId, PDO::PARAM_STR);
+                $stmt->bindValue(3, $productId, PDO::PARAM_STR);
                 return $stmt->execute();
             }
         } else {
             // Если товара нет в корзине, создаем новую запись
             $stmt = $this->conn->prepare("INSERT INTO carts (id, userId, productId, count) VALUES (UUID(), ?, ?, ?)");
-            $stmt->bind_param("ssi", $userId, $productId, $count);
+            $stmt->bindValue(1, $userId, PDO::PARAM_STR);
+            $stmt->bindValue(2, $productId, PDO::PARAM_STR);
+            $stmt->bindValue(3, $count, PDO::PARAM_INT);
             return $stmt->execute();
         }
     }
@@ -59,7 +67,8 @@ class CartRepository
     public function delete($productId, $userId)
     {
         $stmt = $this->conn->prepare("DELETE FROM carts WHERE productId = ? AND userId = ?");
-        $stmt->bind_param("ss", $productId, $userId);
+        $stmt->bindValue(1, $productId, PDO::PARAM_STR);
+        $stmt->bindValue(2, $userId, PDO::PARAM_STR);
         return $stmt->execute();
     }
 
@@ -67,9 +76,8 @@ class CartRepository
     public function clearCart($userId)
     {
         $stmt = $this->conn->prepare("DELETE FROM carts WHERE userId = ?");
-        $stmt->bind_param("s", $userId);
+        $stmt->bindValue(1, $userId, PDO::PARAM_STR);
         return $stmt->execute();
     }
 }
-
 ?>

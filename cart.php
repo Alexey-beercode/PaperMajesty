@@ -1,3 +1,14 @@
+<?php
+session_start();
+
+// Проверяем, авторизован ли пользователь
+if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== true) {
+    // Если пользователь не авторизован, перенаправляем его на страницу входа
+    header('Location: authorization.php');
+    exit;
+}
+include_once 'getCart.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 

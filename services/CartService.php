@@ -2,7 +2,7 @@
 
 namespace services;
 use Exception;
-use http\Exception\InvalidArgumentException;
+
 use repositories\CartRepository;
 class CartService
 {
@@ -13,11 +13,11 @@ class CartService
     }
     public function getCartByUserId($userId)
     {
-        if (!userId)
+        if (!$userId)
             throw new Exception("Invalid id");
         $productInCart=$this->cartRepository->getCartItemsByUserId($userId);
         if (count($productInCart)==0)
-            throw new InvalidArgumentException("No products in cart");
+            throw new Exception("No products in cart");
         return $productInCart;
     }
     public function deleteFromUserCartByProductId($userId,$productId)

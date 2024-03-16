@@ -78,8 +78,18 @@ function getCart(userId) {
 }
 
 // Вызываем функцию для получения содержимого корзины при загрузке страницы
+// Получаем userId из URL
+var urlParams = new URLSearchParams(window.location.search);
+var userId = urlParams.get('userId');
+
+// Вызываем функцию для получения содержимого корзины при загрузке страницы
 $(document).ready(function() {
-    // Замените '123' на актуальный userId
-    var userId = '123';
-    getCart(userId);
+    // Проверяем, есть ли userId в URL
+    if (userId) {
+        // Если userId есть в URL, вызываем функцию getCart
+        getCart(userId);
+    } else {
+        console.error('User ID is missing in the URL');
+    }
 });
+
