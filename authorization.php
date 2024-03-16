@@ -3,9 +3,11 @@
 
 <head>
     <meta charset="utf-8">
-    <title>PaperMajesty/Cart</title>
+    <title>PaperMajesty</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+    <link rel="stylesheet" href="css/authorization.css">
     <!-- Favicon -->
     <link href="img/favicon.png" rel="icon">
 
@@ -22,8 +24,15 @@
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 </head>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="js/site.js"></script>
 
 <body>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
 <!-- Topbar Start -->
 <div class="container-fluid">
     <div class="row align-items-center py-3 px-xl-5">
@@ -38,7 +47,7 @@
                     <input id="searchInput" type="text" class="form-control" placeholder="Поиск">
                     <div class="input-group-append" id="searchButton">
                 <span class="input-group-text bg-transparent text-primary">
-                    <i class="fa fa-search fa-lg"></i>
+                    <i class="fa fa-search"></i>
                 </span>
                     </div>
                 </div>
@@ -48,7 +57,7 @@
 
         <div class="col-lg-3 col-6 text-right">
             <button type="button" class="btn btn-primary">Акции</button>
-            <a href="" class="btn border">
+            <a href="authorization.php" class="btn border">
                 <i class="fas fa-user fa-lg"></i>
             </a>
             <a href="cart.php" class="btn border">
@@ -87,63 +96,43 @@
     </div>
 </div>
 <!-- Navbar End -->
-<!-- Cart Start -->
-<div class="container-fluid pt-5">
-    <div class="row px-xl-5">
-        <div class="col-lg-8 table-responsive mb-5">
-            <table id="cartTable" class="table table-bordered text-center mb-0">
-                <thead class="bg-secondary text-dark">
-                <tr>
-                    <th>Товар</th>
-                    <th>Цена</th>
-                    <th>Количество</th>
-                    <th>Итоговая стоимость</th>
-                    <th>Удалить</th>
-                </tr>
-                </thead>
-                <tbody class="align-middle">
-                <!-- Товары корзины будут добавлены сюда динамически -->
-                </tbody>
-            </table>
+<div class="container">
+    <div class="frame">
+        <div class="nav">
+            <ul class"links">
+            <li class="signin-active"><a class="btn">Войти</a></li>
+            <li class="signup-inactive"><a class="btn">Зарегистрироваться </a></li>
+            </ul>
         </div>
-        <div class="col-lg-4">
-            <!-- Остальная часть вашего HTML-кода -->
-        </div>
-    </div>
-</div>
-
-<!-- Cart End -->
-
-<!-- Footer Start -->
-<div class="container-fluid bg-secondary text-dark mt-5 pt-5">
-    <div class="row px-xl-5 pt-5">
-        <div class="col-lg-8 col-md-12">
-            <div class="row">
-                <div class="col-md-4 mb-5">
-                    <h5 class="font-weight-bold text-dark mb-4">PaperMajesty</h5>
+        <div ng-app ng-init="checked = false">
+            <form class="form-signin" action="login.php" method="post" name="form">
+                <label for="login">Логин</label>
+                <input class="form-styling" type="text" name="login" placeholder=""/>
+                <label for="password">Пароль</label>
+                <input class="form-styling" type="text" name="password" placeholder=""/>
+                <div class="btn-animate">
+                    <a class="btn-signin">Войти</a>
                 </div>
-            </div>
+            </form>
+            <form class="form-signup" action="register.php" method="post" name="form">
+                <label for="name">Имя</label>
+                <input class="form-styling" type="text" name="name" placeholder=""/>
+                <label for="login">Логин</label>
+                <input class="form-styling" type="text" name="login" placeholder=""/>
+                <label for="email">Email</label>
+                <input class="form-styling" type="text" name="email" placeholder=""/>
+                <label for="password">Пароль</label>
+                <input class="form-styling" type="text" name="password" placeholder=""/>
+                <a ng-click="checked = !checked" class="btn-signup">Sign Up</a>
+            </form>
+
         </div>
-    </div>
 
-</div>
-<!-- Footer End -->
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js'></script>
 
+<script src="js/authorization.js"></script>
 
-<!-- Back to Top -->
-<a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
-
-<!-- JavaScript Libraries -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="lib/easing/easing.min.js"></script>
-<script src="lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="js/cart.js"></script>
-
-
-<!-- Template Javascript -->
-<script src="js/main.js"></script>
 </body>
-
 </html>
+

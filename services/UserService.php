@@ -14,9 +14,22 @@ class UserService
         $this->userRepository = $userRepository;
     }
 
-    public function createUser($user)
+    public function createUser($login,$password,$name,$email)
     {
-        $this->userRepository->create($user);
+        $this->userRepository->create($login,$password,$name,$email);
+    }
+    public function authenticate($username, $password) {
+        // Получаем пользователя по имени пользователя из базы данных
+        $user = $this->userRepository->getUserByUsername($username);
+
+        // Проверяем, найден ли пользователь и совпадает ли пароль
+        if ($user && password_verify($password, $user['password'])) {
+            // Пользователь найден и пароль совпадает, возвращаем данные пользователя
+            return $user;
+        } else {
+            // Пользователь не найден или пароль не совпадает, возвращаем null
+            return null;
+        }
     }
 
     public function getUser($id)

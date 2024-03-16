@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// Проверяем, авторизован ли пользователь
+if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== true) {
+    // Если пользователь не авторизован, перенаправляем его на страницу входа
+    header('Location: authorization.php');
+    exit;
+}
 // Подключаем необходимые файлы и классы
 require_once 'repositories/CartRepository.php';
 require_once 'services/CartService.php';
@@ -9,9 +17,9 @@ use services\CartService;
 // Подключаемся к базе данных
 include_once 'config/db_connection.php';
 global $conn;
-
 // Получаем userId из запроса
 $userId = isset($_REQUEST['userId']) ? $_REQUEST['userId'] : null;
+
 
 if ($userId !== null) {
     if ($_SERVER['REQUEST_METHOD'] === 'GET') {

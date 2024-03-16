@@ -14,21 +14,21 @@ class UserRepository
         $this->conn = $conn;
     }
 
-    public function create($user)
+    public function create($login,$password,$name,$email)
     {
         // Generate a new UUID
         $uuid = Uuid::uuid4()->toString();
 
         // Hash the password before storing
-        $hashedPassword = password_hash($user['password'], PASSWORD_DEFAULT);
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         $sql = "INSERT INTO users (id, login, name, email, passwordHash) VALUES (:id, :login, :name, :email, :passwordHash)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             ':id' => $uuid,
-            ':login' => $user['login'],
-            ':name' => $user['name'], // Assuming name is added to the user data
-            ':email' => $user['email'],
+            ':login' => $login,
+            ':name' => $name, // Assuming name is added to the user data
+            ':email' => $email,
             ':passwordHash' => $hashedPassword,
         ]);
     }
@@ -74,5 +74,14 @@ class UserRepository
         $sql = "DELETE FROM users WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':id' => $id]);
+    }
+    public function getUserByUsername($username) {
+        // Предполагается, что у вас есть таблица "users" с полями "id", "username", "password", "fullname", "email"
+        $query = "SELECT * FROM users WHERE name = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        return $result->fetch_assoc();
     }
 }
