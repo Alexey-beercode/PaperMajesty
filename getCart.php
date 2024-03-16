@@ -18,7 +18,11 @@ if ($userId !== null) {
         // Если запрос метода GET, получаем данные о корзине по userId
         $cartRepository = new CartRepository($conn);
         $cartService = new CartService($cartRepository);
-        $cartData = $cartService->getCartByUserId($userId);
+        try {
+            $cartData = $cartService->getCartByUserId($userId);
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
 
         // Отправляем данные о корзине в формате JSON
         header('Content-Type: application/json');

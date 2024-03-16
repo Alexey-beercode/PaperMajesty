@@ -195,8 +195,10 @@
                         </div>
                     </div>
                 </div>
-                <div id="productContainer" class="col-12">
-                    <?php include 'getProducts.php'?>
+                <div id="productContainer" class="col-12 d-flex flex-wrap">
+                    <?php include 'getProducts.php';
+                    getProducts();
+                    ?>
                 </div>
 
             </div>

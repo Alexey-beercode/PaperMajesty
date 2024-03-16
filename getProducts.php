@@ -8,19 +8,15 @@ use repositories\ProductRepository;
 use services\ProductService;
 
 include_once 'config/db_connection.php';
-global $conn;
-$productRepository=new ProductRepository($conn);
-$productService=new ProductService($productRepository);
+
 
 
 function renderProduct($product) {
-    global $conn;
-    $productCategoryRepository = new ProductCategoryRepository($conn);
 
     $output = '<div class="col-lg-4 col-md-6 col-sm-12 pb-1">';
     $output .= '<div class="card product-item border-0 mb-4">';
     $output .= '<div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0">';
-    $output .= '<img class="img-fluid w-100" src="' . $product['imageUrl'] . '" alt="' . $product['name'] . '">';
+    $output .= '<img height=“100” width=“100” class=" img-fluid w-100" src="' . $product['imageUrl'] . '" alt="" ' . $product['name'] . '">';
     $output .= '</div>';
     $output .= '<div class="card-body border-left border-right text-center p-0 pt-4 pb-3">';
     $output .= '<h6 class="text-truncate mb-3">' . $product['name'] . '</h6>';
@@ -51,17 +47,31 @@ function renderProduct($product) {
     return $output;
 }
 
-
-try {
-    $products = $productService->getAll();
-    $html = '';
-    foreach ($products as $product) {
-        $html .= renderProduct($product);
+function getProducts()
+{
+    global $conn;
+    $productRepository=new ProductRepository($conn);
+    $productService=new ProductService($productRepository);
+    try {
+        $products = $productService->getAll();
+        $html = '';
+        foreach ($products as $product) {
+            $html .= renderProduct($product);
+        }
+        echo $html;
     }
-    echo $html;
-}
-catch (Exception $exception) {
-    echo $exception->getMessage();
+    catch (Exception $exception) {
+        echo $exception->getMessage();
+    }
+    /*global $conn;
+    $productRepository = new ProductRepository($conn);
+    $productService = new ProductService($productRepository);
+    try {
+        $products = $productService->getAll();
+        return $products;
+    } catch (Exception $exception) {
+        echo $exception->getMessage();
+    }*/
 }
 // Вывод HTML
 ?>
