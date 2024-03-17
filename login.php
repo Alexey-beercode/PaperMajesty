@@ -1,10 +1,16 @@
 <?php
 // Подключаем файл конфигурации базы данных и UserService
+use repositories\UserRepository;
+use services\UserService;
+
 include_once 'config/db_connection.php';
 include_once 'services/UserService.php';
-
+include_once 'repositories/UserRepository.php';
+global $conn;
+$userRepository=new UserRepository($conn);
 // Создаем экземпляр UserService
-$userService = new UserService($conn);
+$userService = new UserService($userRepository);
+
 
 // Проверяем, была ли отправлена форма
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -33,5 +39,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
-
-

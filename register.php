@@ -34,6 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['userId']=$result['id'];
             $_SESSION['name']=$result['name'];
             $_SESSION['email']=$result['email'];
+            $_SESSION['login']=$result['login'];
 
             // Перенаправляем пользователя на главную страницу или другую страницу после регистрации
             header('Location: index.php');

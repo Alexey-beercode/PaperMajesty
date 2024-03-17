@@ -3,7 +3,6 @@ require_once 'repositories/ProductRepository.php';
 require_once 'repositories/ProductCategoryRepository.php';
 require_once 'services/ProductService.php';
 
-use repositories\ProductCategoryRepository;
 use repositories\ProductRepository;
 use services\ProductService;
 
@@ -31,7 +30,8 @@ function renderProduct($product) {
         }
 
         else{
-            $output .= '<p>Price: $' . $product['price'];
+            $output .= '<p>' . $product['price'];
+            $output.="руб";
         }
         $output .= '</p>';
     }

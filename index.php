@@ -1,4 +1,14 @@
-<?php session_start()?>
+<?php
+session_start();
+
+// Проверяем, установлена ли сессия и есть ли значение у ключа $_SESSION['userId']
+if (isset($_SESSION['userId'])) {
+    $userId = $_SESSION['userId'];
+} else {
+    // Если $_SESSION['userId'] не определен, устанавливаем значение по умолчанию
+    $userId = '';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -55,13 +65,13 @@
 
         <div class="col-lg-3 col-6 text-right">
             <button type="button" class="btn btn-primary">Акции</button>
-            <a href="authorization.php" class="btn border">
+            <a href="personalPage.php" class="btn border">
                 <i class="fas fa-user fa-lg"></i>
             </a>
-            <a href="cart.php?userId=<?php echo $_SESSION['userId']; ?>" class="btn border">
+            <!-- Используем переменную $userId с проверкой в ссылке -->
+            <a href="cart.php?userId=<?php echo $userId; ?>" class="btn border">
                 <i class="fas fa-shopping-cart text-primary fa-lg"></i>
             </a>
-
         </div>
     </div>
 </div>

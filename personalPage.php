@@ -1,39 +1,32 @@
 <?php
 session_start();
-
-// Проверяем, авторизован ли пользователь
 if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== true) {
     // Если пользователь не авторизован, перенаправляем его на страницу входа
     header('Location: authorization.php');
     exit;
 }
-include_once 'getCart.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <title>PaperMajesty/Cart</title>
+    <title>PaperMajesty - Personal Account</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-    <!-- Favicon -->
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+    <link rel="stylesheet" href="css/authorization.css">
     <link href="img/favicon.png" rel="icon">
 
-    <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 </head>
-
 <body>
 <!-- Topbar Start -->
 <div class="container-fluid">
@@ -49,7 +42,7 @@ include_once 'getCart.php';
                     <input id="searchInput" type="text" class="form-control" placeholder="Поиск">
                     <div class="input-group-append" id="searchButton">
                 <span class="input-group-text bg-transparent text-primary">
-                    <i class="fa fa-search fa-lg"></i>
+                    <i class="fa fa-search"></i>
                 </span>
                     </div>
                 </div>
@@ -59,7 +52,7 @@ include_once 'getCart.php';
 
         <div class="col-lg-3 col-6 text-right">
             <button type="button" class="btn btn-primary">Акции</button>
-            <a href="personalPage.php" class="btn border">
+            <a href="authorization.php" class="btn border">
                 <i class="fas fa-user fa-lg"></i>
             </a>
             <a href="cart.php" class="btn border">
@@ -98,63 +91,31 @@ include_once 'getCart.php';
     </div>
 </div>
 <!-- Navbar End -->
-<!-- Cart Start -->
-<div class="container-fluid pt-5">
-    <div class="row px-xl-5">
-        <div class="col-lg-8 table-responsive mb-5">
-            <table id="cartTable" class="table table-bordered text-center mb-0">
-                <thead class="bg-secondary text-dark">
-                <tr>
-                    <th>Товар</th>
-                    <th>Цена</th>
-                    <th>Количество</th>
-                    <th>Итоговая стоимость</th>
-                    <th>Удалить</th>
-                </tr>
-                </thead>
-                <tbody class="align-middle">
-                <!-- Товары корзины будут добавлены сюда динамически -->
-                </tbody>
-            </table>
-        </div>
-        <div class="col-lg-4">
-            <!-- Остальная часть вашего HTML-кода -->
-        </div>
-    </div>
-</div>
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-lg-3 bg-light border-right" style="padding: 30px;">
 
-<!-- Cart End -->
-
-<!-- Footer Start -->
-<div class="container-fluid bg-secondary text-dark mt-5 pt-5">
-    <div class="row px-xl-5 pt-5">
-        <div class="col-lg-8 col-md-12">
-            <div class="row">
-                <div class="col-md-4 mb-5">
-                    <h5 class="font-weight-bold text-dark mb-4">PaperMajesty</h5>
+            <ul class="list-group list-group-flush">
+                <h3 class="mb-4"> <?php echo $_SESSION['name']?><span id="userName"></span></h3>
+                <h3 class="mb-4">Email: <?php echo $_SESSION['email']?><span id="email"></span></h3>
+                <h3 class="mb-4">Логин: <?php echo $_SESSION['login']?><span id="login"></span></h3>
+                <li class="list-group-item"><a href="#" class="btn btn-primary btn-block" id="orderHistoryButton">Посмотреть историю заказов</a></li>
+                <div class="col-lg-3 col-6 text-right">
+                    <a href="logout.php" class="btn btn-danger">Выйти</a>
                 </div>
-            </div>
+
+            </ul>
+        </div>
+        <div class="col-lg-9">
         </div>
     </div>
-
 </div>
-<!-- Footer End -->
 
-
-<!-- Back to Top -->
-<a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
-
-<!-- JavaScript Libraries -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="lib/easing/easing.min.js"></script>
 <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="js/cart.js"></script>
-
-
-<!-- Template Javascript -->
-<script src="js/main.js"></script>
+<script src="js/site.js"></script>
 </body>
 
 </html>
