@@ -7,7 +7,6 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
     header('Location: authorization.php');
     exit;
 }
-include_once 'getCart.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -81,7 +80,7 @@ include_once 'getCart.php';
             </a>
             <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
                 <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                    <?php include 'getCategories.php'?>
+                    <?php include_once 'getCategories.php'?>
                 </div>
             </nav>
         </div>
@@ -113,12 +112,34 @@ include_once 'getCart.php';
                 </tr>
                 </thead>
                 <tbody class="align-middle">
-                <!-- Товары корзины будут добавлены сюда динамически -->
+                <?php
+                include_once 'getCart.php';
+                getCartByUserid($_SESSION['userId']);
+                ?>
                 </tbody>
             </table>
         </div>
         <div class="col-lg-4">
-            <!-- Остальная часть вашего HTML-кода -->
+            <form class="mb-5" action="">
+                <div class="input-group">
+                    <input type="text" class="form-control p-4" placeholder="Ввести код купона">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary">Применить купон</button>
+                    </div>
+                </div>
+            </form>
+            <div class="card border-secondary mb-5">
+                <div class="card-header bg-secondary border-0">
+                    <h4 class="font-weight-semi-bold m-0">Цена заказа</h4>
+                </div>
+                <div class="card-footer border-secondary bg-transparent">
+                    <div class="d-flex justify-content-between mt-2">
+                        <h5 class="font-weight-bold">Сумма</h5>
+                        <h5 id="total-price" class="font-weight-bold"></h5>
+                    </div>
+                    <button class="btn btn-block btn-primary my-3 py-3">Отправить заказ</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -150,11 +171,11 @@ include_once 'getCart.php';
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="lib/easing/easing.min.js"></script>
 <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="js/cart.js"></script>
 
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
+<script src="js/cart.js"></script>
 </body>
 
 </html>

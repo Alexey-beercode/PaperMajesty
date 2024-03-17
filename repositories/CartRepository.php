@@ -20,12 +20,11 @@ class CartRepository
         $stmt->bindValue(1, $userId, PDO::PARAM_STR);
         $stmt->execute();
 
-        $cartItems = array();
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $cartItems[] = $row;
+        if ($stmt->rowCount() === 0) {
+            return [];
         }
 
-        return $cartItems;
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
 

@@ -31,65 +31,21 @@ $(document).on('click', '.btn-remove', function() {
     updateCart(userId, productId, count);
 });
 // Функция для получения содержимого корзины и вывода товаров в таблицу
-function getCart(userId) {
-    $.ajax({
-        url: 'getCart.php',
-        type: 'GET',
-        data: { userId: userId },
-        dataType: 'json',
-        success: function(response) {
-            if (response.error) {
-                console.error('Error:', response.error);
-            } else {
-                // Очищаем таблицу перед добавлением новых данных
-                $('#cartTable tbody').empty();
-
-                // Выводим товары корзины в таблицу
-                $.each(response.products, function(index, product) {
-                    var row = $('<tr>');
-                    row.append($('<td>').text(product.name));
-                    row.append($('<td>').text(product.price));
-                    row.append($('<td>').html('<div class="input-group quantity mx-auto" style="width: 100px;">' +
-                        '<div class="input-group-btn">' +
-                        '<button class="btn btn-sm btn-primary btn-minus">' +
-                        '<i class="fa fa-minus"></i>' +
-                        '</button>' +
-                        '</div>' +
-                        '<input type="text" class="form-control form-control-sm bg-secondary text-center" value="' + product.quantity + '">' +
-                        '<div class="input-group-btn">' +
-                        '<button class="btn btn-sm btn-primary btn-plus">' +
-                        '<i class="fa fa-plus"></i>' +
-                        '</button>' +
-                        '</div>' +
-                        '</div>'));
-                    row.append($('<td>').text(product.total));
-                    row.append($('<td>').html('<button class="btn btn-sm btn-primary"><i class="fa fa-times"></i></button>'));
-                    $('#cartTable tbody').append(row);
-                });
-
-                // Обновляем общую сумму
-                $('#totalAmount').text(response.total);
-            }
-        },
-        error: function(xhr, status, error) {
-            console.error('Error:', error);
+function calculateTotalPrice() {
+    let total = 0;
+    // Find all elements with class 'align-middle' inside table body
+    const totalPriceCells = document.querySelectorAll('tbody.align-middle td.align-middle');
+    totalPriceCells.forEach(cell => {
+        const priceText = cell.textContent.trim();
+        // Check if content is a number
+        if (!isNaN(priceText)) {
+            total += parseFloat(priceText);
         }
     });
+    // Update the element with ID 'total-price'
+    document.getElementById('total-price').textContent = `$${total.toFixed(2)}`; // Format to two decimal places
 }
 
-// Вызываем функцию для получения содержимого корзины при загрузке страницы
-// Получаем userId из URL
-var urlParams = new URLSearchParams(window.location.search);
-var userId = urlParams.get('userId');
-
-// Вызываем функцию для получения содержимого корзины при загрузке страницы
-$(document).ready(function() {
-    // Проверяем, есть ли userId в URL
-    if (userId) {
-        // Если userId есть в URL, вызываем функцию getCart
-        getCart(userId);
-    } else {
-        console.error('User ID is missing in the URL');
-    }
-});
+// Вызываем функцию calculateTotalPrice() при загрузке страницы и после изменений в таблице
+document.addEventListener('DOMContentLoaded', calculateTotalPrice);
 
