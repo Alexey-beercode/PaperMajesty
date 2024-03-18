@@ -1,6 +1,7 @@
 <?php
 namespace repositories;
 require_once 'config/db_connection.php';
+require 'C:\Users\Алексей\vendor\autoload.php';
 use PDO;
 use Ramsey\Uuid\Uuid;
 class CartRepository
@@ -35,17 +36,14 @@ class CartRepository
         $stmt->bindValue(1, $userId, PDO::PARAM_STR);
         $stmt->bindValue(2, $productId, PDO::PARAM_STR);
         $stmt->execute();
-        $result = $stmt->get_result();
-        $existingItem = $result->fetch_assoc();
+        $existingItem = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($existingItem) {
             // Если товар уже есть в корзине, увеличиваем количество
             $newCount = $existingItem['count'] + $count;
-            if ($newCount<=0)
-            {
-                $this->delete($productId,$userId);
-            }
-            else{
+            if ($newCount <= 0) {
+                $this->delete($productId, $userId);
+            } else {
                 $stmt = $this->conn->prepare("UPDATE carts SET count = ? WHERE userId = ? AND productId = ?");
                 $stmt->bindValue(1, $newCount, PDO::PARAM_INT);
                 $stmt->bindValue(2, $userId, PDO::PARAM_STR);
@@ -54,13 +52,16 @@ class CartRepository
             }
         } else {
             // Если товара нет в корзине, создаем новую запись
-            $stmt = $this->conn->prepare("INSERT INTO carts (id, userId, productId, count) VALUES (UUID(), ?, ?, ?)");
-            $stmt->bindValue(1, $userId, PDO::PARAM_STR);
-            $stmt->bindValue(2, $productId, PDO::PARAM_STR);
-            $stmt->bindValue(3, $count, PDO::PARAM_INT);
+            $stmt = $this->conn->prepare("INSERT INTO carts (id, userId, productId, count) VALUES (?, ?, ?, ?)");
+            $id = Uuid::uuid4()->toString(); // Генерируем UUID для id записи
+            $stmt->bindValue(1, $id, PDO::PARAM_STR);
+            $stmt->bindValue(2, $userId, PDO::PARAM_STR);
+            $stmt->bindValue(3, $productId, PDO::PARAM_STR);
+            $stmt->bindValue(4, $count, PDO::PARAM_INT);
             return $stmt->execute();
         }
     }
+
 
     // Удалить товар из корзины по идентификатору товара
     public function delete($productId, $userId)

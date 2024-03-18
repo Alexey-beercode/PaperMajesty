@@ -19,12 +19,12 @@ class UserService
         $this->userRepository->create($login,$password,$name,$email);
         return $this->userRepository->getUserByUsername($name);
     }
-    public function authenticate($username, $password) {
+    public function authenticate($login, $password) {
         // Получаем пользователя по имени пользователя из базы данных
-        $user = $this->userRepository->getUserByUsername($username);
-
+        $user = $this->userRepository->getUserByLogin($login);
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         // Проверяем, найден ли пользователь и совпадает ли пароль
-        if ($user && password_verify($password, $user['password'])) {
+        if ($user && password_verify($hashedPassword, $user['passwordHash'])) {
             // Пользователь найден и пароль совпадает, возвращаем данные пользователя
             return $user;
         } else {

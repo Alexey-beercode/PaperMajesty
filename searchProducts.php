@@ -14,12 +14,21 @@ $productService = new ProductService($productRepository);
 
 // Получаем поисковый запрос из POST параметра
 $searchTerm = isset($_POST['searchTerm']) ? $_POST['searchTerm'] : '';
+$searchTerm=$_POST['searchTerm'];
+error_log($searchTerm);
 
 // Если поисковый запрос не пустой
 if (!empty($searchTerm)) {
     try {
+        error_log("starting search");
         // Ищем продукты по поисковому запросу
         $products = $productService->searchByName($searchTerm);
+        foreach ($products as $product)
+        {
+            $productName=$product['name'];
+            error_log($productName);
+        }
+
 
         // Возвращаем результаты в формате JSON
         echo json_encode($products);

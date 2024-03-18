@@ -40,10 +40,11 @@
                     if (data.length > 0) {
                         // Если найдены продукты, выводим их
                         $.each(data, function(index, product) {
-                            $('#searchResults').append('<div>' + product.name + '</div>');
+                            console.log(product.name);
                         });
                     } else {
                         // Если продукты не найдены, выводим сообщение
+                        console.log("Нет продуктов");
                         $('#searchResults').append('<div>No products found</div>');
                     }
                 },

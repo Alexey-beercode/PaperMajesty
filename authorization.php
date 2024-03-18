@@ -111,7 +111,7 @@
                 <label for="password">Пароль</label>
                 <input class="form-styling" type="text" name="password" placeholder=""/>
                 <div class="btn-animate">
-                    <a class="btn-signin">Войти</a>
+                    <button type="submit" class="btn-signin">Войти</button>
                 </div>
             </form>
             <form class="form-signup" action="register.php" method="post" name="form">

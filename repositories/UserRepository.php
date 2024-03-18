@@ -88,5 +88,18 @@ class UserRepository
 
         return $user;
     }
+    public function getUserByLogin($login)
+    {
+        // Предполагается, что у вас есть таблица "users" с полями "id", "username", "password", "fullname", "email"
+        $query = "SELECT * FROM users WHERE login = ?";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindValue(1, $login, PDO::PARAM_STR);
+        $stmt->execute();
+
+        // Используем fetch для извлечения данных
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $user;
+    }
 
 }

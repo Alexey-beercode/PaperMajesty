@@ -22,7 +22,7 @@ class CartService
     }
     public function deleteFromUserCartByProductId($userId,$productId)
     {
-        if (!userId)
+        if (!$userId)
             throw new Exception("Invalid id");
         $this->cartRepository->delete($productId,$userId);
         return $this->cartRepository->getCartItemsByUserId($userId);
@@ -36,10 +36,9 @@ class CartService
     }
     public function addToCart($userId, $productId, $count)
     {
-        if (!userId)
+        if (!$userId)
             throw new Exception("Invalid id");
         $this->cartRepository->addToCart($userId,$productId,$count);
-        return $this->cartRepository->getCartItemsByUserId($userId);
     }
 
 }
