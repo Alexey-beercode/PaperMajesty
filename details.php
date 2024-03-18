@@ -135,19 +135,22 @@
         <div class="d-flex align-items-center mb-4 pt-2">
             <div class="input-group quantity mr-3" style="width: 130px;">
                 <div class="input-group-btn">
-                    <button class="btn btn-primary btn-minus" >
+                    <button class="btn btn-primary btn-minus">
                         <i class="fa fa-minus"></i>
                     </button>
                 </div>
-                <input type="text" class="form-control bg-secondary text-center" value="1">
+                <input id="input-count" type="text" class="form-control bg-secondary text-center input-quantity" value="1">
                 <div class="input-group-btn">
                     <button class="btn btn-primary btn-plus">
                         <i class="fa fa-plus"></i>
                     </button>
                 </div>
             </div>
-            <button href="" class="btn btn-primary px-3"><i class="fa fa-shopping-cart mr-1"></i> Add To Cart</button>
+            <button id="add-to-card" class="btn btn-primary px-3 add-to-card" data-product-id="<?php echo $productData['id'];?>">
+                <i class="fa fa-shopping-cart mr-1"></i> Add To Cart
+            </button>
         </div>
+
     </div>
 </div>
 <!-- Shop Detail End -->
@@ -181,7 +184,7 @@
 <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
 <script src="js/main.js"></script>
-<script src="js/cart.js"></script>
+<script src="js/details.js"></script>
 </body>
 
 </html>

@@ -61,17 +61,13 @@ function getCartByUserid($userId)
 
         try {
             $cartData = $cartService->getCartByUserId($userId);
-            if ($cartData == null)
-                echo "No products";
-            else {
                 foreach ($cartData as $cartDatum) {
                     $product = $productService->getById($cartDatum['productId']);
                     $renderProductInCart = renderProductInCart($product, $cartDatum['count']);
                     $html .= $renderProductInCart;
                 }
-            }
         } catch (Exception $e) {
-            echo $e->getMessage();
+
         }
         // Отправляем данные о корзине в формате JSON
         echo $html;

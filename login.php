@@ -20,10 +20,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Получаем данные из формы
         $login = $_POST['login'];
         $password = $_POST['password'];
-
+        error_log($login);
+        error_log($password);
         // Пытаемся аутентифицировать пользователя
         $user = $userService->authenticate($login, $password);
-
         // Проверяем, удалось ли аутентифицировать пользователя
         if ($user) {
             // Пользователь найден, устанавливаем сессию и перенаправляем на главную страницу
