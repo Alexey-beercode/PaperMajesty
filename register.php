@@ -35,6 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['name']=$result['name'];
             $_SESSION['email']=$result['email'];
             $_SESSION['login']=$result['login'];
+            $_SESSION['coupon_code']='';
 
             // Перенаправляем пользователя на главную страницу или другую страницу после регистрации
             header('Location: index.php');

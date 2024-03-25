@@ -120,14 +120,15 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
             </table>
         </div>
         <div class="col-lg-4">
-            <form class="mb-5" action="">
+            <form class="mb-5" action="applyCoupon.php" method="post">
                 <div class="input-group">
-                    <input type="text" class="form-control p-4" placeholder="Ввести код купона">
+                    <input type="text" class="form-control p-4" name="coupon_code" placeholder="Ввести код купона">
                     <div class="input-group-append">
-                        <button class="btn btn-primary">Применить купон</button>
+                        <button type="submit" class="btn btn-primary">Применить купон</button>
                     </div>
                 </div>
             </form>
+
             <div class="card border-secondary mb-5">
                 <div class="card-header bg-secondary border-0">
                     <h4 class="font-weight-semi-bold m-0">Цена заказа</h4>

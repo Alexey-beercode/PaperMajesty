@@ -24,7 +24,7 @@ class CouponService
         $coupon = $this->couponRepository->findByCode($couponCode);
 
         if (!$coupon) {
-            return null; // Coupon not found
+            return []; // Coupon not found
         }
 
         // Check if the coupon has expired
@@ -35,22 +35,11 @@ class CouponService
         // Get discounts associated with the coupon
         $couponDiscounts = $this->couponDiscountRepository->findByCouponId($coupon['id']);
 
-        // Get products and their discounts
-        $productsAndDiscounts = [];
-        foreach ($couponDiscounts as $couponDiscount) {
-            $product = $this->productRepository->find($couponDiscount['productId']);
-            if ($product) {
-                $productsAndDiscounts[] = [
-                    'product' => $product,
-                    'discount' => $couponDiscount['discount'],
-                ];
-            }
-        }
 
-        return $productsAndDiscounts;
+        return $couponDiscounts;
     }
 
-    public function isCouponExpired($coupon)
+    private function isCouponExpired($coupon)
     {
         $currentTime = time();
         $expireTime = strtotime($coupon['expireTime']);
