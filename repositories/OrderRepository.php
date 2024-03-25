@@ -1,4 +1,5 @@
 <?php
+
 namespace repositories;
 require 'C:\Users\Алексей\vendor\autoload.php';
 use PDO;
@@ -84,6 +85,16 @@ class OrderRepository
         }
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function updateStatus($orderId, $newStatusId)
+    {
+        $sql = "UPDATE orders SET statusId = :statusId WHERE id = :orderId";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            ':statusId' => $newStatusId,
+            ':orderId' => $orderId,
+        ]);
     }
 
     public function delete($id)

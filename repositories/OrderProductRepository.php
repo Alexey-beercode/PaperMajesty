@@ -1,4 +1,5 @@
 <?php
+
 namespace repositories;
 require 'C:\Users\Алексей\vendor\autoload.php';
 use PDO;
@@ -70,5 +71,12 @@ class OrderProductRepository
         $sql = "DELETE FROM orders_products WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':id' => $id]);
+    }
+
+    public function deleteByOrderId($orderId)
+    {
+        $sql = "DELETE FROM orders_products WHERE orderId = :orderId";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':orderId' => $orderId]);
     }
 }
