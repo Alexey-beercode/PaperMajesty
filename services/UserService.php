@@ -4,20 +4,32 @@ namespace services;
 
 use Exception;
 use repositories\UserRepository;
+use repositories\RoleRepository;
+use repositories\UserRoleRepository;
 
 class UserService
 {
     private $userRepository;
+    private $roleRepository;
+    private $userRoleRepository;
 
-    public function __construct(UserRepository $userRepository)
+    public function __construct(UserRepository $userRepository,RoleRepository $roleRepository,UserRoleRepository $userRoleRepository)
     {
         $this->userRepository = $userRepository;
+        $this->roleRepository=$roleRepository;
+        $this->userRoleRepository=$userRoleRepository;
     }
 
     public function createUser($login,$password,$name,$email)
     {
         $this->userRepository->create($login,$password,$name,$email);
-        return $this->userRepository->getUserByUsername($name);
+        $user=$this->userRepository->getUserByUsername($name);
+        if ($user)
+        {
+            $role=$this->roleRepository->getByName("User");
+            $this->userRoleRepository->create($user['id'],$role['id']);
+        }
+        return $user;
     }
     public function authenticate($login, $password) {
         // Получаем пользователя по имени пользователя из базы данных

@@ -1,16 +1,22 @@
 <?php
 session_start();
 // Подключаем файл конфигурации базы данных и UserService
-use repositories\UserRepository;
-use services\UserService;
-
+require_once 'services/UserService.php';
+require_once 'repositories/UserRepository.php';
+require_once 'repositories/UserRoleRepository.php';
+require_once 'repositories/RoleRepository.php';
 include_once 'config/db_connection.php';
-include_once 'services/UserService.php';
-include_once 'repositories/UserRepository.php';
+
+use repositories\RoleRepository;
+use repositories\UserRepository;
+use repositories\UserRoleRepository;
+use services\UserService;
 global $conn;
 $userRepository=new UserRepository($conn);
+$roleRepository=new RoleRepository($conn);
+$userRoleRepository=new UserRoleRepository($conn);
 // Создаем экземпляр UserService
-$userService = new UserService($userRepository);
+$userService = new UserService($userRepository,$roleRepository,$userRoleRepository);
 
 
 // Проверяем, была ли отправлена форма

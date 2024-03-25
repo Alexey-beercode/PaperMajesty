@@ -34,6 +34,13 @@ class RoleRepository
         $stmt->execute([':id' => $id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public function getByName($name)
+    {
+        $sql = "SELECT * FROM roles WHERE name = :name";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':name' => $name]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
     public function update($role)
     {

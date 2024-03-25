@@ -4,8 +4,12 @@ session_start();
 // Подключаем необходимые файлы и классы
 require_once 'services/UserService.php';
 require_once 'repositories/UserRepository.php';
+require_once 'repositories/UserRoleRepository.php';
+require_once 'repositories/RoleRepository.php';
 
+use repositories\RoleRepository;
 use repositories\UserRepository;
+use repositories\UserRoleRepository;
 use services\UserService;
 
 // Подключаемся к базе данных
@@ -13,8 +17,10 @@ include_once 'config/db_connection.php';
 global $conn;
 
 $userRepository=new UserRepository($conn);
+$roleRepository=new RoleRepository($conn);
+$userRoleRepository=new UserRoleRepository($conn);
 // Создаем экземпляр UserService
-$userService = new UserService($userRepository);
+$userService = new UserService($userRepository,$roleRepository,$userRoleRepository);
 
 // Проверяем, отправлена ли форма регистрации
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

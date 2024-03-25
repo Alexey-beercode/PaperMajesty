@@ -24,4 +24,27 @@ function getProductDetails($productId)
         return null;
     }
 }
+function getAddToCartDiv($productId)
+{
+    $output='';
+    $output.='<div class="d-flex align-items-center mb-4 pt-2">';
+    $output.='<div class="input-group quantity mr-3" style="width: 130px;">';
+    $output.='<div class="input-group-btn">';
+    $output.='<button class="btn btn-primary btn-minus">';
+    $output.='<i class="fa fa-minus"></i>';
+    $output.='</button>';
+    $output.='</div>';
+    $output.='<input id="input-count" type="text" class="form-control bg-secondary text-center input-quantity" value="1">';
+    $output.='<div class="input-group-btn">';
+    $output.='<button class="btn btn-primary btn-plus">';
+    $output.='<i class="fa fa-plus"></i>';
+    $output.='</button>';
+    $output.='</div>';
+    $output.='</div>';
+    $output.='<button id="add-to-card" class="btn btn-primary px-3 add-to-card" data-product-id="'.$productId.'">';
+    $output.='<i class="fa fa-shopping-cart mr-1"></i> Add To Cart';
+    $output.='</button>';
+    $output.='</div>';
+    return $output;
+}
 ?>
