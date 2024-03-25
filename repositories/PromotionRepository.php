@@ -1,6 +1,6 @@
 <?php
 namespace repositories;
-
+require 'C:\Users\Алексей\vendor\autoload.php';
 use PDO;
 use Ramsey\Uuid\Uuid;
 
