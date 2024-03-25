@@ -13,20 +13,33 @@ class CouponRepository
         $this->conn = $conn;
     }
 
-    public function create($code, $expireTime, $name)
+    public function create($expireTime, $name)
     {
-        // Generate a new UUID for the coupon
-        $couponId = Uuid::uuid4()->toString();
+        // Generate a shorter and simpler coupon code
+        $couponCode = $this->generateCouponCode();
 
         $sql = "INSERT INTO coupons (id, code, expireTime, name) 
                 VALUES (:id, :code, :expireTime, :name)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
-            ':id' => $couponId,
-            ':code' => $code,
+            ':id' => Uuid::uuid4()->toString(),
+            ':code' => $couponCode,
             ':expireTime' => $expireTime,
             ':name' => $name,
         ]);
+
+        return $couponCode;
+    }
+
+    private function generateCouponCode()
+    {
+        // Generate a random alphanumeric code of length 6
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $code = '';
+        for ($i = 0; $i < 6; $i++) {
+            $code .= $characters[rand(0, strlen($characters) - 1)];
+        }
+        return $code;
     }
 
     public function find($id)
@@ -70,5 +83,12 @@ class CouponRepository
         $sql = "DELETE FROM coupons WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':id' => $id]);
+    }
+    public function findByCode($code)
+    {
+        $sql = "SELECT * FROM coupons WHERE code = :code";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':code' => $code]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 }

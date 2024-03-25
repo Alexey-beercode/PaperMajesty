@@ -51,4 +51,24 @@ class PromotionDiscountRepository
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':id' => $id]);
     }
+    public function deleteByPromotionId($promotionId)
+    {
+        $sql = "DELETE FROM promotions_discounts WHERE promotionId = :promotionId";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':promotionId' => $promotionId]);
+    }
+
+    public function getAll()
+    {
+        $sql = "SELECT * FROM promotions_discounts";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+
+        // Check for errors
+        if ($stmt->rowCount() === 0) {
+            return [];
+        }
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

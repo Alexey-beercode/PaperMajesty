@@ -29,7 +29,7 @@ class CartService
     }
     public function clearCartByUserId($userId)
     {
-        if (!userId)
+        if (!$userId)
             throw new Exception("Invalid id");
         $this->cartRepository->clearCart($userId);
         return $this->cartRepository->getCartItemsByUserId($userId);
