@@ -7,11 +7,12 @@ $categoryRepository = new ProductCategoryRepository($conn);
 $categories = $categoryRepository->getAll();
 
 function renderCategoryLink($category) {
-    return '<a href="getProductByCategory.php?categoryId=' . $category['id'] . '" class="nav-item nav-link">' . $category['name'] . '</a>';
+    return '<a  data-category-id="' . $category['id'] . '" id="category-nav" class="nav-item nav-link">' . $category['name'] . '</a>';
 }
 $html = '';
 foreach ($categories as $category) {
     $html .= renderCategoryLink($category);
 }
+//href="getProductByCategory.php?categoryId=' . $category['id'] . '"
 echo $html;
 ?>

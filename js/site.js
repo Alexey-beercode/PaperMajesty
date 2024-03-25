@@ -16,11 +16,14 @@
 }
 
     // Обработчик события для клика по категории
-    $('.nav-link').click(function(e) {
+    $('#category-nav').click(function(e) {
         e.preventDefault(); // Предотвращаем переход по ссылке
         var categoryId = $(this).attr('data-category-id'); // Получаем ID категории
+        console.log(categoryId)
         loadProductsByCategory(categoryId); // Загружаем товары по категории
     });
+
+
     $(document).ready(function() {
         // Обработчик клика на иконке поиска
         $('#searchButton').click(function() {
@@ -44,7 +47,7 @@
                         });
                     } else {
                         // Если продукты не найдены, выводим сообщение
-                        console.log("Нет продуктов");
+                        console.log("Нет продуктов")
                         $('#searchResults').append('<div>No products found</div>');
                     }
                 },

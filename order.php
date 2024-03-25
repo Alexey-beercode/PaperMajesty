@@ -1,11 +1,12 @@
 <?php
 session_start();
 
-// Проверяем, авторизован ли пользователь
-if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== true) {
-    // Если пользователь не авторизован, перенаправляем его на страницу входа
-    header('Location: authorization.php');
-    exit;
+// Проверяем, установлена ли сессия и есть ли значение у ключа $_SESSION['userId']
+if (isset($_SESSION['userId'])) {
+    $userId = $_SESSION['userId'];
+} else {
+    // Если $_SESSION['userId'] не определен, устанавливаем значение по умолчанию
+    $userId = '';
 }
 ?>
 <!DOCTYPE html>
@@ -13,8 +14,10 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
 
 <head>
     <meta charset="utf-8">
-    <title>PaperMajesty/Cart</title>
+    <title>PaperMajesty</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
 
     <!-- Favicon -->
     <link href="img/favicon.png" rel="icon">
@@ -32,7 +35,11 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 </head>
-
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+<script src="lib/easing/easing.min.js"></script>
+<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="js/site.js"></script>
 <body>
 <!-- Topbar Start -->
 <div class="container-fluid">
@@ -48,7 +55,7 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
                     <input id="searchInput" type="text" class="form-control" placeholder="Поиск">
                     <div class="input-group-append" id="searchButton">
                 <span class="input-group-text bg-transparent text-primary">
-                    <i class="fa fa-search fa-lg"></i>
+                    <i class="fa fa-search"></i>
                 </span>
                     </div>
                 </div>
@@ -61,7 +68,8 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
             <a href="personalPage.php" class="btn border">
                 <i class="fas fa-user fa-lg"></i>
             </a>
-            <a href="cart.php" class="btn border">
+            <!-- Используем переменную $userId с проверкой в ссылке -->
+            <a href="cart.php?userId=<?php echo $userId; ?>" class="btn border">
                 <i class="fas fa-shopping-cart text-primary fa-lg"></i>
             </a>
         </div>
@@ -78,9 +86,9 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
                 <h6 class="m-0">Categories</h6>
                 <i class="fa fa-angle-down text-dark"></i>
             </a>
-            <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
+            <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 100;">
                 <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                    <?php include_once 'getCategories.php'?>
+                    <?php include 'getCategories.php'?>
                 </div>
             </nav>
         </div>
@@ -97,56 +105,74 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
     </div>
 </div>
 <!-- Navbar End -->
-<!-- Cart Start -->
+
+
+
+<!-- Checkout Start -->
 <div class="container-fluid pt-5">
     <div class="row px-xl-5">
-        <div class="col-lg-8 table-responsive mb-5">
-            <table id="cartTable" class="table table-bordered text-center mb-0">
-                <thead class="bg-secondary text-dark">
-                <tr>
-                    <th>Товар</th>
-                    <th>Цена</th>
-                    <th>Количество</th>
-                    <th>Итоговая стоимость</th>
-                    <th>Удалить</th>
-                </tr>
-                </thead>
-                <tbody class="align-middle">
-                <?php
-                include_once 'getCart.php';
-                getCartByUserid();
-                ?>
-                </tbody>
-            </table>
-        </div>
-        <div class="col-lg-4">
-            <form class="mb-5" action="">
-                <div class="input-group">
-                    <input type="text" class="form-control p-4" placeholder="Ввести код купона">
-                    <div class="input-group-append">
-                        <button class="btn btn-primary">Применить купон</button>
+        <div class="col-lg-8">
+            <div class="mb-4">
+                <h4 class="font-weight-semi-bold mb-4">Оформление заказа</h4>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label>Имя</label>
+                        <input class="form-control" type="text" placeholder="Иван">
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label>Адрес</label>
+                        <input class="form-control" type="text" placeholder="улица Ленина 1">
                     </div>
                 </div>
-            </form>
+            </div>
+        </div>
+        <div class="col-lg-4">
             <div class="card border-secondary mb-5">
                 <div class="card-header bg-secondary border-0">
-                    <h4 class="font-weight-semi-bold m-0">Цена заказа</h4>
+                    <h4 class="font-weight-semi-bold m-0">Заказ</h4>
+                </div>
+                <div class="card-body">
+                    <h5 class="font-weight-medium mb-3">Товары</h5>
+                    <div class="d-flex justify-content-between">
+                        <p>Colorful Stylish Shirt 1</p>
+                        <p>$150</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p>Colorful Stylish Shirt 2</p>
+                        <p>$150</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p>Colorful Stylish Shirt 3</p>
+                        <p>$150</p>
+                    </div>
+                    <hr class="mt-0">
+                    <div class="d-flex justify-content-between mb-3 pt-1">
+                        <h6 class="font-weight-medium">Сумма</h6>
+                        <h6 class="font-weight-medium">$150</h6>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <h6 class="font-weight-medium">Скидка</h6>
+                        <h6 class="font-weight-medium">$10</h6>
+                    </div>
                 </div>
                 <div class="card-footer border-secondary bg-transparent">
                     <div class="d-flex justify-content-between mt-2">
-                        <h5 class="font-weight-bold">Сумма</h5>
-                        <h5 id="total-price" class="font-weight-bold"></h5>
+                        <h5 class="font-weight-bold">Итог</h5>
+                        <h5 class="font-weight-bold">$160</h5>
                     </div>
-                    <a href="order.php"><button class="btn btn-block btn-primary my-3 py-3">Отправить заказ</button></a>
+                </div>
+            </div>
+            <div class="card border-secondary mb-5">
+                <div class="card-footer border-secondary bg-transparent">
+                    <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Отправить заказ</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- Checkout End -->
 
-<!-- Cart End -->
 
-<!-- Footer Start -->
 <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
     <div class="row px-xl-5 pt-5">
         <div class="col-lg-8 col-md-12">
@@ -173,8 +199,6 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
 <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
 
-<!-- Template Javascript -->
-<script src="js/cart.js"></script>
 </body>
 
 </html>

@@ -17,6 +17,7 @@ $userId = $_SESSION['userId'];
 // Проверяем, что userId получен из сессии
 if (!$userId) {
     echo json_encode(['error' => 'User ID is missing']);
+    header('Location: index.php');
     exit;
 }
 global $conn;

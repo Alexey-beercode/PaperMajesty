@@ -22,6 +22,14 @@ function renderProduct($product) {
     $output .= '<div class="d-flex justify-content-center">';
     if ($product['stockQuantity'] == 0) {
         $output .= '<p style="color: red;">Товара нет в наличии</p>';
+        $output .= '</div>';
+        $output .= '</div>';
+        $output .= '<div class="card-footer d-flex justify-content-between bg-light border">';
+        $output .= '<a href="details.php?id='.$product["id"].'" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Подробнее</a>';
+        $output .= '</div>';
+        $output .= '</div>';
+        $output .= '</div>';
+        return $output;
     } else {
 
         if ($product['new_price'] !== null) {
@@ -38,8 +46,8 @@ function renderProduct($product) {
     $output .= '</div>';
     $output .= '</div>';
     $output .= '<div class="card-footer d-flex justify-content-between bg-light border">';
-    $output .= '<a href="details.php?id='.$product["id"].'" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View Detail</a>';
-    $output .= '<a href="#" data-product-id="' . $product['id'] . '" class="btn btn-sm text-dark p-0 add-to-cart-btn"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>';
+    $output .= '<a href="details.php?id='.$product["id"].'" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Подробнее</a>';
+    $output .= '<a href="#" data-product-id="' . $product['id'] . '" class="btn btn-sm text-dark p-0 add-to-cart-btn"><i class="fas fa-shopping-cart text-primary mr-1"></i>Добавить в корзину</a>';
     $output .= '</div>';
     $output .= '</div>';
     $output .= '</div>';

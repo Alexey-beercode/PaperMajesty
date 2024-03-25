@@ -48,8 +48,9 @@ function renderProductInCart($product,$count)
     return $output;
 }
 
-function getCartByUserid($userId)
+function getCartByUserid()
 {
+    $userId=$_SESSION['userId'];
     global $conn;
     if ($userId !== null) {
         // Если запрос метода GET, получаем данные о корзине по userId
