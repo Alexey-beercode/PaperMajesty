@@ -1,6 +1,8 @@
 <?php
 namespace services;
 require 'C:\Users\Алексей\vendor\autoload.php';
+
+use repositories\CouponRepository;
 use repositories\OrderRepository;
 use repositories\OrderStatusRepository;
 use repositories\OrderProductRepository;
@@ -11,18 +13,21 @@ class OrderService
     private $orderRepository;
     private $orderStatusRepository;
     private $orderProductRepository;
+    private $couponRepository;
 
     public function __construct(
         OrderRepository $orderRepository,
         OrderStatusRepository $orderStatusRepository,
-        OrderProductRepository $orderProductRepository
+        OrderProductRepository $orderProductRepository,
+        CouponRepository $couponRepository
     ) {
         $this->orderRepository = $orderRepository;
         $this->orderStatusRepository = $orderStatusRepository;
         $this->orderProductRepository = $orderProductRepository;
+        $this->couponRepository=$couponRepository;
     }
 
-    public function createOrder($userId, $address, $couponId, array $products)
+    public function createOrder($userId, $address, $couponCode, array $products,$name)
     {
         $orderId = Uuid::uuid4()->toString();
         $orderNumber = $this->generateOrderNumber();
@@ -31,9 +36,10 @@ class OrderService
         // Get status ID by name
         $status = $this->orderStatusRepository->getStatusByName($statusName);
         $statusId = $status['id'];
-
+        $couponId=$this->couponRepository->findByCode($couponCode);
+        $currentDateTime = date('Y-m-d H:i:s');
         // Create the order
-        $this->orderRepository->create($orderId, $orderNumber, $userId, $statusId, $couponId, $address);
+        $this->orderRepository->create($currentDateTime,$orderId, $orderNumber, $userId, $statusId, $couponId, $address,$name);
 
         // Add products to order
         foreach ($products as $product) {

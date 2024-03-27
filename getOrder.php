@@ -14,6 +14,30 @@ use repositories\ProductRepository;
 use services\CartService;
 use services\ProductService as ProductService;
 use services\CouponService;
+global $conn;
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['name']) && isset($_POST['address'])) {
+        $userId = $_SESSION['userId'];
+        $name=$_POST['name'];
+        $address=$_POST['address'];
+        $cart=getCartByUserId($userId,$conn);
+
+    }
+}
+function getCartByUserId($userId,$conn)
+{
+    $cartRepository = new CartRepository($conn);
+    $cartService = new CartService($cartRepository);
+    return $cartService->getCartByUserId($userId);
+}
+function getProductsAndDiscountsByCouponCode($couponCode,$conn,$productRepository)
+{
+    $couponRepository = new CouponRepository($conn);
+    $couponDiscountRepository = new CouponDiscountRepository($conn);
+    $couponService = new CouponService($couponRepository, $couponDiscountRepository, $productRepository);
+    $productsAndDiscounts=$couponService->getProductsAndDiscountsByCouponCode($couponCode);
+    return $productsAndDiscounts;
+}
 function renderProductInOrder($product, $count)
 {
     $output = '';
@@ -36,15 +60,10 @@ function getOrder()
             $sum=0;
             $generalDiscount = 0; // По умолчанию скидки нет
             $couponCode = $_SESSION['coupon_code'];
-            $cartRepository = new CartRepository($conn);
-            $cartService = new CartService($cartRepository);
             $productRepository = new ProductRepository($conn);
             $productService = new ProductService($productRepository);
-            $couponRepository = new CouponRepository($conn);
-            $couponDiscountRepository = new CouponDiscountRepository($conn);
-            $couponService = new CouponService($couponRepository, $couponDiscountRepository, $productRepository);
-            $productsAndDiscounts=$couponService->getProductsAndDiscountsByCouponCode($couponCode);
-            $cartData = $cartService->getCartByUserId($userId);
+            $productsAndDiscounts=getProductsAndDiscountsByCouponCode($couponCode,$conn,$productRepository);
+            $cartData = getCartByUserid($userId,$conn);
             foreach ($cartData as $cartDatum) {
                 $product = $productService->getById($cartDatum['productId']);
                 $renderProductInOrder = renderProductInOrder($product, $cartDatum['count']);

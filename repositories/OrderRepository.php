@@ -14,13 +14,12 @@ class OrderRepository
         $this->conn = $conn;
     }
 
-    public function create($date, $number, $userId, $statusId, $couponId = null, $address = null)
+    public function create($date,$orderId, $number, $userId, $statusId, $couponId, $address,$name)
     {
         // Generate a new UUID for the order
-        $orderId = Uuid::uuid4()->toString();
 
-        $sql = "INSERT INTO orders (id, date, number, userId, statusId, couponId, address) 
-                VALUES (:id, :date, :number, :userId, :statusId, :couponId, :address)";
+        $sql = "INSERT INTO orders (id, date, number, userId, statusId, couponId, address,name) 
+                VALUES (:id, :date, :number, :userId, :statusId, :couponId, :address,:name)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             ':id' => $orderId,
@@ -30,6 +29,7 @@ class OrderRepository
             ':statusId' => $statusId,
             ':couponId' => $couponId,
             ':address' => $address,
+            ':name'=>$name
         ]);
     }
 

@@ -120,6 +120,10 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
             </table>
         </div>
         <div class="col-lg-4">
+            <?php
+            if ($_SESSION['coupon_code']!='')
+                echo '<h5 style="color: #28a745">Купон применен</h5>';
+            ?>
             <form class="mb-5" action="applyCoupon.php" method="post">
                 <div class="input-group">
                     <input type="text" class="form-control p-4" name="coupon_code" placeholder="Ввести код купона">

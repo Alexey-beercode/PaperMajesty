@@ -4,9 +4,6 @@ session_start();
 // Проверяем, установлена ли сессия и есть ли значение у ключа $_SESSION['userId']
 if (isset($_SESSION['userId'])) {
     $userId = $_SESSION['userId'];
-} else {
-    // Если $_SESSION['userId'] не определен, устанавливаем значение по умолчанию
-    $userId = '';
 }
 include_once 'getOrder.php';
 ?>
@@ -170,6 +167,7 @@ include_once 'getOrder.php';
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="lib/easing/easing.min.js"></script>
 <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+<script src="js/order.js"></script>
 
 
 </body>

@@ -29,7 +29,7 @@ class CouponService
 
         // Check if the coupon has expired
         if ($this->isCouponExpired($coupon)) {
-            return null; // Coupon has expired
+            return []; // Coupon has expired
         }
 
         // Get discounts associated with the coupon
