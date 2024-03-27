@@ -1,4 +1,8 @@
 <?php
+if (session_status() == PHP_SESSION_NONE) {
+    // Если сессия не активна, запускаем новую сессию
+    session_start();
+}
 require_once 'repositories/CartRepository.php';
 require_once 'services/CartService.php';
 require_once 'repositories/ProductRepository.php';
@@ -7,21 +11,54 @@ require_once 'services/CouponService.php';
 require_once 'repositories/CouponRepository.php';
 require_once 'repositories/CouponDiscountRepository.php';
 include_once 'config/db_connection.php';
+require_once 'repositories/OrderRepository.php';
+require_once 'repositories/OrderStatusRepository.php';
+require_once 'repositories/OrderProductRepository.php';
+require_once  'services/OrderService.php';
 use repositories\CartRepository;
 use repositories\CouponRepository;
 use repositories\CouponDiscountRepository;
+use repositories\OrderProductRepository;
+use repositories\OrderRepository;
+use repositories\OrderStatusRepository;
 use repositories\ProductRepository;
 use services\CartService;
+use services\OrderService;
 use services\ProductService as ProductService;
 use services\CouponService;
 global $conn;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['name']) && isset($_POST['address'])) {
-        $userId = $_SESSION['userId'];
+        $couponCode=$_SESSION['coupon_code'];
+        if ($couponCode=='')
+        {
+            $couponCode=null;
+        }
+        $userId=$_SESSION['userId'];
+        error_log($userId);
         $name=$_POST['name'];
         $address=$_POST['address'];
         $cart=getCartByUserId($userId,$conn);
-
+        $orderRepository=new OrderRepository($conn);
+        $orderStatusRepository=new OrderStatusRepository($conn);
+        $cartRepository=new CartRepository($conn);
+        $cartService=new CartService($cartRepository);
+        $orderProductRepository=new OrderProductRepository($conn);
+        $couponRepository=new CouponRepository($conn);
+        $orderService=new OrderService($orderRepository,$orderStatusRepository,$orderProductRepository,$couponRepository);
+        error_log($name);
+        error_log($address);
+        $isOrderCreated=$orderService->createOrder($userId,$address,$couponCode,$cart,$name);
+        error_log("it ok");
+        if ($isOrderCreated==true){
+            $_SESSION['coupon_code']='';
+            $cartService->clearCartByUserId($userId);
+            error_log("true");
+            echo json_encode(['success' => true]);
+            exit;
+        }
+        error_log("false");
+        echo json_encode(['error' => "error"]);
     }
 }
 function getCartByUserId($userId,$conn)
@@ -30,6 +67,7 @@ function getCartByUserId($userId,$conn)
     $cartService = new CartService($cartRepository);
     return $cartService->getCartByUserId($userId);
 }
+
 function getProductsAndDiscountsByCouponCode($couponCode,$conn,$productRepository)
 {
     $couponRepository = new CouponRepository($conn);
@@ -48,7 +86,14 @@ function renderProductInOrder($product, $count)
     return $output;
 }
 
-
+function getUserIdFromSession()
+{
+    return $_SESSION['userId'];
+}
+function getCouponCodeFromSession()
+{
+    return $_SESSION['coupon_code'];
+}
 function getOrder()
 {
     $userId = $_SESSION['userId'];

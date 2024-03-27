@@ -32,7 +32,7 @@ $productData = getProductDetails($_GET['id']);
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="lib/easing/easing.min.js"></script>
 <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="js/site.js"></script>
+
 <body>
 <!-- Topbar Start -->
 <div class="container-fluid">
@@ -54,7 +54,6 @@ $productData = getProductDetails($_GET['id']);
                 </div>
             </form>
         </div>
-
 
         <div class="col-lg-3 col-6 text-right">
             <button type="button" class="btn btn-primary">Акции</button>
@@ -93,6 +92,7 @@ $productData = getProductDetails($_GET['id']);
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </nav>
+            <a href="index.php"><button  type="button"style="border-radius: 12px" class="btn btn-primary">Назад в каталог</button></a>
         </div>
     </div>
 </div>
@@ -103,6 +103,7 @@ $productData = getProductDetails($_GET['id']);
     <div class="row px-xl-5">
         <div class="col-lg-5 pb-5">
             <div id="product-carousel" class="carousel slide" data-ride="carousel">
+
                 <div class="carousel-inner border">
                     <?php
                     // Включаем getDetails.php для получения данных о товаре
@@ -176,6 +177,7 @@ $productData = getProductDetails($_GET['id']);
 
 <script src="js/main.js"></script>
 <script src="js/details.js"></script>
+<script src="js/site.js"></script>
 </body>
 
 </html>

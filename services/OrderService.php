@@ -36,7 +36,7 @@ class OrderService
         // Get status ID by name
         $status = $this->orderStatusRepository->getStatusByName($statusName);
         $statusId = $status['id'];
-        $couponId=$this->couponRepository->findByCode($couponCode);
+        $couponId=$this->couponRepository->findByCode($couponCode)['id'];
         $currentDateTime = date('Y-m-d H:i:s');
         // Create the order
         $this->orderRepository->create($currentDateTime,$orderId, $orderNumber, $userId, $statusId, $couponId, $address,$name);
@@ -45,6 +45,13 @@ class OrderService
         foreach ($products as $product) {
             $this->orderProductRepository->create($orderId, $product['productId'], $product['count']);
         }
+        $order=$this->orderRepository->find($orderId);
+        if (isset($order))
+        {
+            return true;
+        }
+        return false;
+
     }
 
     public function updateOrderStatus($orderId, $newStatusName)

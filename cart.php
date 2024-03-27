@@ -93,6 +93,7 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </nav>
+            <a href="index.php"><button  type="button"style="border-radius: 12px" class="btn btn-primary">Назад в каталог</button></a>
         </div>
     </div>
 </div>

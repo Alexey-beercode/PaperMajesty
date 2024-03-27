@@ -115,11 +115,11 @@ include_once 'getOrder.php';
                 <div class="row">
                     <div class="col-md-6 form-group">
                         <label>Имя</label>
-                        <input class="form-control" type="text" placeholder="Иван">
+                        <input id="nameInput" class="form-control" type="text" placeholder="Иван">
                     </div>
                     <div class="col-md-6 form-group">
                         <label>Адрес</label>
-                        <input class="form-control" type="text" placeholder="улица Ленина 1">
+                        <input id="addressInput" class="form-control" type="text" placeholder="улица Ленина 1">
                     </div>
                 </div>
             </div>
@@ -135,7 +135,7 @@ include_once 'getOrder.php';
                 </div>
             </div>
             <div class="card border-secondary mb-5">
-                    <button class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Отправить заказ</button>
+                    <button id="submitOrderButton" class="btn btn-lg btn-block btn-primary font-weight-bold my-3 py-3">Отправить заказ</button>
             </div>
         </div>
     </div>

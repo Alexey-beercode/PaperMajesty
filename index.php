@@ -39,7 +39,6 @@ if (isset($_SESSION['userId'])) {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
 <script src="lib/easing/easing.min.js"></script>
 <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="js/site.js"></script>
 <body>
 <!-- Topbar Start -->
 <div class="container-fluid">
@@ -244,6 +243,7 @@ if (isset($_SESSION['userId'])) {
 
 <!-- Template Javascript -->
 <script src="js/main.js"></script>
+<script src="js/site.js"></script>
 <script src="js/cart.js"></script>
 </body>
 
