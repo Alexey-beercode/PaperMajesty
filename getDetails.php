@@ -42,7 +42,7 @@ function getAddToCartDiv($productId)
     $output.='</div>';
     $output.='</div>';
     $output.='<button id="add-to-card" class="btn btn-primary px-3 add-to-card" data-product-id="'.$productId.'">';
-    $output.='<i class="fa fa-shopping-cart mr-1"></i> Add To Cart';
+    $output.='<i class="fa fa-shopping-cart mr-1"></i>Добавить в корзину';
     $output.='</button>';
     $output.='</div>';
     return $output;

@@ -65,6 +65,11 @@ if (isset($_GET['categoryId'])) {
         error_log($categoryId);
         $products = $productService->getByCategoryId($categoryId);
         $html = '';
+        if (count($products)==0)
+        {
+            echo "<h4>Ничего не найдено</h4>";
+            exit;
+        }
         foreach ($products as $product) {
             $html .= renderProduct($product);
         }

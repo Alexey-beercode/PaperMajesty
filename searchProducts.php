@@ -66,6 +66,11 @@ if (!empty($searchTerm)) {
         error_log("starting search");
         // Ищем продукты по поисковому запросу
         $products = $productService->searchByName($searchTerm);
+        if (count($products)==0)
+        {
+            echo "<h4>Ничего не найдено</h4>";
+            exit;
+        }
         foreach ($products as $product)
         {
             $productName=$product['name'];
@@ -84,9 +89,6 @@ if (!empty($searchTerm)) {
         // Если произошла ошибка, возвращаем сообщение об ошибке
         echo json_encode(['error' => $exception->getMessage()]);
     }
-} else {
-    // Если поисковый запрос пустой, возвращаем пустой JSON объект
-    echo json_encode([]);
 }
 ?>
 

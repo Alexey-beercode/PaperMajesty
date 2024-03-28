@@ -40,8 +40,6 @@ class ProductService
         if (!$categoryId)
             throw new Exception("Invalid id");
         $products=$this->productRepository->getByCategoryId($categoryId);
-        if (count($products)==0)
-            throw new Exception("No products with category id: ".$categoryId->toString()."");
         return $products;
     }
     public function updateStockQuantity($newStockQuantity,$productId)
