@@ -56,7 +56,7 @@
 
 
         <div class="col-lg-3 col-6 text-right">
-            <button type="button" class="btn btn-primary">Акции</button>
+            <a href="promotions.php"> <button type="button" class="btn btn-primary">Акции</button></a>
             <a href="authorization.php" class="btn border">
                 <i class="fas fa-user fa-lg"></i>
             </a>

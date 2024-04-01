@@ -42,6 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['email']=$result['email'];
             $_SESSION['login']=$result['login'];
             $_SESSION['coupon_code']='';
+            $_SESSION['role']=($userRoleRepository->findRolesByUserId($result['id']))[0]['name'];
 
             // Перенаправляем пользователя на главную страницу или другую страницу после регистрации
             header('Location: index.php');

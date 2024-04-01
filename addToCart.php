@@ -29,8 +29,6 @@ $cartService = new CartService($cartRepository);
     // Получаем данные о товаре и количестве из POST-запроса
     $productId = $_POST['productId'];
     $count = $_POST['count'];
-error_log('Product ID: ' . $productId);
-error_log('Count: ' . $count);
 
     // Проверяем, что productId и count переданы
     if (!$productId || !$count) {

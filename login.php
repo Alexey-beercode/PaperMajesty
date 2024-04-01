@@ -26,8 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Получаем данные из формы
         $login = $_POST['login'];
         $password = $_POST['password'];
-        error_log($login);
-        error_log($password);
         // Пытаемся аутентифицировать пользователя
         $user = $userService->authenticate($login, $password);
         // Проверяем, удалось ли аутентифицировать пользователя
@@ -39,6 +37,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['name']=$user['name'];
             $_SESSION['email']=$user['email'];
             $_SESSION['login']=$user['login'];
+            $_SESSION['coupon_code']='';
+            $_SESSION['role']=($userRoleRepository->findRolesByUserId($user['id']))[0]['name'];
 
             header('Location: index.php'); // Перенаправляем на главную страницу
             exit();

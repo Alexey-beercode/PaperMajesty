@@ -33,7 +33,7 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
     <div class="row align-items-center py-3 px-xl-5">
         <div class="col-lg-3 d-none d-lg-block">
             <a href="index.php" class="text-decoration-none">
-                <h1 class="m-0 display-5 font-weight-semi-bold"><span class="text-primary font-weight-bold border px-3 mr-1"></span>PaperMajesty</h1>
+                <h1 class="m-0 display-5 font-weight-semi-bold">PaperMajesty</h1>
             </a>
         </div>
         <div class="col-lg-6 col-6 text-left">
@@ -51,7 +51,7 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
 
 
         <div class="col-lg-3 col-6 text-right">
-            <button type="button" class="btn btn-primary">Акции</button>
+            <a href="promotions.php"> <button type="button" class="btn btn-primary">Акции</button></a>
             <a href="authorization.php" class="btn border">
                 <i class="fas fa-user fa-lg"></i>
             </a>
@@ -101,9 +101,15 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
                 <h3 class="mb-4">Email: <?php echo $_SESSION['email']?><span id="email"></span></h3>
                 <h3 class="mb-4">Логин: <?php echo $_SESSION['login']?><span id="login"></span></h3>
                 <li class="list-group-item"><a href="#" class="btn btn-primary btn-block" id="orderHistoryButton">Посмотреть историю заказов</a></li>
+                <?php if ($_SESSION['role']=="Admin")
+                {
+                    error_log("Admin");
+                    echo '<li class="list-group-item"><a href="adminIndex.php" class="btn btn-primary btn-block" id="orderHistoryButton">Панель администратора</a></li>';
+                }?>
                 <div class="col-lg-3 col-6 text-right">
                     <a href="logout.php" class="btn btn-danger">Выйти</a>
                 </div>
+
 
             </ul>
         </div>
