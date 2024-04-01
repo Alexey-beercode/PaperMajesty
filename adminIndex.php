@@ -33,6 +33,7 @@
     <link rel="stylesheet" type="text/css" href="css/adminCss/plugins/fullcalendar.min.css"/>
     <link href="css/adminCss/style.css" rel="stylesheet">
     <!-- end: Css -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 </head>
 
@@ -87,8 +88,8 @@
                                         <h4 class="text-left">Orders</h4>
                                     </div>
                                 </div>
-                                <div class="panel-body text-center">
-                                    <h1>51181,320</h1>
+                                <div id="orderCount" class="panel-body text-center">
+                                    <h1></h1>
                                     <hr/>
                                 </div>
                             </div>
@@ -101,62 +102,8 @@
                             <div class="panel-heading bg-white border-none">
                                 <h4>Заказы по категориям</h4>
                             </div>
-                            <div class="panel-body">
+                            <div id="orderStats" class="panel-body">
 
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h5 class="media-heading">Document Handling</h5>
-                                        <div class="progress progress-mini">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%;">
-                                                <span class="sr-only">60% Complete</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h5 class="media-heading">UI/UX Development</h5>
-                                        <div class="progress progress-mini">
-                                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="19" aria-valuemin="0" aria-valuemax="100" style="width: 19%;">
-                                                <span class="sr-only">60% Complete</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h5 class="media-heading">Server Optimation</h5>
-                                        <div class="progress progress-mini">
-                                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="width: 55%;">
-                                                <span class="sr-only">60% Complete</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h5 class="media-heading">User Status</h5>
-                                        <div class="progress progress-mini">
-                                            <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width:20%;">
-                                                <span class="sr-only">60% Complete</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="media">
-                                    <div class="media-body">
-                                        <h5 class="media-heading">Firewall Status</h5>
-                                        <div class="progress progress-mini">
-                                            <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%;">
-                                                <span class="sr-only">60% Complete</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -165,5 +112,8 @@
         </div>
     </div>
     <!-- end: content -->
+<script src="js/admin.js"></script>
+
+
 </body>
 </html>

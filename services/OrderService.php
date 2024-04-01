@@ -7,6 +7,7 @@ use repositories\OrderRepository;
 use repositories\OrderStatusRepository;
 use repositories\OrderProductRepository;
 use Ramsey\Uuid\Uuid;
+use repositories\ProductCategoryRepository;
 
 class OrderService
 {
@@ -14,17 +15,23 @@ class OrderService
     private $orderStatusRepository;
     private $orderProductRepository;
     private $couponRepository;
+    private $productService;
+    private $categoryRepository;
 
     public function __construct(
         OrderRepository $orderRepository,
         OrderStatusRepository $orderStatusRepository,
         OrderProductRepository $orderProductRepository,
-        CouponRepository $couponRepository
+        CouponRepository $couponRepository,
+        ProductService $productService,
+        ProductCategoryRepository $productCategoryRepository
     ) {
         $this->orderRepository = $orderRepository;
         $this->orderStatusRepository = $orderStatusRepository;
         $this->orderProductRepository = $orderProductRepository;
         $this->couponRepository=$couponRepository;
+        $this->productService=$productService;
+        $this->categoryRepository=$productCategoryRepository;
     }
 
     public function createOrder($userId, $address, $couponCode, array $products,$name)
@@ -52,6 +59,55 @@ class OrderService
         }
         return false;
 
+    }
+    public function getOrderStats()
+    {
+        $ordersByCategories = array();
+        $ordersAndProducts = $this->orderProductRepository->getAll();
+        $orders = $this->orderRepository->getAll();
+
+        if (empty($ordersAndProducts)) {
+            return $ordersByCategories;
+        }
+
+        $productsInOrders = [];
+        foreach ($ordersAndProducts as $order) {
+            $productId = $order['productId'];
+            $productsInOrders[$productId] = $this->productService->getById($productId);
+        }
+
+        // Count the number of orders
+        $ordersCount = count($orders);
+
+        // Initialize an array to store category counts
+        $categoryCounts = [];
+
+        foreach ($productsInOrders as $productId => $product) {
+            $categoryId = $product['categoryId'];
+
+            if (!isset($categoryCounts[$categoryId])) {
+                $categoryCounts[$categoryId] = 0;
+            }
+
+            $categoryCounts[$categoryId]++;
+        }
+
+        // Calculate the percentage of orders per category
+        foreach ($categoryCounts as $categoryId => $count) {
+            $categoryName=$this->categoryRepository->find($categoryId)['name'];
+            $percentage = ($count / $ordersCount) * 100;
+            $ordersByCategories[$categoryName] = $percentage;
+        }
+
+        return $ordersByCategories;
+    }
+
+    public function getAll()
+    {
+        $orders=$this->orderRepository->getAll();
+        if (count($orders)==0)
+            return [];
+        return $orders;
     }
 
     public function updateOrderStatus($orderId, $newStatusName)

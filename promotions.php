@@ -5,7 +5,7 @@ session_start();
 if (isset($_SESSION['userId'])) {
     $userId = $_SESSION['userId'];
 }
-include_once 'getOrder.php';
+include_once 'getPromotions.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -104,8 +104,7 @@ include_once 'getOrder.php';
 </div>
 <h1 align="center" class="m-0 display-5 font-weight-semi-bold">Акции</h1>
 <div align="center">
-    <img height="500" width="1000" src="img/promotion_blackFriday.jpg">
-    <img height="500" width="1000" src="img/promotion_productOfWeek.jpg">
+    <?php getPromotions();?>
 </div>
 <!-- Footer Start -->
 <div class="container-fluid bg-secondary text-dark mt-5 pt-5">

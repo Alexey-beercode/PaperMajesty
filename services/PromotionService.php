@@ -63,4 +63,12 @@ class PromotionService
         }
         return $products;
     }
+    public function getAll()
+    {
+        return $this->promotionRepository->getAll();
+    }
+    public function getActivePromotions()
+    {
+        return $this->promotionRepository->getAllActivePromotions();
+    }
 }

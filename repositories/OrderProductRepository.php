@@ -79,4 +79,35 @@ class OrderProductRepository
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':orderId' => $orderId]);
     }
+    public function getAll()
+    {
+        $sql = "SELECT * FROM orders_products";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+
+        // Check for errors
+        if ($stmt->rowCount() === 0) {
+            return [];
+        }
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getActivePromotions()
+    {
+        $activePromotions = [];
+        $currentDate = date('Y-m-d'); // Get the current date
+
+        $sql = "SELECT * FROM promotions WHERE endDate >= :currentDate";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':currentDate', $currentDate);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            $activePromotions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+
+        return $activePromotions;
+    }
+
+
 }
