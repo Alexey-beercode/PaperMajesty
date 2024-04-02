@@ -136,18 +136,47 @@ class OrderService
     {
         // Get all orders for the user
         $orders = $this->orderRepository->getByUserId($userId);
+        if (count($orders)==0)
+            return [];
+        return $orders;
+    }
+    public function getProductIdsInOrderByOrderId($orderId)
+    {
+        $rows = $this->orderProductRepository->getAllByOrderId($orderId);
+        $productCounts = [];
 
-        // Get products for each order
-        foreach ($orders as &$order) {
-            $order['products'] = $this->orderProductRepository->getAllByOrderId($order['id']);
+        foreach ($rows as $row) {
+            // Проверяем, существует ли ключ 'productId' в текущей строке
+            if (isset($row['productId'])) {
+                // Проверяем, существует ли уже такой productId в массиве
+                if (isset($productCounts[$row['productId']])) {
+                    // Увеличиваем счетчик для этого продукта
+                    $productCounts[$row['productId']]++;
+                } else {
+                    // Инициализируем счетчик для этого продукта
+                    $productCounts[$row['productId']] = 1;
+                }
+            }
         }
 
-        return $orders;
+        return $productCounts;
+    }
+
+    public function getOrderStatusNameByOrderId($statusId)
+    {
+        return $this->orderStatusRepository->getStatusById($statusId)['name'];
     }
 
     private function generateOrderNumber()
     {
-        // Generate order number logic here
-        return 'ORD' . strtoupper(Uuid::uuid4()->toString());
+        // Генерируем UUID
+        $uuid = Uuid::uuid4()->toString();
+
+        // Сокращаем UUID до 8 символов
+        $shortUuid = substr($uuid, 0, 8);
+
+        // Возвращаем сокращенный номер заказа
+        return 'ORD' . strtoupper($shortUuid);
     }
+
 }

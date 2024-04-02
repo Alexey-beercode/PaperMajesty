@@ -122,8 +122,15 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
         </div>
         <div class="col-lg-4">
             <?php
-            if ($_SESSION['coupon_code']!='')
-                echo '<h5 style="color: #28a745">Купон применен</h5>';
+            if ($_SESSION['coupon_code']!='' && $_SESSION['coupon_code']!="Unactive")
+                {
+                    echo '<h5 style="color: #28a745">Купон применен</h5>';
+                }
+
+            elseif ($_SESSION['coupon_code']=="Unactive")
+            {
+                echo '<h5 style="color: red">Купон истек</h5>';
+            }
             ?>
             <form class="mb-5" action="applyCoupon.php" method="post">
                 <div class="input-group">

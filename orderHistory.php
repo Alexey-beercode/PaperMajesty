@@ -98,28 +98,32 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
     </div>
 </div>
 <!-- Navbar End -->
-<!-- Cart Start -->
+<!-- Order history Start -->
+<h1 align="center" class="m-0 display-5 font-weight-semi-bold">История заказов</h1>
 <div class="container-fluid pt-5">
     <div class="row px-xl-5">
-        <div class="col-lg-8 table-responsive mb-5">
-            <table id="cartTable" class="table table-bordered text-center mb-0">
+        <div class="col-lg-12 table-responsive mb-5">
+        <table id="cartTable" class="table table-bordered text-center mb-0">
                 <thead class="bg-secondary text-dark">
                 <tr>
-                    <th>Товар</th>
-                    <th>Цена</th>
-                    <th>Количество</th>
+                    <th>Номер заказа</th>
+                    <th>Дата заказа</th>
+                    <th>Имя</th>
+                    <th>Адрес</th>
+                    <th>Товары</th>
                     <th>Итоговая стоимость</th>
-                    <th>Удалить</th>
+                    <th>Статус</th>
                 </tr>
                 </thead>
                 <tbody class="align-middle">
                 <?php
-                include_once 'getCart.php';
-                getCartByUserid();
+                include_once 'getOrderHistory.php';
+                getOrderHistoryByUserid($_SESSION['userId']);
                 ?>
                 </tbody>
             </table>
         </div>
+        <
         <!-- Footer Start -->
         <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
             <div class="row px-xl-5 pt-5">

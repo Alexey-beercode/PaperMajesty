@@ -29,12 +29,34 @@ class CouponService
 
         // Check if the coupon has expired
         if ($this->isCouponExpired($coupon)) {
-            return []; // Coupon has expired
+            return null;
         }
 
         // Get discounts associated with the coupon
         $couponDiscounts = $this->couponDiscountRepository->findByCouponId($coupon['id']);
+        if (count($couponDiscounts)==0)
+            return [];
 
+        return $couponDiscounts;
+    }
+    public function getProductsAndDiscountsByCouponId($couponId)
+    {
+        // Find the coupon by code
+        $coupon = $this->couponRepository->find($couponId);
+
+        if (!$coupon) {
+            return []; // Coupon not found
+        }
+
+        // Check if the coupon has expired
+        if ($this->isCouponExpired($coupon)) {
+            return null;
+        }
+
+        // Get discounts associated with the coupon
+        $couponDiscounts = $this->couponDiscountRepository->findByCouponId($coupon['id']);
+        if (count($couponDiscounts)==0)
+            return [];
 
         return $couponDiscounts;
     }

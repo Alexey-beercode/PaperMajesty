@@ -52,7 +52,7 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
 
         <div class="col-lg-3 col-6 text-right">
             <a href="promotions.php"> <button type="button" class="btn btn-primary">Акции</button></a>
-            <a href="authorization.php" class="btn border">
+            <a href="personalPage.php" class="btn border">
                 <i class="fas fa-user fa-lg"></i>
             </a>
             <a href="cart.php" class="btn border">
@@ -100,7 +100,7 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
                 <h3 class="mb-4"> <?php echo $_SESSION['name']?><span id="userName"></span></h3>
                 <h3 class="mb-4">Email: <?php echo $_SESSION['email']?><span id="email"></span></h3>
                 <h3 class="mb-4">Логин: <?php echo $_SESSION['login']?><span id="login"></span></h3>
-                <li class="list-group-item"><a href="#" class="btn btn-primary btn-block" id="orderHistoryButton">Посмотреть историю заказов</a></li>
+                <li class="list-group-item"><a href="orderHistory.php" class="btn btn-primary btn-block" id="orderHistoryButton">Посмотреть историю заказов</a></li>
                 <?php
                 $rolesString=$_SESSION['roles'];
                 $rolesArray = explode(" ", $rolesString);

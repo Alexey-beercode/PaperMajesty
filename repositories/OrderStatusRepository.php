@@ -21,6 +21,13 @@ class OrderStatusRepository
         $stmt->execute([':name' => $name]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+    public function getStatusById($id)
+    {
+        $sql = "SELECT * FROM order_statuses WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
     // Метод для получения всех статусов
     public function getAllStatuses()
