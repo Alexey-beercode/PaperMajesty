@@ -1,5 +1,7 @@
 <?php
 session_start();
+
+// Проверяем, авторизован ли пользователь
 if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== true) {
     // Если пользователь не авторизован, перенаправляем его на страницу входа
     header('Location: authorization.php');
@@ -11,22 +13,26 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
 
 <head>
     <meta charset="utf-8">
-    <title>PaperMajesty/Personal Account</title>
+    <title>PaperMajesty/Cart</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="Free HTML Templates" name="keywords">
-    <meta content="Free HTML Templates" name="description">
-    <link rel="stylesheet" href="css/authorization.css">
+
+    <!-- Favicon -->
     <link href="img/favicon.png" rel="icon">
 
+    <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+    <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
 
+    <!-- Libraries Stylesheet -->
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
+    <!-- Customized Bootstrap Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
 </head>
+
 <body>
 <!-- Topbar Start -->
 <div class="container-fluid">
@@ -42,7 +48,7 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
                     <input id="searchInput" type="text" class="form-control" placeholder="Поиск">
                     <div class="input-group-append" id="searchButton">
                 <span class="input-group-text bg-transparent text-primary">
-                    <i class="fa fa-search"></i>
+                    <i class="fa fa-search fa-lg"></i>
                 </span>
                     </div>
                 </div>
@@ -52,7 +58,7 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
 
         <div class="col-lg-3 col-6 text-right">
             <a href="promotions.php"> <button type="button" class="btn btn-primary">Акции</button></a>
-            <a href="authorization.php" class="btn border">
+            <a href="personalPage.php" class="btn border">
                 <i class="fas fa-user fa-lg"></i>
             </a>
             <a href="cart.php" class="btn border">
@@ -74,7 +80,7 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
             </a>
             <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
                 <div class="navbar-nav w-100 overflow-hidden" style="height: 410px">
-                    <?php include 'getCategories.php'?>
+                    <?php include_once 'getCategories.php'?>
                 </div>
             </nav>
         </div>
@@ -92,38 +98,59 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
     </div>
 </div>
 <!-- Navbar End -->
-<div class="container-fluid mt-5">
-    <div class="row">
-        <div class="col-lg-3 bg-light border-right" style="padding: 30px;">
-
-            <ul class="list-group list-group-flush">
-                <h3 class="mb-4"> <?php echo $_SESSION['name']?><span id="userName"></span></h3>
-                <h3 class="mb-4">Email: <?php echo $_SESSION['email']?><span id="email"></span></h3>
-                <h3 class="mb-4">Логин: <?php echo $_SESSION['login']?><span id="login"></span></h3>
-                <li class="list-group-item"><a href="#" class="btn btn-primary btn-block" id="orderHistoryButton">Посмотреть историю заказов</a></li>
+<!-- Cart Start -->
+<div class="container-fluid pt-5">
+    <div class="row px-xl-5">
+        <div class="col-lg-8 table-responsive mb-5">
+            <table id="cartTable" class="table table-bordered text-center mb-0">
+                <thead class="bg-secondary text-dark">
+                <tr>
+                    <th>Товар</th>
+                    <th>Цена</th>
+                    <th>Количество</th>
+                    <th>Итоговая стоимость</th>
+                    <th>Удалить</th>
+                </tr>
+                </thead>
+                <tbody class="align-middle">
                 <?php
-                $rolesString=$_SESSION['roles'];
-                $rolesArray = explode(" ", $rolesString);
-                if (in_array('Admin', $rolesArray)) {
-                    echo '<li class="list-group-item"><a href="adminIndex.php" class="btn btn-primary btn-block" id="orderHistoryButton">Панель администратора</a></li>';
-                }?>
-                <div class="col-lg-3 col-6 text-right">
-                    <a href="logout.php" class="btn btn-danger">Выйти</a>
-                </div>
-
-
-            </ul>
+                include_once 'getCart.php';
+                getCartByUserid();
+                ?>
+                </tbody>
+            </table>
         </div>
-        <div class="col-lg-9">
+        <!-- Footer Start -->
+        <div class="container-fluid bg-secondary text-dark mt-5 pt-5">
+            <div class="row px-xl-5 pt-5">
+                <div class="col-lg-8 col-md-12">
+                    <div class="row">
+                        <div class="col-md-4 mb-5">
+                            <h5 class="font-weight-bold text-dark mb-4">PaperMajesty</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
+        <!-- Footer End -->
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-<script src="lib/easing/easing.min.js"></script>
-<script src="lib/owlcarousel/owl.carousel.min.js"></script>
-<script src="js/site.js"></script>
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-primary back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+
+        <!-- Template Javascript -->
+        <script src="js/cart.js"></script>
 </body>
 
 </html>

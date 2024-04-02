@@ -38,7 +38,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['email']=$user['email'];
             $_SESSION['login']=$user['login'];
             $_SESSION['coupon_code']='';
-            $_SESSION['role']=($userRoleRepository->findRolesByUserId($user['id']))[0]['name'];
+            $roles=$userRoleRepository->findRolesByUserId($user['id']);
+            foreach ($roles as $role)
+            {
+                $_SESSION['roles'].=" ";
+                $_SESSION['roles'].=$role['name'];
+            }
 
             header('Location: index.php'); // Перенаправляем на главную страницу
             exit();

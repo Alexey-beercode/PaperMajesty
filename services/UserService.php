@@ -75,4 +75,9 @@ class UserService
     {
         $this->userRepository->delete($id);
     }
+    public function getRolesByUserId($userId)
+    {
+        return $this->userRoleRepository->findRolesByUserId($userId);
+
+    }
 }

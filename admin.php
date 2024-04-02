@@ -1,5 +1,6 @@
 <?php
 include_once 'config/db_connection.php';
+include_once 'getAdminTables.php';
 require_once 'repositories/CouponRepository.php';
 require_once 'repositories/OrderProductRepository.php';
 require_once 'repositories/OrderStatusRepository.php';
@@ -23,7 +24,7 @@ function renderOrderStats($stats)
     foreach ($stats as $categoryName=> $percentage) {
         $output .= '<div class="media">';
         $output .= '<div class="media-body">';
-        $output .= '<h5 class="media-heading">' . $categoryName . '</h5>';
+        $output .= '<h5 class="media-heading">' . $categoryName . '        '.$percentage.' %</h5>';
         $output .= '<div class="progress progress-mini">';
         $output .= '<div class="progress-bar" role="progressbar" aria-valuenow="' . $percentage . '" aria-valuemin="0" aria-valuemax="100" style="width: ' . $percentage . '%;">';
         $output .= '<span class="sr-only">' . $percentage . '% Complete</span>';
@@ -59,6 +60,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         }
         if ($action === 'getOrderCount') {
             echo $orderCount;
+            exit;
+        }
+        if ($action==='getUsersTable'){
+            echo renderUserTable();
             exit;
         }
     }
