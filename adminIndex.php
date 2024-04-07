@@ -32,6 +32,7 @@
     <link rel="stylesheet" type="text/css" href="css/adminCss/plugins/animate.min.css"/>
     <link rel="stylesheet" type="text/css" href="css/adminCss/plugins/fullcalendar.min.css"/>
     <link href="css/adminCss/style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <!-- end: Css -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -61,22 +62,41 @@
 </div>
 <!--nav bar end -->
     <!-- start:Left Menu -->
-    <div id="left-menu">
-        <div class="sub-left-menu scroll">
-            <ul class="nav nav-list">
-                <li class="ripple">
-                    <ul class="nav nav-list tree">
-                        <li><a href="topnav.html">Top Navigation</a></li>
-                        <li><a href="boxed.html">Boxed</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+<div id="left-menu">
+    <div class="sub-left-menu scroll">
+        <ul class="nav nav-list">
+            <li class="ripple">
+                <ul class="nav nav-list tree">
+                    <li><a data-action="getOrderTable">Заказы</a></li>
+                </ul>
+            </li>
+            <li class="ripple">
+                <ul class="nav nav-list tree">
+                    <li><a data-action="getUsersTable">Пользователи</a></li>
+                </ul>
+            </li>
+            <li class="ripple">
+                <ul class="nav nav-list tree">
+                    <li><a data-action="getProductTable">Товары</a></li>
+                </ul>
+            </li>
+            <li class="ripple">
+                <ul class="nav nav-list tree">
+                    <li><a data-action="getPromotionTable">Акции</a></li>
+                </ul>
+            </li>
+            <li class="ripple">
+                <ul class="nav nav-list tree">
+                    <li><a data-action="getCouponTable">Купоны</a></li>
+                </ul>
+            </li>
+        </ul>
     </div>
+</div>
 
-    <!-- start: content -->
+
+<!-- start: content -->
     <div id="content">
-
         <div class="col-md-12" style="padding:20px;">
             <div class="col-md-12 padding-0">
                 <div class="col-md-8 padding-0">

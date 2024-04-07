@@ -150,7 +150,16 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
                         <h5 class="font-weight-bold">Сумма</h5>
                         <h5 id="total-price" class="font-weight-bold"></h5>
                     </div>
-                    <a href="order.php"><button class="btn btn-block btn-primary my-3 py-3">Отправить заказ</button></a>
+                    <?php
+                    try {
+                        checkIsGoodQuantity();
+                        echo '<a href="order.php"><button class="btn btn-block btn-primary my-3 py-3">Отправить заказ</button></a>';
+                    }
+                    catch (Exception $exception){
+                        echo '<h5 style="color: red">'.$exception->getMessage().'</h5>';
+                    }
+                    ?>
+
                 </div>
             </div>
         </div>

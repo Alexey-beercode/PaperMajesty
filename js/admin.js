@@ -36,6 +36,31 @@ $(document).ready(function() {
     }
 
 
+    $(document).ready(function() {
+        // Обработчик события щелчка на ссылку <a>
+        $('a[data-action]').click(function(event) {
+            // Отменяем стандартное действие ссылки
+            event.preventDefault();
+
+            // Получаем значение атрибута data-action
+            var action = $(this).data('action');
+
+            // Отправляем AJAX запрос на сервер
+            $.ajax({
+                url: 'admin.php', // URL, куда отправляем запрос
+                type: 'GET', // Метод запроса
+                data: { action: action }, // Данные запроса
+                success: function(response) { // Функция, которая будет выполнена при успешном запросе
+                    // Вставляем полученный HTML в <div id="content">
+                    $('#content').html(response);
+                },
+                error: function(xhr, status, error) { // Функция, которая будет выполнена в случае ошибки
+                    console.error(error); // Выводим ошибку в консоль
+                }
+            });
+        });
+    });
+
     // Вызываем функцию для получения статистики при загрузке страницы
     getOrderStats();
     loadOrderCount();

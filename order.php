@@ -113,6 +113,7 @@ include_once 'getOrder.php';
             <div class="mb-4">
                 <h4 class="font-weight-semi-bold mb-4">Оформление заказа</h4>
                 <div class="row">
+                    <h1 id="error"></h1>
                     <div class="col-md-6 form-group">
                         <label>Имя</label>
                         <input id="nameInput" class="form-control" type="text" placeholder="Иван">

@@ -77,6 +77,33 @@ function renderProductInCart($product, $count, $productsAndDiscounts)
     return $output;
 }
 
+function checkIsGoodQuantity()
+{
+    global $conn;
+    $userId=$_SESSION['userId'];
+    $cartService=getCartService($conn);
+    $cartData = $cartService->getCartByUserId($userId);
+    $productService=getProductService($conn);
+    foreach ($cartData as $cartDatum) {
+        $productData=$productService->getById($cartDatum['productId']);
+        if ($productData['stockQuantity']<$cartDatum['count'])
+        {
+            throw new \Exception("Количество товаров(".$productData['name'].") в корзине превышает количество товаров на складе\n Доступное количество : ".$productData['stockQuantity']."");
+        }
+    }
+}
+function getCartService($conn)
+{
+    $cartRepository = new CartRepository($conn);
+    $cartService = new CartService($cartRepository);
+    return $cartService;
+}
+function getProductService($conn)
+{
+    $productRepository = new ProductRepository($conn);
+    $productService = new ProductService($productRepository);
+    return $productService;
+}
 
 function getCartByUserid()
 {
@@ -87,10 +114,9 @@ function getCartByUserid()
         try {
             global $conn;
             $couponCode = $_SESSION['coupon_code'];
-            $cartRepository = new CartRepository($conn);
-            $cartService = new CartService($cartRepository);
-            $productRepository = new ProductRepository($conn);
-            $productService = new ProductService($productRepository);
+            $cartService=getCartService($conn);
+            $productRepository=new ProductRepository($conn);
+            $productService=getProductService($conn);
             $couponRepository = new CouponRepository($conn);
             $couponDiscountRepository = new CouponDiscountRepository($conn);
             $couponService = new CouponService($couponRepository, $couponDiscountRepository, $productRepository);

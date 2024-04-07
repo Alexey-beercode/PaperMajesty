@@ -135,8 +135,7 @@ function getOrderHistoryByUserid($userId)
         foreach ($orders as $order) {
             $html .= renderOrder($order);
         }
-        echo $html;
-        exit;
+        return $html;
     }
     $orders=$orderService->getAll();
     if (count($orders)==0){
@@ -145,7 +144,5 @@ function getOrderHistoryByUserid($userId)
     foreach ($orders as $order) {
         $html .= renderOrder($order);
     }
-    echo $html;
-    exit;
-
+    return $html;
 }

@@ -118,7 +118,7 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
                 <tbody class="align-middle">
                 <?php
                 include_once 'getOrderHistory.php';
-                getOrderHistoryByUserid($_SESSION['userId']);
+                echo getOrderHistoryByUserid($_SESSION['userId']);
                 ?>
                 </tbody>
             </table>

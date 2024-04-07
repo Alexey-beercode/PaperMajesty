@@ -17,7 +17,7 @@ class CartService
             throw new Exception("Invalid id");
         $productInCart=$this->cartRepository->getCartItemsByUserId($userId);
         if (count($productInCart)==0)
-            throw new Exception("No products in cart");
+            return [];
         return $productInCart;
     }
     public function deleteFromUserCartByProductId($userId,$productId)

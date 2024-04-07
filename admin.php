@@ -20,11 +20,14 @@ use services\OrderService;
 
 function renderOrderStats($stats)
 {
-    $output='';
-    foreach ($stats as $categoryName=> $percentage) {
+    $output = '';
+    foreach ($stats as $categoryName => $percentage) {
+        // Ограничиваем количество знаков после запятой до двух
+        $formattedPercentage = number_format($percentage, 2);
+
         $output .= '<div class="media">';
         $output .= '<div class="media-body">';
-        $output .= '<h5 class="media-heading">' . $categoryName . '        '.$percentage.' %</h5>';
+        $output .= '<h5 class="media-heading">' . $categoryName . ' ' . $formattedPercentage . ' %</h5>';
         $output .= '<div class="progress progress-mini">';
         $output .= '<div class="progress-bar" role="progressbar" aria-valuenow="' . $percentage . '" aria-valuemin="0" aria-valuemax="100" style="width: ' . $percentage . '%;">';
         $output .= '<span class="sr-only">' . $percentage . '% Complete</span>';
@@ -35,6 +38,7 @@ function renderOrderStats($stats)
     }
     return $output;
 }
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Проверяем наличие параметра 'action' в запросе
     if (isset($_GET['action'])) {
@@ -53,9 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         if ($action === 'getOrderStats') {
             // Получаем статистику заказов по категориям
             $stats =$orderService->getOrderStats();
-            $html='';
-            $html.=renderOrderStats($stats);
-            echo $html;
+            echo renderOrderStats($stats);;
             exit;
         }
         if ($action === 'getOrderCount') {
@@ -64,6 +66,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         }
         if ($action==='getUsersTable'){
             echo renderUserTable();
+            exit;
+        }
+        if ($action==='getOrderTable'){
+            echo renderOrderTable();
+            exit;
+        }
+        if ($action==='getProductTable'){
+            echo renderProductTable();
+            exit;
+        }
+        if ($action==='getPromotionTable'){
+            echo renderPromotionTable();
+            exit;
+        }
+        if ($action==='getCouponTable'){
+            echo renderCouponTable();
             exit;
         }
     }

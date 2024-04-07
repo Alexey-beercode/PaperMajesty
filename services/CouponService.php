@@ -18,6 +18,14 @@ class CouponService
         $this->productRepository = $productRepository;
     }
 
+    public function getAll()
+    {
+        $coupons=$this->couponRepository->getAll();
+        if (!$coupons){
+            return [];
+        }
+        return $coupons;
+    }
     public function getProductsAndDiscountsByCouponCode($couponCode)
     {
         // Find the coupon by code

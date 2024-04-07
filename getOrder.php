@@ -29,41 +29,58 @@ use services\OrderService;
 use services\ProductService as ProductService;
 use services\CouponService;
 global $conn;
+function updateStockQuantity($cart)
+{
+    global $conn;
+    $productRepository=new ProductRepository($conn);
+    $productService=new ProductService($productRepository);
+    foreach ($cart as $cartData)
+    {
+        $product=$productService->getById($cartData['productId']);
+        $product['stockQuantity']-=$cartData['count'];
+        $productService->update($product);
+    }
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['name']) && isset($_POST['address'])) {
-        $couponCode=$_SESSION['coupon_code'];
-        if ($couponCode=='')
-        {
-            $couponCode=null;
-        }
-        $userId=$_SESSION['userId'];
-        error_log($userId);
-        $name=$_POST['name'];
-        $address=$_POST['address'];
-        $cart=getCartByUserId($userId,$conn);
-        $orderRepository=new OrderRepository($conn);
-        $orderStatusRepository=new OrderStatusRepository($conn);
-        $cartRepository=new CartRepository($conn);
-        $cartService=new CartService($cartRepository);
-        $orderProductRepository=new OrderProductRepository($conn);
-        $couponRepository=new CouponRepository($conn);
-        $productRepository=new ProductRepository($conn);
-        $productService=new ProductService($productRepository);
-        $productCategoryRepository=new ProductCategoryRepository($conn);
-        $orderService=new OrderService($orderRepository,$orderStatusRepository,$orderProductRepository,$couponRepository,$productService,$productCategoryRepository);
-        error_log($name);
-        error_log($address);
-        $isOrderCreated=$orderService->createOrder($userId,$address,$couponCode,$cart,$name);
-        error_log("it ok");
-        if ($isOrderCreated==true){
-            $_SESSION['coupon_code']='';
+        try {
+            $couponCode = $_SESSION['coupon_code'];
+            if ($couponCode == '') {
+                $couponCode = null;
+            }
+            $userId = $_SESSION['userId'];
+            error_log($userId);
+            $name = $_POST['name'];
+            $address = $_POST['address'];
+            $cart = getCartByUserId($userId, $conn);
+            $orderRepository = new OrderRepository($conn);
+            $orderStatusRepository = new OrderStatusRepository($conn);
+            $cartRepository = new CartRepository($conn);
+            $cartService = new CartService($cartRepository);
+            $orderProductRepository = new OrderProductRepository($conn);
+            $couponRepository = new CouponRepository($conn);
+            $productRepository = new ProductRepository($conn);
+            $productService = new ProductService($productRepository);
+            $productCategoryRepository = new ProductCategoryRepository($conn);
+            $orderService = new OrderService($orderRepository, $orderStatusRepository, $orderProductRepository, $couponRepository, $productService, $productCategoryRepository);
+            error_log($name);
+            error_log($address);
+            $orderService->createOrder($userId, $address, $couponCode, $cart, $name);
+            error_log("it ok");
+            $_SESSION['coupon_code'] = '';
             $cartService->clearCartByUserId($userId);
+            updateStockQuantity($cart);
             error_log("true");
             echo json_encode(['success' => true]);
             exit;
         }
-        error_log("false");
-        echo json_encode(['error' => "error"]);
+        catch (Exception $exception)
+        {
+            // Отправка текста ошибки в случае возникновения ошибки
+            echo "Ошибка: " . $exception->getMessage();
+
+        }
+
     }
 }
 function getCartByUserId($userId,$conn)

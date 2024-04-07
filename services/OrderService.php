@@ -38,7 +38,7 @@ class OrderService
     {
         $orderId = Uuid::uuid4()->toString();
         $orderNumber = $this->generateOrderNumber();
-        $statusName = 'Processing'; // Assuming this is the default status name
+        $statusName = 'В обработке'; // Assuming this is the default status name
 
         // Get status ID by name
         $status = $this->orderStatusRepository->getStatusByName($statusName);
@@ -50,14 +50,20 @@ class OrderService
 
         // Add products to order
         foreach ($products as $product) {
+            $productData=$this->productService->getById($product['productId']);
+            if ($productData['stockQuantity']<$product['count'])
+            {
+
+                throw new \Exception("Количество товаров(".$productData['name'].") в корзине превышает количество товаров на складе\n Доступное количество : ".$productData['stockQuantity']."");
+            }
             $this->orderProductRepository->create($orderId, $product['productId'], $product['count']);
         }
         $order=$this->orderRepository->find($orderId);
-        if (isset($order))
+        if (!isset($order))
         {
-            return true;
+            throw new \Exception("Ошибка");
         }
-        return false;
+
 
     }
     public function getOrderStats()
