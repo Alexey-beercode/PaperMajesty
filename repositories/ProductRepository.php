@@ -18,7 +18,7 @@ class ProductRepository
     {
         $uuid = Uuid::uuid4()->toString();
 
-        $sql = "INSERT INTO products (id, categoryId, price, name, description, imageUrl, new_price, stockQuantity) VALUES (:id, :categoryId, :price, :name, :description, :imageUrl, :new_price, :stockQuantity)";
+        $sql = "INSERT INTO products (id, categoryId, price, name, description, imageUrl, new_price, stockQuantity,isDeleted) VALUES (:id, :categoryId, :price, :name, :description, :imageUrl, :new_price, :stockQuantity, :isDeleted, :createCountry)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             ':id' => $uuid,
@@ -29,6 +29,8 @@ class ProductRepository
             ':imageUrl' => $product['imageUrl'],
             ':new_price' => $product['new_price'],
             ':stockQuantity' => $product['stockQuantity'],
+            ':isDeleted'=>false,
+            ':createCountry'=>$product['createCountry']
         ]);
     }
 
@@ -41,7 +43,9 @@ class ProductRepository
     }
     public function getByCategoryId($categoryId)
     {
-        $sql="SELECT * FROM products WHERE categoryId = :categoryId";
+        $sql = "SELECT * FROM products WHERE categoryId = :categoryId AND (isDeleted = false OR isDeleted IS NULL)";
+
+
         $stmt=$this->conn->prepare($sql);
         $stmt->execute([':categoryId'=>$categoryId]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -66,7 +70,7 @@ class ProductRepository
 
     public function getAll()
     {
-        $sql = "SELECT * FROM products";
+        $sql = "SELECT * FROM products WHERE (isDeleted = false OR isDeleted IS NULL)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
 
@@ -79,7 +83,7 @@ class ProductRepository
 
     public function delete($id)
     {
-        $sql = "DELETE FROM products WHERE id = :id";
+        $sql = "UPDATE products SET isDeleted=true WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':id' => $id]);
     }
@@ -89,7 +93,7 @@ class ProductRepository
             throw new Exception("Search term cannot be empty");
         }
 
-        $sql = "SELECT * FROM products WHERE name LIKE ?";
+        $sql = "SELECT * FROM products WHERE name LIKE ? AND (isDeleted = false OR isDeleted IS NULL) ";
         $stmt = $this->conn->prepare($sql);
 
         $searchParam = "%$searchTerm%";
@@ -98,6 +102,13 @@ class ProductRepository
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    public function getByName($name)
+    {
+        $sql = "SELECT * FROM products WHERE name = :name";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':name' => $name]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
 }

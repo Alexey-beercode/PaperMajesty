@@ -18,14 +18,15 @@ class PromotionRepository
         // Generate a new UUID for the promotion
         $promotionId = Uuid::uuid4()->toString();
 
-        $sql = "INSERT INTO promotions (id, startDate, endDate, name) 
-                VALUES (:id, :startDate, :endDate, :name)";
+        $sql = "INSERT INTO promotions (id, startDate, endDate, name,isDeleted) 
+                VALUES (:id, :startDate, :endDate, :name,:isDeleted)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             ':id' => $promotionId,
             ':startDate' => $startDate,
             ':endDate' => $endDate,
             ':name' => $name,
+            ':isDeleted'=>false
         ]);
     }
 
@@ -53,7 +54,7 @@ class PromotionRepository
 
     public function getAll()
     {
-        $sql = "SELECT * FROM promotions";
+        $sql = "SELECT * FROM promotions WHERE(isDeleted = false OR isDeleted IS NULL)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
 
@@ -68,7 +69,7 @@ class PromotionRepository
     public function getAllActivePromotions()
     {
         $now = date('Y-m-d H:i:s');
-        $sql = "SELECT * FROM promotions WHERE endDate > :now";
+        $sql = "SELECT * FROM promotions WHERE endDate > :now AND (isDeleted = false OR isDeleted IS NULL)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':now' => $now]);
 
@@ -82,7 +83,8 @@ class PromotionRepository
 
     public function delete($id)
     {
-        $sql = "DELETE FROM promotions WHERE id = :id";
+        $sql = "UPDATE promotions 
+                SET isDeleted=true promotions WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':id' => $id]);
     }

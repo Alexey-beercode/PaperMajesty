@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="utf-8">
     <title>PaperMajesty</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -26,15 +25,10 @@
     <!-- start: Css -->
     <link rel="stylesheet" type="text/css" href="css/adminCss/bootstrap.min.css">
 
-    <!-- plugins -->
-    <link rel="stylesheet" type="text/css" href="css/adminCss/plugins/font-awesome.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/adminCss/plugins/simple-line-icons.css"/>
-    <link rel="stylesheet" type="text/css" href="css/adminCss/plugins/animate.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/adminCss/plugins/fullcalendar.min.css"/>
     <link href="css/adminCss/style.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <!-- end: Css -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 
 </head>
 
@@ -132,8 +126,8 @@
         </div>
     </div>
     <!-- end: content -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/admin.js"></script>
-
 
 </body>
 </html>

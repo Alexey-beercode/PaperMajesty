@@ -8,6 +8,7 @@ use services\ProductService;
 
 // Подключаемся к базе данных
 include_once 'config/db_connection.php';
+include_once 'getOrderHistory.php';
 global $conn;
 
 function getProductDetails($productId)
@@ -15,8 +16,7 @@ function getProductDetails($productId)
     try {
         global $conn;
         // Создаем экземпляры репозитория и сервиса для работы с продуктами
-        $productRepository = new ProductRepository($conn);
-        $productService = new ProductService($productRepository);
+        $productService=getProductService();
         // Получаем детали товара по его ID
         return $productService->getById($productId);
     } catch (Exception $exception) {

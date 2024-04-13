@@ -197,6 +197,7 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
 
 <!-- Template Javascript -->
 <script src="js/cart.js"></script>
+<script src="js/site.js"></script>
 </body>
 
 </html>

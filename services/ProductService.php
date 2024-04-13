@@ -6,10 +6,12 @@ use Exception;
 use repositories\ProductRepository;
 class ProductService
 {
+    private $promotionService;
     private $productRepository;
-    public function __construct(ProductRepository $productRepository)
+    public function __construct(ProductRepository $productRepository,PromotionService $promotionService)
     {
         $this->productRepository=$productRepository;
+        $this->promotionService=$promotionService;
     }
     public function getById($id)
     {
@@ -20,11 +22,29 @@ class ProductService
             throw new Exception("No product with id: ".$id."");
         return $product;
     }
-    public function getAll()
+    public function getByName($name)
     {
+        return $this->productRepository->getByName($name);
+    }
+    public function getAll(){
         $products=$this->productRepository->getAll();
         if (count($products)==0)
-            throw new Exception("No products");
+            return [];
+        foreach ($products as &$product) {
+            if ($product['new_price']!=null)
+            {
+                $promotionDiscount = $this->promotionService->getByProductId($product['id']);
+                if ($promotionDiscount == null) {
+                    continue;
+                } else {
+
+                    $product['new_price'] = intval($product['price']) - intval($promotionDiscount[0]['discount']);
+                }
+            }
+
+        }
+
+
         return $products;
     }
     public function create($product)
@@ -48,14 +68,14 @@ class ProductService
             throw new Exception("Invalid id");
         $product=$this->productRepository->find($productId);
         if ($product==null)
-            throw new Exception("No product with id: ".$productId->toString()."");
+            return[];
         $product["stockQuantity"]=$newStockQuantity;
         $this->productRepository->update($product);
         return $product;
     }
     public function delete($id)
     {
-        if (!id)
+        if (!$id)
             throw new Exception("Invalid id");
         $this->productRepository->delete($id);
     }

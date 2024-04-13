@@ -29,6 +29,12 @@ class PromotionService
 
     public function addDiscount($productId, $discount, $promotionId)
     {
+        $promotionsDiscounts=$this->promotionDiscountRepository->findByPromotionId($promotionId);
+        foreach ($promotionsDiscounts as $promotionsDiscount)
+        {
+            if ($promotionsDiscount['productId']==$productId);
+            return;
+        }
         $this->promotionDiscountRepository->create($productId, $discount, $promotionId);
     }
 
@@ -42,8 +48,12 @@ class PromotionService
     public function getAllProductsInAllPromotions()
     {
         $discounts = $this->promotionDiscountRepository->getAll();
-        $productIds = array_column($discounts, 'productId');
-        return $this->getProductsByIds($productIds);
+        return ($discounts);
+    }
+    public function getByProductId($productId)
+    {
+        $productDiscount=$this->promotionDiscountRepository->getByProductId($productId);
+        return $productDiscount;
     }
 
     public function deletePromotion($promotionId)

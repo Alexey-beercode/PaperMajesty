@@ -60,6 +60,35 @@ $(document).ready(function() {
             });
         });
     });
+    $(document).ready(function() {
+        // Обработчик события клика на кнопку
+        $(document).on('click', '.btn-delete', function(event) {
+            // Отменяем стандартное действие кнопки
+            event.preventDefault();
+
+            // Получаем значения атрибутов data-action и data-product-id
+            var action = $(this).data('action');
+            var productId = $(this).data('product-id');
+
+            // Отправляем POST-запрос на сервер
+            $.post('admin.php', { action: action, productId: productId })
+                .done(function(response) { // Функция, которая будет выполнена при успешном запросе
+                    // Обработка успешного ответа от сервера
+                    window.location.href = 'adminIndex.php';
+                    console.log(response);
+                })
+                .fail(function(xhr, status, error) { // Функция, которая будет выполнена в случае ошибки
+                    // Обработка ошибки при выполнении запроса
+                    console.error(error);
+                });
+
+        });
+    });
+
+
+
+
+
 
     // Вызываем функцию для получения статистики при загрузке страницы
     getOrderStats();

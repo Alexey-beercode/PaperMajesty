@@ -59,16 +59,10 @@ function renderOrdersTableHeader()
     $html.='<th>Товары</th>';
     $html.='<th>Итоговая стоимость</th>';
     $html.='<th>Статус</th>';
+    $html.='<th>Изменить статус</th>';
     return $html;
 }
-function getPromotionService()
-{
-    global $conn;
-    $productRepository=new ProductRepository($conn);
-    $promotionRepository=new PromotionRepository($conn);
-    $promotionDiscountRepository=new PromotionDiscountRepository($conn);
-    return new PromotionService($promotionRepository,$promotionDiscountRepository,$productRepository);
-}
+
 function renderUsersTableHeader()
 {
     $html='<div class="container-fluid pt-5">';
@@ -142,6 +136,7 @@ function renderProductTableHeader()
     $html.='<th>Новая цена</th>';
     $html.='<th>Цена</th>';
     $html.='<th>Количество на складе</th>';
+    $html.='<th>Удалить товар</th>';
     $html.='</tr>';
     $html.='</thead>';
     $html.='<tbody>';
@@ -163,13 +158,29 @@ function renderProductTable()
         $html.='<td>'.$product['name'].'</td>';
         $html.='<td>'.$categoryName.'</td>';
         $html.='<td>'.$product['description'].'</td>';
-        $html.='<td>'.$product['new_price'].'</td>';
+        $html.='<td>';
+        $html .= '<form id="updateNewPrice" action="admin.php" method="post">';
+        $html .= '<input type="hidden" name="productId" value="' . $product['id'] . '">';
+        $html .= '<input type="hidden" name="action" value="updateNewPrice">';
+        $html .= '<input type="number" name="newPrice" value="'.$product['new_price'].'">';
+        $html .= '<button type="submit">Изменить новую цену</button>';
+        $html .= '</form>';
+        $html .= '</td>';
         $html.='<td>'.$product['price'].'</td>';
-        $html.='<td>'.$product['stockQuantity'].'</td>';
+        $html.='<td>';
+        $html .= '<form id="updateStockQuantity" action="admin.php" method="post">';
+        $html .= '<input type="hidden" name="productId" value="' . $product['id'] . '">';
+        $html .= '<input type="hidden" name="action" value="updateStockQuantity">';
+        $html .= '<input type="number" name="newStockQuantity" value="'.$product['stockQuantity'].'">';
+        $html .= '<button type="submit">Изменить количество</button>';
+        $html .= '</form>';
+        $html .= '</td>';
+        $html .= '<td class="align-middle"><button data-action="deleteProduct" data-product-id="' . $product['id'] . '" class="btn btn-sm btn-primary btn-delete"><i class="fa fa-times"></i></button></td>';
+
         $html.='</tr>';
     }
     $html.=renderTableFooter();
-    $html.='<a data-action="addProduct"><button class="btn btn-block btn-primary my-3 py-3">Добавить товар</button></a>';
+    $html.='<a href="create.php?action=addProduct"><button data-action="addProduct" class="btn btn-block btn-primary my-3 py-3">Добавить товар</button></a>';
     return $html;
 }
 
@@ -187,6 +198,7 @@ function renderPromotionTableHeader()
     $html.='<th>Дата окончания</th>';
     $html.='<th>Завершена</th>';
     $html.='<th>Товары в акции</th>';
+    $html.='<th>Добавить товар в акцию</th>';
     $html.='</tr>';
     $html.='</thead>';
     $html.='<tbody>';
@@ -205,6 +217,7 @@ function renderCouponTableHeader()
     $html.='<th>Код</th>';
     $html.='<th>Активен</th>';
     $html.='<th>Товары в акции</th>';
+    $html.='<th>Добавить товар в акцию</th>';
     $html.='</tr>';
     $html.='</thead>';
     $html.='<tbody>';
@@ -218,6 +231,8 @@ function renderPromotionTable()
     $html.=renderPromotionTableHeader();
     $promotionService=getPromotionService();
     $promotions=$promotionService->getAll();
+    $productService=getProductService();
+    $products=$productService->getAll();
     foreach ($promotions as $promotion)
     {
         $isPromotionActive=$promotion['endDate']>$now;
@@ -239,9 +254,24 @@ function renderPromotionTable()
 
         }
         $html.='</td>';
+        $html .= '<td>';
+        $html .= '<form id="addProductToPromotion" action="admin.php" method="post">';
+        $html .= '<input type="hidden" name="promotionId" value="' . $promotion['id'] . '">';
+        $html .= '<input type="hidden" name="action" value="addProductToPromotion">';
+        $html .= '<select id="newProductSelect" name="productName">';
+        foreach ($products as $product)
+        {
+            $html .= '<option value="'.$product['name'].'">'.$product['name'].'</option>';
+        }
+        $html .= '</select>';
+        $html.='<label for="discount">Скидка</label>';
+        $html .= '<input type="number" name="discount">';
+        $html .= '<button type="submit">Добавить товар в акцию</button>';
+        $html .= '</form>';
+        $html .= '</td>';
     }
     $html.=renderTableFooter();
-    $html.='<a data-action="addAction"><button class="btn btn-block btn-primary my-3 py-3">Добавить акцию</button></a>';
+    $html.='<a href="create.php?action=addPromotion"><button class="btn btn-block btn-primary my-3 py-3">Добавить акцию</button></a>';
     return $html;
 
 }
@@ -253,7 +283,8 @@ function renderCouponTable()
     $html.=renderCouponTableHeader();
     $couponService=getCouponService($conn);
     $coupons=$couponService->getAll();
-    $productService=getProductService($conn);
+    $productService=getProductService();
+    $products=$productService->getAll();
     foreach ($coupons as $coupon)
     {
         $isCouponActive=$coupon['expireTime']>$now;
@@ -269,15 +300,34 @@ function renderCouponTable()
             $html.='<td>Не активен</td>';
         }
         $html.='<td class="align-middle">';
-        foreach ($productsAndDiscountsByCouponId as $value) {
-            $product=$productService->getById($value['productId']);
-            $html .= '<img src="' . $product['imageUrl'] . '" alt="" style="width: 50px;">' . $product['name'] . '<br>';
+        if ($productsAndDiscountsByCouponId!=null)
+        {
+            foreach ($productsAndDiscountsByCouponId as $value) {
+                $product=$productService->getById($value['productId']);
+                $html .= '<img src="' . $product['imageUrl'] . '" alt="" style="width: 50px;">' . $product['name'] . '<br>';
 
+            }
         }
+
         $html.='</td>';
+        $html .= '<td>';
+        $html .= '<form id="addProductToPromotion" action="admin.php" method="post">';
+        $html .= '<input type="hidden" name="promotionId" value="' . $coupon['id'] . '">';
+        $html .= '<input type="hidden" name="action" value="addProductToCoupon">';
+        $html .= '<select id="newProductSelect" name="productName">';
+        foreach ($products as $product)
+        {
+            $html .= '<option value="'.$product['name'].'">'.$product['name'].'</option>';
+        }
+        $html .= '</select>';
+        $html.='<label for="discount">Скидка</label>';
+        $html .= '<input type="number" name="discount">';
+        $html .= '<button type="submit">Добавить товар в акцию</button>';
+        $html .= '</form>';
+        $html .= '</td>';
     }
     $html.=renderTableFooter();
-    $html.='<a data-action="addCoupon"><button class="btn btn-block btn-primary my-3 py-3">Добавить купон</button></a>';
+    $html.='<a href="create.php?action=addCoupon"><button class="btn btn-block btn-primary my-3 py-3">Добавить купон</button></a>';
     return $html;
 
 }

@@ -1,6 +1,8 @@
 <?php
 include_once 'config/db_connection.php';
 include_once 'getAdminTables.php';
+include_once 'adminServices.php';
+include_once 'getOrderHistory.php';
 require_once 'repositories/CouponRepository.php';
 require_once 'repositories/OrderProductRepository.php';
 require_once 'repositories/OrderStatusRepository.php';
@@ -43,15 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     // Проверяем наличие параметра 'action' в запросе
     if (isset($_GET['action'])) {
         $action = $_GET['action'];
-        global $conn;
-        $couponRepository=new CouponRepository($conn);
-        $orderProductRepository=new OrderProductRepository($conn);
-        $productRepository=new ProductRepository($conn);
-        $productService=new ProductService($productRepository);
-        $orderRepository=new OrderRepository($conn);
-        $orderStatusRepository=new OrderStatusRepository($conn);
-        $productCategoryRepository=new ProductCategoryRepository($conn);
-        $orderService=new OrderService($orderRepository,$orderStatusRepository,$orderProductRepository,$couponRepository,$productService,$productCategoryRepository);
+        $productService=getProductService();
+        $orderService=getOrderService();
         $orderCount=count($orderService->getAll());
         // Если action равен 'getOrderStats', вызываем соответствующий метод
         if ($action === 'getOrderStats') {
@@ -84,6 +79,67 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             echo renderCouponTable();
             exit;
         }
+        if ($action==='addProduct'){
+            echo renderAddProduct();
+            exit;
+        }
+
+    }
+}
+elseif($_SERVER['REQUEST_METHOD']==='POST'){
+if (isset($_POST['action'])) {
+    $action = $_POST['action'];
+    if ($action==='updateOrderStatus'){
+        $orderId = $_POST['orderId'];
+        $newStatus = $_POST['newStatus'];
+        updateOrderStatus($orderId,$newStatus);
+        header('Location: adminIndex.php');
+        exit;
+    }
+    if ($action==='deleteProduct') {
+        $productId=$_POST['productId'];
+        error_log("Пришло");
+        deleteProduct($productId);
+    }
+    if ($action==='updateNewPrice') {
+        $productId=$_POST['productId'];
+        $newPrice=$_POST['newPrice'];
+        error_log("Пришло");
+        updateNewPrice($productId,$newPrice);
+        header('Location: adminIndex.php');
+        exit;
+    }
+    if ($action==='updateStockQuantity') {
+        $productId=$_POST['productId'];
+        $newStockQuantity=$_POST['newStockQuantity'];
+        error_log("Пришло");
+        updateStockQuantity($productId,$newStockQuantity);
+        header('Location: adminIndex.php');
+        exit;
+    }
+    if ($action==='addProductToPromotion') {
+        $productName=$_POST['productName'];
+        $promotionId=$_POST['promotionId'];
+        $discount=$_POST['discount'];
+        error_log("Пришло");
+        addProductToPromotion($productName,$promotionId,$discount);
+        header('Location: adminIndex.php');
+        exit;
+    }
+    if ($action==='addProduct'){
+        $name=$_POST['name'];
+        $price=$_POST['price'];
+        $description=$_POST['description'];
+        $categoryId=$_POST['categoryId'];
+        $stockQuantity=$_POST['stockQuantity'];
+        $imageUrl=$_POST['imageUrl'];
+        $productService=getProductService();
+        $product=[];
+        $product['name']=$name;
+
+        $productService->create();
+    }
+
     }
 }
 ?>

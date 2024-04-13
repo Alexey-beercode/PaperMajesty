@@ -17,6 +17,7 @@ use services\ProductService as ProductService;
 use services\CouponService;
 // Подключаемся к базе данных
 include_once 'config/db_connection.php';
+include_once 'getOrderHistory.php';
 // Получаем userId из запроса
 function renderProductInCart($product, $count, $productsAndDiscounts)
 {
@@ -98,12 +99,7 @@ function getCartService($conn)
     $cartService = new CartService($cartRepository);
     return $cartService;
 }
-function getProductService($conn)
-{
-    $productRepository = new ProductRepository($conn);
-    $productService = new ProductService($productRepository);
-    return $productService;
-}
+
 
 function getCartByUserid()
 {

@@ -130,10 +130,13 @@ $productData = getProductDetails($_GET['id']);
                 }
             }
             ?>
-            <h3>Описание :</h3><br>
+            <h4>Описание :</h4><br>
             <?php
-
-            echo '<p class="mb-4">' . $productData['description'] . '</p>';
+            $html='';
+            $html.= '<p class="mb-4">' . $productData['description'] . '</p>';
+            $html.='<h4>Страна производитель :</h4>';
+            $html.= '<p class="mb-4">' . $productData['createCountry'] . '</p>';
+            echo $html;
             if ($productData['stockQuantity']>0)
             {
                 echo getAddToCartDiv($productData['id']);

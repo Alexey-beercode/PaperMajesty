@@ -18,14 +18,15 @@ class CouponRepository
         // Generate a shorter and simpler coupon code
         $couponCode = $this->generateCouponCode();
 
-        $sql = "INSERT INTO coupons (id, code, expireTime, name) 
-                VALUES (:id, :code, :expireTime, :name)";
+        $sql = "INSERT INTO coupons (id, code, expireTime, name,isDeleted) 
+                VALUES (:id, :code, :expireTime, :name,:isDeleted)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             ':id' => Uuid::uuid4()->toString(),
             ':code' => $couponCode,
             ':expireTime' => $expireTime,
             ':name' => $name,
+            ':isDeleted'=>false
         ]);
 
         return $couponCode;
@@ -66,7 +67,7 @@ class CouponRepository
 
     public function getAll()
     {
-        $sql = "SELECT * FROM coupons";
+        $sql = "SELECT * FROM coupons WHERE (isDeleted = false OR isDeleted IS NULL)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute();
 
@@ -80,13 +81,14 @@ class CouponRepository
 
     public function delete($id)
     {
-        $sql = "DELETE FROM coupons WHERE id = :id";
+        $sql = "UPDATE coupons 
+                SET isDeleted=true WHERE id = :id";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':id' => $id]);
     }
     public function findByCode($code)
     {
-        $sql = "SELECT * FROM coupons WHERE code = :code";
+        $sql = "SELECT * FROM coupons WHERE code = :code AND (isDeleted = false OR isDeleted IS NULL)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([':code' => $code]);
         return $stmt->fetch(PDO::FETCH_ASSOC);

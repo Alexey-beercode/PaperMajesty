@@ -7,6 +7,7 @@ use repositories\ProductRepository;
 use services\ProductService;
 
 include_once 'config/db_connection.php';
+include_once 'getOrderHistory.php';
 
 
 
@@ -57,9 +58,8 @@ function renderProduct($product) {
 
 function getProducts()
 {
-    global $conn;
-    $productRepository=new ProductRepository($conn);
-    $productService=new ProductService($productRepository);
+
+    $productService=getProductService();
     try {
         $products = $productService->getAll();
         $html = '';

@@ -71,4 +71,16 @@ class PromotionDiscountRepository
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getByProductId($productId)
+    {
+        $sql = "SELECT pd.* 
+        FROM promotions_discounts pd
+        INNER JOIN promotions p ON pd.promotionId = p.id
+        WHERE pd.productId = :productId 
+        AND p.isDeleted = false";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([':productId' => $productId]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
