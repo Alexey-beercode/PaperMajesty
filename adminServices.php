@@ -97,6 +97,10 @@ function renderAddProduct()
             <input type="text" class="form-control" name="imageUrl">
           </div>
           <div class="mb-3">
+            <label for="createCountry" class="form-label">Страна производитель</label>
+            <input type="text" class="form-control" name="createCountry">
+          </div>
+          <div class="mb-3">
             <label for="stockQuantity" class="form-label">Кол-во на складе</label>
             <input type="number" class="form-control" name="stockQuantity">
           </div>
@@ -119,7 +123,6 @@ $html.='</select>
 }
 function renderAddPromotion()
 {
-    $html='';
     $html = '';
     $html .= '
 <div class="container-fluid pt-5">
@@ -142,8 +145,8 @@ function renderAddPromotion()
             <input type="date" class="form-control" name="endDate">
           </div>
           <div class="mb-3">
-            <label for="imageUrl" class="form-label">URl картинки</label>
-            <input type="text" class="form-control" name="imageUrl">
+            <label for="image" class="form-label">URl картинки</label>
+            <input type="text" class="form-control" name="image">
           </div>
           <button type="submit" class="btn btn-primary">Сохранить</button>
         </form>

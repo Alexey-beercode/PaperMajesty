@@ -22,9 +22,9 @@ class PromotionService
         $this->productRepository = $productRepository;
     }
 
-    public function addPromotion($startDate, $endDate, $name)
+    public function addPromotion($startDate, $endDate, $name,$image)
     {
-        $this->promotionRepository->create($startDate, $endDate, $name);
+        $this->promotionRepository->create($startDate, $endDate, $name,$image);
     }
 
     public function addDiscount($productId, $discount, $promotionId)

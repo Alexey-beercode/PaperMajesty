@@ -18,7 +18,7 @@ class ProductRepository
     {
         $uuid = Uuid::uuid4()->toString();
 
-        $sql = "INSERT INTO products (id, categoryId, price, name, description, imageUrl, new_price, stockQuantity,isDeleted) VALUES (:id, :categoryId, :price, :name, :description, :imageUrl, :new_price, :stockQuantity, :isDeleted, :createCountry)";
+        $sql = "INSERT INTO products (id, categoryId, price, name, description, imageUrl, new_price, stockQuantity, isDeleted, createCountry) VALUES (:id, :categoryId, :price, :name, :description, :imageUrl, :new_price, :stockQuantity, :isDeleted, :createCountry)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             ':id' => $uuid,
@@ -29,9 +29,10 @@ class ProductRepository
             ':imageUrl' => $product['imageUrl'],
             ':new_price' => $product['new_price'],
             ':stockQuantity' => $product['stockQuantity'],
-            ':isDeleted'=>false,
+            ':isDeleted'=>0,
             ':createCountry'=>$product['createCountry']
         ]);
+
     }
 
     public function find($id)

@@ -132,12 +132,41 @@ if (isset($_POST['action'])) {
         $description=$_POST['description'];
         $categoryId=$_POST['categoryId'];
         $stockQuantity=$_POST['stockQuantity'];
+        $createCountry=$_POST['createCountry'];
         $imageUrl=$_POST['imageUrl'];
         $productService=getProductService();
         $product=[];
         $product['name']=$name;
-
-        $productService->create();
+        $product['description']=$description;
+        $product['price']=$price;
+        $product['categoryId']=$categoryId;
+        $product['stockQuantity']=$stockQuantity;
+        $product['imageUrl']=$imageUrl;
+        $product['new_price']=null;
+        $product['createCountry']=$createCountry;
+        $productService->create($product);
+        header('Location: adminIndex.php');
+        exit;
+    }
+    if ($action==='addCoupon'){
+        global $conn;
+        $name=$_POST['name'];
+        $code=$_POST['code'];
+        $expireDate=$_POST['expireDate'];
+        $couponService=getCouponService($conn);
+        $couponService->addCoupon($expireDate,$name,$code);
+        header('Location: adminIndex.php');
+        exit;
+    }
+    if ($action==='addPromotion'){
+        $name=$_POST['name'];
+        $startDate=$_POST['startDate'];
+        $endDate=$_POST['endDate'];
+        $image=$_POST['image'];
+        $promotionService=getPromotionService();
+        $promotionService->addPromotion($startDate,$endDate,$name,$image);
+        header('Location: adminIndex.php');
+        exit;
     }
 
     }

@@ -13,10 +13,8 @@ class CouponRepository
         $this->conn = $conn;
     }
 
-    public function create($expireTime, $name)
+    public function create($expireTime, $name,$couponCode)
     {
-        // Generate a shorter and simpler coupon code
-        $couponCode = $this->generateCouponCode();
 
         $sql = "INSERT INTO coupons (id, code, expireTime, name,isDeleted) 
                 VALUES (:id, :code, :expireTime, :name,:isDeleted)";
@@ -26,21 +24,10 @@ class CouponRepository
             ':code' => $couponCode,
             ':expireTime' => $expireTime,
             ':name' => $name,
-            ':isDeleted'=>false
+            ':isDeleted'=> 0 // Передаем 0 вместо false
         ]);
 
         return $couponCode;
-    }
-
-    private function generateCouponCode()
-    {
-        // Generate a random alphanumeric code of length 6
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $code = '';
-        for ($i = 0; $i < 6; $i++) {
-            $code .= $characters[rand(0, strlen($characters) - 1)];
-        }
-        return $code;
     }
 
     public function find($id)

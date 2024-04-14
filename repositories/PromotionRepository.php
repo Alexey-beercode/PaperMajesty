@@ -13,20 +13,21 @@ class PromotionRepository
         $this->conn = $conn;
     }
 
-    public function create($startDate, $endDate, $name)
+    public function create($startDate, $endDate, $name, $image)
     {
         // Generate a new UUID for the promotion
         $promotionId = Uuid::uuid4()->toString();
 
-        $sql = "INSERT INTO promotions (id, startDate, endDate, name,isDeleted) 
-                VALUES (:id, :startDate, :endDate, :name,:isDeleted)";
+        $sql = "INSERT INTO promotions (id, startDate, endDate, name, isDeleted, image) 
+            VALUES (:id, :startDate, :endDate, :name, :isDeleted, :image)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
             ':id' => $promotionId,
             ':startDate' => $startDate,
             ':endDate' => $endDate,
             ':name' => $name,
-            ':isDeleted'=>false
+            ':isDeleted' => 0,
+            ':image' => $image
         ]);
     }
 

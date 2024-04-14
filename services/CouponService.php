@@ -76,9 +76,9 @@ class CouponService
         return $currentTime > $expireTime;
     }
 
-    public function addCoupon($expireTime, $name)
+    public function addCoupon($expireTime, $name,$code)
     {
-        return $this->couponRepository->create($expireTime, $name);
+        return $this->couponRepository->create($expireTime, $name,$code);
     }
     // Add other methods as needed...
 }
