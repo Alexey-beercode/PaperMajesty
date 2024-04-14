@@ -48,7 +48,7 @@ function renderProductsInPromotions($promotionId)
     $html='';
     foreach ($promotionProducts as $product)
     {
-        $html.=renderProduct($product);
+        $html.=renderProduct($product,$_SESSION['language']);
     }
     echo $html;
 }

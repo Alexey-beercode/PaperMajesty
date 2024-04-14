@@ -80,6 +80,30 @@
                 }
             });
         });
+        $(document).ready(function() {
+            $('.sort-item').click(function(e) {
+                e.preventDefault(); // Отменяем действие по умолчанию (переход по ссылке)
+
+                var sortParam = $(this).data('sort');
+                var action="sort";// Получаем параметр сортировки из атрибута data-sort
+                console.log('Выбрана сортировка по:', sortParam);
+
+                // Отправляем POST-запрос на сервер с параметром сортировки
+                $.ajax({
+                    url: 'getProducts.php', // Укажите путь к вашему PHP-скрипту
+                    type: 'POST',
+                    data: { sortParam: sortParam,action:action }, // Передаем параметр сортировки
+                    success: function(data) {
+                        console.log("ok")
+                        $('#productContainer').html(data);
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Ошибка:', error);
+                    }
+                });
+            });
+        });
+
 
         function getSelectedOptions(formId) {
             // Use consistent variable naming (lowercase with underscores)
@@ -99,4 +123,8 @@
             return selectedOptions.join(' '); // Return comma-separated options for better readability
         }
     });
+
+    // Загрузка файла с переводами
+
+
 

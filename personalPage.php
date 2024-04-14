@@ -69,7 +69,7 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
     <div class="row border-top px-xl-5">
         <div class="col-lg-3 d-none d-lg-block">
             <a class="btn shadow-none d-flex align-items-center justify-content-between bg-primary text-white w-100" data-toggle="collapse" href="#navbar-vertical" style="height: 65px; margin-top: -1px; padding: 0 30px;">
-                <h6 class="m-0 font-weight-bold">Категории</h6>
+                <h6 class="m-0 font-weight-bold" data-translate="categories">Категории</h6>
                 <i class="fa fa-angle-down text-dark"></i>
             </a>
             <nav class="collapse position-absolute navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0 bg-light" id="navbar-vertical" style="width: calc(100% - 30px); z-index: 1;">
@@ -87,7 +87,7 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </nav>
-            <a href="index.php"><button  type="button"style="border-radius: 12px" class="btn btn-primary">Назад в каталог</button></a>
+            <a href="index.php"><button  type="button"style="border-radius: 12px" class="btn btn-primary"data-translate="backToCatalog">Назад в каталог</button></a>
         </div>
     </div>
 </div>
@@ -100,15 +100,15 @@ if (!isset($_SESSION['is_authenticated']) || $_SESSION['is_authenticated'] !== t
                 <h3 class="mb-4"> <?php echo $_SESSION['name']?><span id="userName"></span></h3>
                 <h3 class="mb-4">Email: <?php echo $_SESSION['email']?><span id="email"></span></h3>
                 <h3 class="mb-4">Логин: <?php echo $_SESSION['login']?><span id="login"></span></h3>
-                <li class="list-group-item"><a href="orderHistory.php" class="btn btn-primary btn-block" id="orderHistoryButton">Посмотреть историю заказов</a></li>
+                <li class="list-group-item"><a href="orderHistory.php" class="btn btn-primary btn-block" id="orderHistoryButton" data-translate="showOrderHistory">Посмотреть историю заказов</a></li>
                 <?php
                 $rolesString=$_SESSION['roles'];
                 $rolesArray = explode(" ", $rolesString);
                 if (in_array('Admin', $rolesArray)) {
-                    echo '<li class="list-group-item"><a href="adminIndex.php" class="btn btn-primary btn-block" id="orderHistoryButton">Панель администратора</a></li>';
+                    echo '<li class="list-group-item"><a href="adminIndex.php" class="btn btn-primary btn-block" id="orderHistoryButton" data-translate="adminPanel">Панель администратора</a></li>';
                 }?>
                 <div class="col-lg-3 col-6 text-right">
-                    <a href="logout.php" class="btn btn-danger">Выйти</a>
+                    <a href="logout.php" class="btn btn-danger" data-translate="exit">Выйти</a>
                 </div>
 
 

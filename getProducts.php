@@ -11,7 +11,7 @@ include_once 'getOrderHistory.php';
 
 
 
-function renderProduct($product) {
+function renderProduct($product,$language) {
 
     $output = '<div class="col-lg-4 col-md-6 col-sm-12 pb-1">';
     $output .= '<div class="card product-item border-0 mb-4">';
@@ -26,7 +26,15 @@ function renderProduct($product) {
         $output .= '</div>';
         $output .= '</div>';
         $output .= '<div class="card-footer d-flex justify-content-between bg-light border">';
-        $output .= '<a href="details.php?id='.$product["id"].'" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Подробнее</a>';
+        if ($language=="ru") {
+            $output .= '<a href="details.php?id=' . $product["id"] . '" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Подробнее</a>';
+        }
+        if ($language=="en"){
+            $output .= '<a href="details.php?id='.$product["id"].'" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Details</a>';
+        }
+        if ($language=="it"){
+            $output .= '<a href="details.php?id='.$product["id"].'" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Più dettagli</a>';
+        }
         $output .= '</div>';
         $output .= '</div>';
         $output .= '</div>';
@@ -47,8 +55,21 @@ function renderProduct($product) {
     $output .= '</div>';
     $output .= '</div>';
     $output .= '<div class="card-footer d-flex justify-content-between bg-light border">';
-    $output .= '<a href="details.php?id='.$product["id"].'" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Подробнее</a>';
-    $output .= '<a href="#" data-product-id="' . $product['id'] . '" class="btn btn-sm text-dark p-0 add-to-cart-btn"><i class="fas fa-shopping-cart text-primary mr-1"></i>Добавить в корзину</a>';
+    if ($language=="ru")
+    {
+        $output .= '<a href="details.php?id='.$product["id"].'" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Подробнее</a>';
+        $output .= '<a href="#" data-product-id="' . $product['id'] . '" class="btn btn-sm text-dark p-0 add-to-cart-btn"><i class="fas fa-shopping-cart text-primary mr-1"></i>Добавить в корзину</a>';
+    }
+    if ($language=="en")
+    {
+        $output .= '<a href="details.php?id='.$product["id"].'" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Details</a>';
+        $output .= '<a href="#" data-product-id="' . $product['id'] . '" class="btn btn-sm text-dark p-0 add-to-cart-btn"><i class="fas fa-shopping-cart text-primary mr-1"></i>Add to cart</a>';
+    }
+    if ($language=="it")
+    {
+        $output .= '<a href="details.php?id='.$product["id"].'" class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>Più dettagli</a>';
+        $output .= '<a href="#" data-product-id="' . $product['id'] . '" class="btn btn-sm text-dark p-0 add-to-cart-btn"><i class="fas fa-shopping-cart text-primary mr-1"></i>Aggiungi al carrello</a>';
+    }
     $output .= '</div>';
     $output .= '</div>';
     $output .= '</div>';
@@ -56,7 +77,7 @@ function renderProduct($product) {
     return $output;
 }
 
-function getProducts()
+function getProducts($language)
 {
 
     $productService=getProductService();
@@ -64,7 +85,7 @@ function getProducts()
         $products = $productService->getAll();
         $html = '';
         foreach ($products as $product) {
-            $html .= renderProduct($product);
+            $html .= renderProduct($product,$language);
         }
         echo $html;
     }
@@ -76,6 +97,8 @@ if ($_SERVER['REQUEST_METHOD']=="POST")
 {
     if (isset($_POST['action']))
     {
+        session_start();
+        $language=$_SESSION['language'];
         $action=$_POST['action'];
         if ($action=="filter")
         {
@@ -93,13 +116,29 @@ if ($_SERVER['REQUEST_METHOD']=="POST")
                 $filteredProducts=$productService->getFilteredProduct($priceArray,$countryArray,$stockArray);
                 $html='';
                 foreach ($filteredProducts as $product) {
-                    $html .= renderProduct($product);
+                    $html .= renderProduct($product,$language);
                 }
                 echo $html;
             }
             catch (Exception $exception) {
                 echo $exception->getMessage();
             }
+        }
+        if ($action=="sort")
+        {
+            try {
+                $sortParam=$_POST['sortParam'];
+                $productService=getProductService();
+                $sortedProducts=$productService->getSortedProducts($sortParam);
+                $html='';
+                foreach ($sortedProducts as $product) {
+                    $html .= renderProduct($product,$language);
+                }
+                echo $html;
+            }
+    catch (Exception $exception) {
+        echo $exception->getMessage();
+    }
         }
     }
 }

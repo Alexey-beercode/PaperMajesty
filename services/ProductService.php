@@ -213,5 +213,50 @@ class ProductService
                 return $product['stockQuantity']>0;
         }
     }
+    public function getSortedProducts($sortParam)
+    {
+        $allProducts = $this->productRepository->getAll();
+
+
+        // Сортировка товаров в зависимости от параметра
+        switch ($sortParam) {
+            case 'name':
+                usort($allProducts, function ($a, $b) {
+                    return strcmp($a['name'], $b['name']);
+                });
+                break;
+            case 'stockQuantity':
+                usort($allProducts, function ($a, $b) {
+                    return $a['stockQuantity'] - $b['stockQuantity'];
+                });
+                break;
+            case 'availability':
+                $availableProducts = [];
+                $unavailableProducts = [];
+                foreach ($allProducts as $product) {
+                    if ($product['stockQuantity'] > 0) {
+                        $availableProducts[] = $product;
+                    } else {
+                        $unavailableProducts[] = $product;
+                    }
+                }
+                $sortedProducts = array_merge($availableProducts, $unavailableProducts);
+                return $sortedProducts;
+            case 'price':
+                usort($allProducts, function ($a, $b) {
+                    if (isset($a['new_price'])) {
+                        return $a['new_price'] - $b['new_price'];
+                    } else {
+                        return $a['price'] - $b['price'];
+                    }
+                });
+                break;
+            default:
+                // По умолчанию, возвращаем все товары без сортировки
+                break;
+        }
+
+        return $allProducts;
+    }
 
 }

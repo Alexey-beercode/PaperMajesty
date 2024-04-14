@@ -15,6 +15,7 @@ $productCategoryRepository=new ProductCategoryRepository($conn);
 $productService=getProductService();
 
 if (isset($_GET['categoryId'])) {
+    $language=$_SESSION['language'];
     $categoryId = $_GET['categoryId'];
     try {
         error_log($categoryId);
@@ -26,7 +27,7 @@ if (isset($_GET['categoryId'])) {
             exit;
         }
         foreach ($products as $product) {
-            $html .= renderProduct($product);
+            $html .= renderProduct($product,$language);
         }
         echo $html;
     }
