@@ -56,3 +56,47 @@
             event.preventDefault();
         });
     });
+    $(document).ready(function() {
+        $('#applyFilterBtn').click(function() {
+            console.log("filter");
+            var priceFilter = getSelectedOptions('priceFilterForm');
+            var countryFilter = getSelectedOptions('countryFilterForm');
+            var stockFilter = getSelectedOptions('stockFilterForm');
+            console.log(priceFilter );
+            console.log(countryFilter );
+            console.log(stockFilter);
+            // Send filters to server using AJAX POST request
+            $.ajax({
+                url: 'getProducts.php',
+                type: 'POST',
+                data: { priceFilter: priceFilter,countryFilter: countryFilter,stockFilter: stockFilter, action:"filter" }, // Передаем поисковый запрос на сервер
+                success: function(data) {
+                    console.log("ok")
+                    $('#productContainer').html(data);
+                },
+                error: function(xhr, status, error) {
+                    // В случае ошибки выводим сообщение об ошибке
+                    console.error(error);
+                }
+            });
+        });
+
+        function getSelectedOptions(formId) {
+            // Use consistent variable naming (lowercase with underscores)
+            const selectedOptions = [];
+
+            // Target checkboxes within the specified form using a more robust selector
+            $(`#${formId} input[type="checkbox"]:checked`).each(function() {
+                // Extract the relevant part of the ID without hardcoding assumptions
+                const optionId = $(this).attr('id').split('-').slice(-1)[0]; // Get the last part of the ID
+
+                // Only add IDs that are valid (avoid empty strings or unnecessary characters)
+                if (optionId) {
+                    selectedOptions.push(optionId);
+                }
+            });
+
+            return selectedOptions.join(' '); // Return comma-separated options for better readability
+        }
+    });
+

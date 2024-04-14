@@ -72,4 +72,35 @@ function getProducts()
         echo $exception->getMessage();
     }
 }
+if ($_SERVER['REQUEST_METHOD']=="POST")
+{
+    if (isset($_POST['action']))
+    {
+        $action=$_POST['action'];
+        if ($action=="filter")
+        {
+            try {
+                $priceFilter = isset($_POST['priceFilter']) ? $_POST['priceFilter'] : '';
+                $countryFilter = isset($_POST['countryFilter']) ? $_POST['countryFilter'] : '';
+                $stockFilter = isset($_POST['stockFilter']) ? $_POST['stockFilter'] : '';
+                error_log($priceFilter);
+                error_log($countryFilter);
+                $priceArray = $priceFilter != '' ? explode(' ', $priceFilter) : [];
+                $countryArray = $countryFilter != '' ? explode(' ', $countryFilter) : [];
+                $stockArray = $stockFilter != '' ? explode(' ', $stockFilter) : [];
+
+                $productService=getProductService();
+                $filteredProducts=$productService->getFilteredProduct($priceArray,$countryArray,$stockArray);
+                $html='';
+                foreach ($filteredProducts as $product) {
+                    $html .= renderProduct($product);
+                }
+                echo $html;
+            }
+            catch (Exception $exception) {
+                echo $exception->getMessage();
+            }
+        }
+    }
+}
 ?>

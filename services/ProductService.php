@@ -88,4 +88,130 @@ class ProductService
         return $this->productRepository->searchByName($searchTerm);
     }
 
+// Метод для проверки продукта по параметрам фильтрации
+    private function checkProductFilter($product, $priceArray, $countryArray, $stockArray)
+    {
+        if ($product['new_price']!=null)
+        {
+            if (!empty($priceArray) && !in_array($product['new_price'], $priceArray)) {
+                return false;
+            }
+        }
+        else
+        {
+            if (!empty($priceArray) && !in_array($product['price'], $priceArray)) {
+                return false;
+            }
+        }
+
+        // Проверка по стране производства
+        if (!empty($countryArray) && !in_array($product['createCountry'], $countryArray)) {
+            return false;
+        }
+
+        // Проверка по наличию на складе
+        if (!empty($stockArray)) {
+            return false;
+        }
+
+        return true; // Продукт прошел все проверки фильтрации
+    }
+    public function getFilteredProduct($priceArray, $countryArray, $stockArray)
+    {
+        $allProducts = $this->productRepository->getAll();
+        $filteredProducts = [];
+
+        foreach ($allProducts as $product) {
+            // Преобразование строки в массив числовых значений
+            // Проверка фильтров
+            if (!empty($priceArray)) {
+                $priceInRange = false;
+                foreach ($priceArray as $priceId) {
+                    if ($this->checkPriceRange($product, $priceId)) {
+                        $priceInRange = true;
+                        break;
+                    }
+                }
+                if (!$priceInRange) {
+                    continue; // Пропускаем продукт, не попадающий в диапазон цен
+                }
+            }
+            if (!empty($countryArray))
+            {
+                error_log("не пустой страна");
+            }
+            // Проверка по стране производства и наличию на складе
+            if (!empty($countryArray) && !in_array($product['createCountry'], $countryArray)) {
+                continue;
+            }
+            if (!empty($stockArray)){
+                error_log("что то не так сток");
+                $isRightStock=false;
+                foreach ($stockArray as $stockId){
+                    if ($this->checkStock($product,$stockId)){
+                        $isRightStock=true;
+                        break;
+                    }
+                }
+                if (!$isRightStock){
+                    continue;
+                }
+            }
+            error_log("добавляем товар в список");
+            $filteredProducts[] = $product;
+        }
+
+        return $filteredProducts;
+    }
+
+    private function checkPriceRange($product, $priceId)
+    {
+        if ($priceId=="all") return true;
+        // Преобразование числового идентификатора в соответствующий диапазон цен
+        if (isset($product['new_price'])) {
+            switch ($priceId) {
+                case '1':
+                    return $product['new_price'] >= 0 && $product['new_price'] <= 5;
+                case '2':
+                    return $product['new_price'] > 5 && $product['new_price'] <= 10;
+                case '3':
+                    return $product['new_price'] > 10 && $product['new_price'] <= 20;
+                case '4':
+                    return $product['new_price'] > 20 && $product['new_price'] <= 30;
+                case '5':
+                    return $product['new_price'] > 30 && $product['new_price'] <= 40;
+                case '6':
+                    return $product['new_price'] > 40 && $product['new_price'] <= 50;
+                default:
+                    return true; // По умолчанию пропускаем все продукты
+            }
+        }
+        switch ($priceId) {
+            case '1':
+                return $product['price'] >= 0 && $product['price'] <= 5;
+            case '2':
+                return $product['price'] > 5 && $product['price'] <= 10;
+            case '3':
+                return $product['price'] > 10 && $product['price'] <= 20;
+            case '4':
+                return $product['price'] > 20 && $product['price'] <= 30;
+            case '5':
+                return $product['price'] > 30 && $product['price'] <= 40;
+            case '6':
+                return $product['price'] > 40 && $product['price'] <= 50;
+            default:
+                return true; // По умолчанию пропускаем все продукты
+
+        }
+    }
+    private function checkStock($product, $stockId)
+    {
+        switch ($stockId){
+            case 'outOfstock':
+                return $product['stockQuantity']==0;
+            case 'inStock':
+                return $product['stockQuantity']>0;
+        }
+    }
+
 }
